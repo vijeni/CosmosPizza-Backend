@@ -29,6 +29,11 @@ public class Pessoas {
 
     @Getter @Setter
     @ManyToOne
-    @JoinColumn(name = "enderecos_id")
+    @JoinColumn(name = "enderecos_pessoas")
     private Enderecos enderecos;
+
+    @NotNull
+    @Getter @Setter
+    @Column(name="tipo_pessoa", nullable = false)
+    private TipoPessoa tipoPessoa;
 }
