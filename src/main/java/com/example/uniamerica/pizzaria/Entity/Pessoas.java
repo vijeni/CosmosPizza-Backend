@@ -26,4 +26,9 @@ public class Pessoas {
     @Getter @Setter
     @Column(name="telefone", length = 20)
     private String telefone;
+
+    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "enderecos_id")
+    private Enderecos enderecos;
 }

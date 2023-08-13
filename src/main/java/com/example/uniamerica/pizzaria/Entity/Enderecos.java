@@ -1,20 +1,18 @@
 package com.example.uniamerica.pizzaria.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
-
+@Entity
+@Table(name="enderecos", schema = "public")
 public class Enderecos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @NotNull @Column(name="id", unique = true)
-    private Serial id;
+    private Long id;
 
     /*
     não criamos esse campo no DER,
