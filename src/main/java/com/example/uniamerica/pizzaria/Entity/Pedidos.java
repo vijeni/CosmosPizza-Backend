@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table (name="pedidos", schema = "public")
 public class Pedidos {
@@ -12,8 +14,8 @@ public class Pedidos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @NotNull
-    @Column(name="id", unique = true)
-    private Long id;
+    @Column(name="codigo_pedido", unique = true)
+    private Long codigoPedido;
 
     /*
     Utilizei ManyToOne aqui, pois OneToMany deveria ser uma Lista.
@@ -22,10 +24,6 @@ public class Pedidos {
     @Column(name = "pessoas_id")
     @Getter @Setter
     private Pessoas pessoas;
-
-    @Getter @Setter
-    @NotNull @Column(name="codigo_pedido", nullable = false, unique = true)
-    private String codigoPedido;
 
     @Getter @Setter @NotNull
     @Enumerated(EnumType.STRING)
@@ -41,13 +39,25 @@ public class Pedidos {
     mas deixei sem pois pode ser uma retirada em balcão, por exemplo.
      */
     @Column(name="valor_entrega")
+    @Getter @Setter
     private Double valorEntrega;
 
     @NotNull
     @Getter @Setter @Column(name="valor_total", nullable = false)
     private Double valorTotal;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) @Getter @Setter
     @NotNull @Column(name="forma_pagamento", nullable = false)
     private Pagamento formaPagamento;
+
+    /*
+    Criei uma lista aqui, para usarmos OneToMany
+     */
+    @OneToMany @Getter @Setter
+    @JoinColumn(name="pedidos_produtos")
+    private List<Produtos> produtos;
+
+    @ManyToMany @Getter @Setter
+    @JoinColumn(name="pedidos_pizza")
+    private  List <Pizzas> pizza;
 }
