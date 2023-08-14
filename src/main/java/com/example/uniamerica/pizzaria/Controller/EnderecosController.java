@@ -44,7 +44,7 @@ public class EnderecosController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/deletar")
     public ResponseEntity<?>delete(@RequestParam long id){
         try{
             enderecosService.delete(id);
