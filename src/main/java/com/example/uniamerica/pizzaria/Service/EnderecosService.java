@@ -2,10 +2,17 @@ package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.EnderecosDTO;
 import com.example.uniamerica.pizzaria.Entity.Enderecos;
+import com.example.uniamerica.pizzaria.Repository.EnderecosRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
 public class EnderecosService {
+
+    @Autowired
+    private EnderecosRepository repository;
     public Enderecos toEnderecos (EnderecosDTO enderecosDTO){
         Enderecos enderecos = new Enderecos();
         enderecos.setBairro(enderecosDTO.getBairro());
@@ -15,7 +22,7 @@ public class EnderecosService {
         enderecos.setLogradouro(enderecosDTO.getLogradouro());
         return enderecos;
     }
-
+    
     public EnderecosDTO toEnderecosDTO (Enderecos enderecos){
         EnderecosDTO enderecosDTO = new EnderecosDTO();
         enderecosDTO.setBairro(enderecos.getBairro());
@@ -23,8 +30,17 @@ public class EnderecosService {
         enderecosDTO.setComplemento(enderecos.getComplemento());
         enderecosDTO.setNumero(enderecos.getNumero());
         enderecosDTO.setLogradouro(enderecos.getLogradouro());
-        return enderecosDTO;
+        return null;
     }
 
+    @Transactional
+    public EnderecosDTO post(EnderecosDTO enderecosDTO) {
+        Assert.notNull(enderecosDTO.getBairro(),"Por favor, informe um bairro!");
+        Assert.notNull(enderecosDTO.getCep(),"Por favor, informe um CEP!");
+        Assert.hasText(enderecosDTO.getBairro(),"Informe um bairro válido!");
+        Assert.hasText(enderecosDTO.getCep(),"Informe um CEP válido!");
 
+
+        return toEnderecosDTO(repository.save(toEnderecos(enderecosDTO)));
+    }
 }
