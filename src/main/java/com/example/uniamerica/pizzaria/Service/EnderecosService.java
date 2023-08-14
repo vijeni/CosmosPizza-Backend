@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 @Service
 public class EnderecosService {
 
+
     @Autowired
     private EnderecosRepository repository;
     public Enderecos toEnderecos (EnderecosDTO enderecosDTO){
@@ -53,6 +54,14 @@ public class EnderecosService {
         Assert.hasText(enderecosDTO.getCep(),"Informe um CEP válido!");
 
         return toEnderecosDTO(repository.save(toEnderecos(enderecosDTO)));
+    }
+
+    @Transactional
+    public void delete (long id){
+
+        Enderecos enderecos = repository.findById(id).orElse(null);
+        Assert.notNull(enderecos,String.format("Endereço com o id [%s] não foi localizado!",id));
+        repository.deleteById(id);
     }
 
 }

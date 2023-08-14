@@ -44,6 +44,15 @@ public class EnderecosController {
         }
     }
 
+    @DeleteMapping
+    public ResponseEntity<?>delete(@RequestParam long id){
+        try{
+            enderecosService.delete(id);
+            return ResponseEntity.ok(String.format("O endereço com o ID [%s] foi deletado com sucesso!", id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 
 }
