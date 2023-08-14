@@ -35,7 +35,14 @@ public class EnderecosController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @PutMapping("/atualizar")
+    public ResponseEntity<?>put(@RequestBody EnderecosDTO enderecos, @RequestParam long id){
+        try{
+            return ResponseEntity.ok(enderecosService.update(enderecos, id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 
 

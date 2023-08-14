@@ -22,7 +22,7 @@ public class EnderecosService {
         enderecos.setLogradouro(enderecosDTO.getLogradouro());
         return enderecos;
     }
-    
+
     public EnderecosDTO toEnderecosDTO (Enderecos enderecos){
         EnderecosDTO enderecosDTO = new EnderecosDTO();
         enderecosDTO.setBairro(enderecos.getBairro());
@@ -43,4 +43,16 @@ public class EnderecosService {
 
         return toEnderecosDTO(repository.save(toEnderecos(enderecosDTO)));
     }
+
+    @Transactional
+    public EnderecosDTO update (EnderecosDTO enderecosDTO, long id){
+        Assert.notNull(enderecosDTO.getId(),"Por favor, insira um ID!");
+        Assert.notNull(enderecosDTO.getBairro(),"Por favor, informe um bairro!");
+        Assert.notNull(enderecosDTO.getCep(),"Por favor, informe um CEP!");
+        Assert.hasText(enderecosDTO.getBairro(),"Informe um bairro válido!");
+        Assert.hasText(enderecosDTO.getCep(),"Informe um CEP válido!");
+
+        return toEnderecosDTO(repository.save(toEnderecos(enderecosDTO)));
+    }
+
 }
