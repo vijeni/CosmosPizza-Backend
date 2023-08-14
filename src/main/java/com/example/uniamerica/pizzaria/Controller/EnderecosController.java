@@ -27,7 +27,7 @@ public class EnderecosController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public ResponseEntity<?>post(@RequestBody EnderecosDTO enderecos){
         try{
             return ResponseEntity.ok(enderecosService.post(enderecos));
