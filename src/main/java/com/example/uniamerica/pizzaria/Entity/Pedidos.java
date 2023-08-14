@@ -21,7 +21,7 @@ public class Pedidos {
     Utilizei ManyToOne aqui, pois OneToMany deveria ser uma Lista.
      */
     @ManyToOne
-    @Column(name = "pessoas_id")
+    @JoinColumn(name = "pessoas_id")
     @Getter @Setter
     private Pessoas pessoas;
 
