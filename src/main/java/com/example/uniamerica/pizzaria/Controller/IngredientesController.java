@@ -36,6 +36,13 @@ public class IngredientesController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @PutMapping("/atualizar")
+    public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredientesDTO ingredientes){
+        try{
+            return null;
+        }catch (Exception e){
+           return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 }
