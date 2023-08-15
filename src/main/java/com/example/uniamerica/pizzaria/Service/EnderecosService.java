@@ -31,7 +31,7 @@ public class EnderecosService {
         enderecosDTO.setComplemento(enderecos.getComplemento());
         enderecosDTO.setNumero(enderecos.getNumero());
         enderecosDTO.setLogradouro(enderecos.getLogradouro());
-        return null;
+        return enderecosDTO;
     }
 
     @Transactional
