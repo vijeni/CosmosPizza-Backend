@@ -1,6 +1,6 @@
 package com.example.uniamerica.pizzaria.Controller;
 
-import com.example.uniamerica.pizzaria.DTO.IngredientDTO;
+import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class IngredienteController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>post(@RequestBody IngredientDTO ingredientes){
+    public ResponseEntity<?>post(@RequestBody IngredienteDTO ingredientes){
         try{
             return ResponseEntity.ok(service.post(ingredientes));
         }catch (Exception e){
@@ -35,7 +35,7 @@ public class IngredienteController {
         }
     }
     @PutMapping("/atualizar")
-    public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredientesDTO ingredientes){
+    public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredienteDTO ingredientes){
         try{
             return null;
         }catch (Exception e){

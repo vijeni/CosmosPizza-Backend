@@ -1,6 +1,6 @@
 package com.example.uniamerica.pizzaria.Service;
 
-import com.example.uniamerica.pizzaria.DTO.IngredientDTO;
+import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import jakarta.transaction.Transactional;
@@ -13,25 +13,25 @@ public class IngredientesService {
     @Autowired
     IngredienteRepository repository;
 
-    public Ingrediente toIngredientes(IngredientDTO ingredientDTO){
+    public Ingrediente toIngredientes(IngredienteDTO ingredienteDTO){
         Ingrediente ingrediente = new Ingrediente();
-        ingrediente.setNome(ingredientDTO.getNome());
-        ingrediente.setQuantidade(ingredientDTO.getQuantidade());
+        ingrediente.setNome(ingredienteDTO.getNome());
+        ingrediente.setQuantidade(ingredienteDTO.getQuantidade());
 
         return ingrediente;
     }
-    public IngredientDTO toIngredientesDTO(Ingrediente ingrediente){
-        IngredientDTO ingredientDTO = new IngredientDTO();
-        ingredientDTO.setNome(ingrediente.getNome());
-        ingredientDTO.setQuantidade(ingrediente.getQuantidade());
+    public IngredienteDTO toIngredientesDTO(Ingrediente ingrediente){
+        IngredienteDTO ingredienteDTO = new IngredienteDTO();
+        ingredienteDTO.setNome(ingrediente.getNome());
+        ingredienteDTO.setQuantidade(ingrediente.getQuantidade());
 
-        return ingredientDTO;
+        return ingredienteDTO;
     }
 
 
 
     @Transactional
-      public IngredientDTO post(IngredientDTO ingredientes) {
+      public IngredienteDTO post(IngredienteDTO ingredientes) {
         Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");

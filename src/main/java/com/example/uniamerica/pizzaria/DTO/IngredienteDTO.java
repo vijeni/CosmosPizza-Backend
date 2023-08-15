@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class IngredientDTO {
+public class IngredienteDTO {
 
     private long id;
 
