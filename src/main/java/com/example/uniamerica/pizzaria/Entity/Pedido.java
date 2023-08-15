@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table (name="pedidos", schema = "public")
-public class Pedidos {
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -23,7 +23,7 @@ public class Pedidos {
     @ManyToOne
     @JoinColumn(name = "pessoas_id")
     @Getter @Setter
-    private Pessoas pessoas;
+    private Pessoa pessoa;
 
     @Getter @Setter @NotNull
     @Enumerated(EnumType.STRING)
@@ -55,9 +55,9 @@ public class Pedidos {
      */
     @OneToMany @Getter @Setter
     @JoinColumn(name="pedidos_produtos")
-    private List<Produtos> produtos;
+    private List<Produto> produtos;
 
     @ManyToMany @Getter @Setter
     @JoinColumn(name="pedidos_pizza")
-    private  List <Pizzas> pizza;
+    private  List <Pizza> pizza;
 }

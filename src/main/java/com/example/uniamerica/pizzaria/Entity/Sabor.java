@@ -25,5 +25,5 @@ public class Sabor {
 
     @Getter @Setter @NotNull
     @OneToMany @JoinColumn(name="sabores_ingredientes", nullable = false)
-    private List <Ingredientes> ingredientes;
+    private List <Ingrediente> ingredientes;
 }

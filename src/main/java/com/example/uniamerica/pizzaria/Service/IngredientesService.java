@@ -1,9 +1,8 @@
 package com.example.uniamerica.pizzaria.Service;
 
-import com.example.uniamerica.pizzaria.DTO.EnderecosDTO;
-import com.example.uniamerica.pizzaria.DTO.IngredientesDTO;
-import com.example.uniamerica.pizzaria.Entity.Ingredientes;
-import com.example.uniamerica.pizzaria.Repository.IngredientesRepository;
+import com.example.uniamerica.pizzaria.DTO.IngredientDTO;
+import com.example.uniamerica.pizzaria.Entity.Ingrediente;
+import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,27 +11,27 @@ import org.springframework.util.Assert;
 @Service
 public class IngredientesService {
     @Autowired
-    IngredientesRepository repository;
+    IngredienteRepository repository;
 
-    public Ingredientes toIngredientes(IngredientesDTO ingredientesDTO){
-        Ingredientes ingredientes = new Ingredientes();
-        ingredientes.setNome(ingredientesDTO.getNome());
-        ingredientes.setQuantidade(ingredientesDTO.getQuantidade());
+    public Ingrediente toIngredientes(IngredientDTO ingredientDTO){
+        Ingrediente ingrediente = new Ingrediente();
+        ingrediente.setNome(ingredientDTO.getNome());
+        ingrediente.setQuantidade(ingredientDTO.getQuantidade());
 
-        return ingredientes;
+        return ingrediente;
     }
-    public IngredientesDTO toIngredientesDTO(Ingredientes ingredientes){
-        IngredientesDTO ingredientesDTO = new IngredientesDTO();
-        ingredientesDTO.setNome(ingredientes.getNome());
-        ingredientesDTO.setQuantidade(ingredientes.getQuantidade());
+    public IngredientDTO toIngredientesDTO(Ingrediente ingrediente){
+        IngredientDTO ingredientDTO = new IngredientDTO();
+        ingredientDTO.setNome(ingrediente.getNome());
+        ingredientDTO.setQuantidade(ingrediente.getQuantidade());
 
-        return ingredientesDTO;
+        return ingredientDTO;
     }
 
 
 
     @Transactional
-      public IngredientesDTO post(IngredientesDTO ingredientes) {
+      public IngredientDTO post(IngredientDTO ingredientes) {
         Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");

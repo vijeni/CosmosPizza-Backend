@@ -1,10 +1,8 @@
 package com.example.uniamerica.pizzaria.Controller;
 
-import com.example.uniamerica.pizzaria.DTO.EnderecosDTO;
-import com.example.uniamerica.pizzaria.DTO.IngredientesDTO;
-import com.example.uniamerica.pizzaria.Repository.IngredientesRepository;
+import com.example.uniamerica.pizzaria.DTO.IngredientDTO;
+import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RestController("/api/ingredientes")
-public class IngredientesController {
+public class IngredienteController {
     @Autowired
-    IngredientesRepository repository;
+    IngredienteRepository repository;
     @Autowired
     IngredientesService service;
 
@@ -29,7 +27,7 @@ public class IngredientesController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>post(@RequestBody IngredientesDTO ingredientes){
+    public ResponseEntity<?>post(@RequestBody IngredientDTO ingredientes){
         try{
             return ResponseEntity.ok(service.post(ingredientes));
         }catch (Exception e){
