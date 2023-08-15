@@ -33,5 +33,12 @@ public class SaborController {
         }
     }
 
-
+    @PutMapping("/editar")
+    public ResponseEntity<?>editar(@RequestBody SaborDTO sabor, @RequestParam("id")Long id){
+        try {
+            return ResponseEntity.ok(service.update(sabor,id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
