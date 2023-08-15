@@ -30,6 +30,12 @@ public class PessoaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-
+    @PutMapping("/atualizar")
+    public ResponseEntity<?>atualizar(@RequestBody PessoaDTO pessoa, @RequestParam long id){
+        try{
+            return ResponseEntity.ok(service.put(pessoa));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
