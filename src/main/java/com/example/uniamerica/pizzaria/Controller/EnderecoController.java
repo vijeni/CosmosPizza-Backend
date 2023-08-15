@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RestController(value = "/api/enderecos")
+@RestController
+@RequestMapping(value = "/api/enderecos")
 public class EnderecoController {
 
     @Autowired

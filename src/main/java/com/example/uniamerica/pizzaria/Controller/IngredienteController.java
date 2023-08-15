@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RestController("/api/ingredientes")
+
+@RestController
+@RequestMapping(value = "/api/ingredientes")
 public class IngredienteController {
     @Autowired
     IngredienteRepository repository;
@@ -37,9 +38,19 @@ public class IngredienteController {
     @PutMapping("/atualizar")
     public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredienteDTO ingredientes){
         try{
-            return null;
+            return ResponseEntity.ok(service.update(id, ingredientes));
         }catch (Exception e){
            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deletar")
+    public ResponseEntity<?>deletar(@RequestParam ("id") final long id){
+        try{
+            service.delete(id);
+          return ResponseEntity.ok(String.format("O ingrediente com o id [%s] foi deletado com sucesso.", id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
