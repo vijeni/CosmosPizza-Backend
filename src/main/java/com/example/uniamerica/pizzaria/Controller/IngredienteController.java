@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RestController("/api/ingredientes")
+
+@RestController
+@RequestMapping(value = "/api/ingredientes")
 public class IngredienteController {
     @Autowired
     IngredienteRepository repository;
