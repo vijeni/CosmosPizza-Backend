@@ -37,7 +37,7 @@ public class IngredienteController {
     @PutMapping("/atualizar")
     public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredienteDTO ingredientes){
         try{
-            return null;
+            return ResponseEntity.ok(service.update(id, ingredientes));
         }catch (Exception e){
            return ResponseEntity.badRequest().body(e.getMessage());
         }

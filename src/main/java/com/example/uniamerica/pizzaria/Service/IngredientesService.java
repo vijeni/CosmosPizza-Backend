@@ -28,8 +28,6 @@ public class IngredientesService {
         return ingredienteDTO;
     }
 
-
-
     @Transactional
       public IngredienteDTO post(IngredienteDTO ingredientes) {
         Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
@@ -37,5 +35,13 @@ public class IngredientesService {
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
         return toIngredientesDTO(repository.save(toIngredientes(ingredientes)));
 
+    }
+    @Transactional
+    public IngredienteDTO update(long id, IngredienteDTO ingredientes) {
+        Assert.notNull(ingredientes.getId(),"Por favor, insira um ID.");
+        Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
+        Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
+
+        return toIngredientesDTO(repository.save(toIngredientes(ingredientes)));
     }
 }
