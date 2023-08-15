@@ -1,15 +1,13 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter @Setter
-public class PedidosDTO {
+public class PedidoDTO {
 
     private Long codigoPedido;
 
@@ -17,7 +15,7 @@ public class PedidosDTO {
     Utilizei ManyToOne aqui, pois OneToMany deveria ser uma Lista.
      */
 
-    private Pessoas pessoas;
+    private Pessoa pessoa;
 
 
     private Status status;
@@ -35,8 +33,8 @@ public class PedidosDTO {
     private Pagamento formaPagamento;
 
 
-    private List<Produtos> produtos;
+    private List<Produto> produtos;
 
 
-    private  List <Pizzas> pizza;
+    private  List <Pizza> pizza;
 }

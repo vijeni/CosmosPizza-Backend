@@ -5,10 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serial;
 @Entity
 @Table(name="enderecos", schema = "public")
-public class Enderecos {
+public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @NotNull @Column(name="id", unique = true)

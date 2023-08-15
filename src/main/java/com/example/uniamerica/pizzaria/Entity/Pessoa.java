@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="pessoas_table", schema = "public")
-public class Pessoas {
+public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @NotNull @Column(name="id", unique = true)
@@ -30,7 +30,7 @@ public class Pessoas {
     @Getter @Setter
     @ManyToOne
     @JoinColumn(name = "enderecos_pessoas")
-    private Enderecos enderecos;
+    private Endereco endereco;
 
     @NotNull
     @Getter @Setter

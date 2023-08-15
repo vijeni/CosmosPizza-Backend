@@ -1,8 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.Ingredientes;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +15,5 @@ public class SaborDTO {
 
     private String descricao;
 
-    private List <Ingredientes> ingredientes;
+    private List <Ingrediente> ingredientes;
 }

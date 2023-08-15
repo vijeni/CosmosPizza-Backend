@@ -2,13 +2,12 @@ package com.example.uniamerica.pizzaria.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table (name="produtos", schema = "public")
-public class Produtos {
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
