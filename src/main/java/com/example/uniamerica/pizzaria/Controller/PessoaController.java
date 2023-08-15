@@ -38,4 +38,14 @@ public class PessoaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/deletar")
+    public ResponseEntity<?>deletar(@RequestParam ("id") final long id){
+        try {
+            service.deletar(id);
+            return ResponseEntity.ok(String.format("Pessoa com o id [%s] foi deletado com sucesso.", id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

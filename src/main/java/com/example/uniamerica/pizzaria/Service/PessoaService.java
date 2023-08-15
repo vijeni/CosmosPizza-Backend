@@ -57,4 +57,11 @@ public class PessoaService {
 
         return toPessoaDTO(repository.save(toPessoa(pessoa)));
     }
+
+    public void deletar(long id) {
+        Assert.notNull(repository.findById(id).orElse(null), String.format("Nenhuma pessoa localizada com o ID [%s]", id));
+
+        repository.deleteById(id);
+
+    }
 }
