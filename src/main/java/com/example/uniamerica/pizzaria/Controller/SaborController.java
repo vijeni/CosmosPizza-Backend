@@ -34,9 +34,18 @@ public class SaborController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?>editar(@RequestBody SaborDTO sabor, @RequestParam("id")Long id){
+    public ResponseEntity<?>editar(@RequestBody SaborDTO sabor, @RequestParam("id")final long id){
         try {
             return ResponseEntity.ok(service.update(sabor,id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @DeleteMapping("deletar")
+    public ResponseEntity<?>deletar(@RequestParam("id") final long id){
+        try{
+            service.delete(id);
+            return ResponseEntity.ok(String.format("O sabor com o id [%s] foi deletado com sucesso.", id));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

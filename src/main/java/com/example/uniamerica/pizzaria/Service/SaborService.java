@@ -50,4 +50,10 @@ public class SaborService {
 
         return toSaborDTO(repository.save(toSaborEntidade(sabor)));
     }
+
+    public void  delete(long id){
+        Assert.notNull(repository.findById(id).orElse(null),String.format("Sabor com o id [%s] não localizado!", id));
+
+        repository.deleteById(id);
+    }
 }
