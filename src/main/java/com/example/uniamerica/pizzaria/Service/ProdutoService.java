@@ -16,12 +16,16 @@ public class ProdutoService {
     private final ModelMapper modelMapper =new ModelMapper();;
     public ProdutoDTO findById(Long id){
         Produto produto = repository.findById(id).orElse(null);
-        Assert.notNull(produto, "Produto não existe");
+        Assert.notNull(produto, "Produto não existe!");
         return modelMapper.map(produto, ProdutoDTO.class);
     }
-
     @Transactional
     public ProdutoDTO cadastrar(ProdutoDTO produto){
+        return modelMapper.map(repository.save(modelMapper.map(produto, Produto.class)), ProdutoDTO.class);
+    }
+    public ProdutoDTO editar(Long id, ProdutoDTO produtoDTO) {
+        Produto produto = repository.findById(id).orElse(null);
+        Assert.notNull(produto, "Produto não existe!");
         return modelMapper.map(repository.save(modelMapper.map(produto, Produto.class)), ProdutoDTO.class);
     }
 }

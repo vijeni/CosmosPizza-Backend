@@ -28,4 +28,13 @@ public class ProdutoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/editar")
+    public ResponseEntity<?> editar(@RequestParam Long id, @RequestBody ProdutoDTO produto){
+        try{
+            return ResponseEntity.ok(service.editar(id, produto));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
