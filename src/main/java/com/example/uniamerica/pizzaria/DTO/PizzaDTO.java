@@ -13,7 +13,7 @@ public class PizzaDTO {
     private Long id;
 
 
-    private List <Sabor> sabor;
+    private List <SaborDTO> sabor;
 
     private Tamanho tamanho;
 

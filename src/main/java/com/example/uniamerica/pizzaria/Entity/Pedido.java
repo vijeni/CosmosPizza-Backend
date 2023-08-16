@@ -13,36 +13,32 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @NotNull
     @Column(name="codigo_pedido", unique = true)
     private Long codigoPedido;
 
-    /*
-    Utilizei ManyToOne aqui, pois OneToMany deveria ser uma Lista.
-     */
     @ManyToOne
     @JoinColumn(name = "pessoas_id")
     @Getter @Setter
-    private Pessoa pessoa;
+    private Pessoa cliente;
 
-    @Getter @Setter @NotNull
+    @ManyToOne
+    @JoinColumn(name = "pessoas_id")
+    @Getter @Setter
+    private Pessoa funcionario;
+
+    @Getter @Setter
     @Enumerated(EnumType.STRING)
     @Column(name="status_pedido", nullable = false)
     private Status status;
 
-    @NotNull @Column(name="valor_pedido",nullable = false)
     @Getter @Setter
+    @Column(name="valor_pedido",nullable = false)
     private Double valorPedido;
 
-    /*
-    no DER o valor da entrega é NotNull,
-    mas deixei sem pois pode ser uma retirada em balcão, por exemplo.
-     */
     @Column(name="valor_entrega")
     @Getter @Setter
     private Double valorEntrega;
 
-    @NotNull
     @Getter @Setter @Column(name="valor_total", nullable = false)
     private Double valorTotal;
 
@@ -50,14 +46,19 @@ public class Pedido {
     @NotNull @Column(name="forma_pagamento", nullable = false)
     private Pagamento formaPagamento;
 
-    /*
-    Criei uma lista aqui, para usarmos OneToMany
-     */
-    @OneToMany @Getter @Setter
-    @JoinColumn(name="pedidos_produtos")
+    @Getter @Setter
+    @ManyToMany
+    @JoinTable(
+            name = "pedidos_produtos",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
 
-    @ManyToMany @Getter @Setter
-    @JoinColumn(name="pedidos_pizza")
-    private  List <Pizza> pizza;
+    @Getter @Setter
+    @ManyToMany
+    @JoinTable(
+            name = "pedidos_pizzas",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "pizzas_id"))
+    private  List <Pizza> pizzas;
 }

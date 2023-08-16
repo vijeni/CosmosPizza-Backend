@@ -30,4 +30,8 @@ public class Pizza {
     @Getter @Setter
     @Column(name="observacao", length = 100)
     private String observacao;
+
+    @Getter @Setter
+    @ManyToMany(mappedBy = "pizzas")
+    private List<Pedido> pedidos;
 }

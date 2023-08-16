@@ -2,9 +2,12 @@ package com.example.uniamerica.pizzaria.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jdk.dynalink.linker.LinkerServices;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+
+import java.util.List;
 
 @Entity
 @Table (name="produtos", schema = "public")
@@ -20,11 +23,6 @@ public class Produto {
     @Column(name="nome", nullable = false, length = 20)
     private String nome;
 
-    /*
-    No DER não foi definido como NotNull, mas como estamos cadastrando um novo produto,
-    acho que deveríamos cadastrar a quantidade também, para o controle de estoque.
-     */
-
     @Getter @Setter @NotNull(message = "A quantidade deve ser informada!")
     @Column(name="quantidade", nullable = false)
     private Integer quantidade;
@@ -33,4 +31,8 @@ public class Produto {
     @Length(max = 50, message = "A descrição deve ter no máximo 50 caracteres")
     @Column(name = "descricao", length = 50)
     private String descricao;
+
+    @Getter @Setter
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedido> pedidos;
 }
