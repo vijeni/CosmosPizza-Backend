@@ -13,16 +13,15 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @NotNull
     @Column(name="id", unique = true)
     private Long id;
 
-    @NotNull @Getter @Setter
+    @Getter @Setter
     @OneToMany
     @JoinColumn(name="sabor_pizza", nullable = false)
     private List <Sabor> sabor;
 
-    @NotNull @Getter @Setter
+    @Getter @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "tamanho", nullable = false)
     private Tamanho tamanho;

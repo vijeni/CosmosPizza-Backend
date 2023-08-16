@@ -18,17 +18,15 @@ public class Produto {
     @Column(name="id", unique = true)
     private Long id;
 
-    @Getter @Setter @NotNull(message = "O nome deve ser informado!")
-    @Length(min = 3, max = 20, message = "O nome deve ter no mínimo 3 e no máximo 20 caracteres")
+    @Getter @Setter
     @Column(name="nome", nullable = false, length = 20)
     private String nome;
 
-    @Getter @Setter @NotNull(message = "A quantidade deve ser informada!")
+    @Getter @Setter
     @Column(name="quantidade", nullable = false)
     private Integer quantidade;
 
     @Getter @Setter
-    @Length(max = 50, message = "A descrição deve ter no máximo 50 caracteres")
     @Column(name = "descricao", length = 50)
     private String descricao;
 

@@ -1,8 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +13,10 @@ public class PedidoDTO {
     private Long codigoPedido;
 
     @NotNull(message = "Cliente não informado!")
-    private Pessoa cliente;
+    private PessoaDTO cliente;
 
     @NotNull(message = "Funcionário não informado!")
-    private Pessoa funcionario;
+    private PessoaDTO funcionario;
 
     @NotNull(message = "Informe o status do pedido!")
     private Status status;
@@ -30,6 +28,6 @@ public class PedidoDTO {
     private Double valorTotal;
     @NotNull(message = "Forma de pagamento não informado!")
     private Pagamento formaPagamento;
-    private List<Produto> produtos;
-    private  List <Pizza> pizzas;
+    private List<ProdutoDTO> produtos;
+    private List<PizzaDTO> pizzas;
 }
