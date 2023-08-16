@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/enderecos")
+@RequestMapping(value = "/api/endereco")
 public class EnderecoController {
 
     @Autowired
@@ -17,7 +17,7 @@ public class EnderecoController {
     @Autowired
     private EnderecosService enderecosService;
 
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<?>findById(@RequestParam("id") final Long id){
     try{
         return ResponseEntity.ok(enderecoRepository.findById(id).orElse(null));
@@ -34,7 +34,7 @@ public class EnderecoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/atualizar")
+    @PutMapping("/editar")
     public ResponseEntity<?>put(@RequestBody EnderecoDTO enderecos, @RequestParam long id){
         try{
             return ResponseEntity.ok(enderecosService.update(enderecos, id));

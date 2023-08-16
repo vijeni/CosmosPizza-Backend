@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/api/ingredientes")
+@RequestMapping(value = "/api/ingrediente")
 public class IngredienteController {
     @Autowired
     IngredienteRepository repository;
@@ -18,7 +18,7 @@ public class IngredienteController {
     IngredientesService service;
 
 
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<?>findById(@RequestParam("id") final Long id){
         try{
             return ResponseEntity.ok().body(repository.findById(id).orElse(null));
@@ -35,7 +35,7 @@ public class IngredienteController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/atualizar")
+    @PutMapping("/editar")
     public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredienteDTO ingredientes){
         try{
             return ResponseEntity.ok(service.update(id, ingredientes));

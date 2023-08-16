@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pessoas")
+@RequestMapping("/api/pessoa")
 public class PessoaController {
     @Autowired
     PessoaRepository repository;
     @Autowired
     PessoaService service;
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<?>findById(@RequestParam("id") final Long id){
         try{
             return ResponseEntity.ok(repository.findById(id).orElse(null));
@@ -30,7 +30,7 @@ public class PessoaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/atualizar")
+    @PutMapping("/editar")
     public ResponseEntity<?>atualizar(@RequestBody PessoaDTO pessoa, @RequestParam long id){
         try{
             return ResponseEntity.ok(service.put(pessoa));

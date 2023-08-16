@@ -8,14 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/api/sabores")
+@RequestMapping(value="/api/sabor")
 public class SaborController {
     @Autowired
     SaborRepository repository;
     @Autowired
     SaborService service;
 
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<?>findById(@RequestParam("id") final long id){
         try{
            return ResponseEntity.ok(repository.findById(id).orElse(null));
