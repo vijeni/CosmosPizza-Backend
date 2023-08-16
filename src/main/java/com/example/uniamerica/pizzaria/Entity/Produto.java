@@ -11,7 +11,6 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @NotNull
     @Column(name="id", unique = true)
     private Long id;
 
