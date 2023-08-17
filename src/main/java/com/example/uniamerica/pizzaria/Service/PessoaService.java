@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 @Service
 public class PessoaService {
 
@@ -24,6 +26,15 @@ public class PessoaService {
 
     public PessoaDTO toPessoaDTO(Pessoa pessoaEntidade){
         return modelMapper.map(pessoaEntidade, PessoaDTO.class);
+    }
+
+    public PessoaDTO findById(long id){
+        Pessoa pessoa = repository.findById(id).orElse(null);
+        return toPessoaDTO(pessoa);
+    }
+
+    public List<PessoaDTO>getAll(){
+        return repository.findAll().stream().map(this::toPessoaDTO).toList();
     }
 
     public PessoaDTO post(PessoaDTO pessoa) {
