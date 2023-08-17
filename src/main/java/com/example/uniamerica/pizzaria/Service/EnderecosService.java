@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 @Service
 public class EnderecosService {
 
@@ -43,6 +45,9 @@ public class EnderecosService {
         return toEnderecosDTO(endereco);
     }
 
+    public List<EnderecoDTO>listAll(){
+        return repository.findAll().stream().map(this::toEnderecosDTO).toList();
+    }
 
     @Transactional
     public EnderecoDTO post(EnderecoDTO enderecoDTO) {
