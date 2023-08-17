@@ -27,6 +27,15 @@ public class IngredienteController {
         }
     }
 
+    @GetMapping("/todos")
+    public ResponseEntity<?>getAll(){
+        try {
+            return ResponseEntity.ok(service.getAll());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<?>post(@RequestBody IngredienteDTO ingredientes){
         try{
