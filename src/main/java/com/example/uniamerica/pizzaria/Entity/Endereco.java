@@ -11,7 +11,7 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @NotNull @Column(name="id", unique = true)
-    private Long id;
+    private long id;
 
     /*
     não criamos esse campo no DER,
