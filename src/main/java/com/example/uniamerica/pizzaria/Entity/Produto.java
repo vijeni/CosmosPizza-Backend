@@ -1,11 +1,8 @@
 package com.example.uniamerica.pizzaria.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class Produto {
 
     @Getter @Setter
     @Column(name="quantidade", nullable = false)
-    private Integer quantidade;
+    private Integer quantidade_estoque;
 
     @Getter @Setter
     @Column(name = "descricao", length = 50)
