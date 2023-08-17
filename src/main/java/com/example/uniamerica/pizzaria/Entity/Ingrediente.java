@@ -12,8 +12,8 @@ import java.util.List;
 public class Ingrediente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @NotNull @Column(name="id", unique = true)
-    private long id;
+    @Getter @Column(name="id", unique = true)
+    private Long id;
 
     @NotNull @Getter @Setter
     @Column(name="nome", length = 20, nullable = false)
