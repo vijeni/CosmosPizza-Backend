@@ -37,6 +37,13 @@ public class EnderecosService {
         return modelMapper.map(endereco,EnderecoDTO.class);
     }
 
+    public EnderecoDTO findById(long id){
+        Endereco endereco = repository.findById(id).orElse(null);
+        Assert.notNull(endereco.getId(),"Lamentamos, nenhum endereço localizado com esse ID.");
+        return toEnderecosDTO(endereco);
+    }
+
+
     @Transactional
     public EnderecoDTO post(EnderecoDTO enderecoDTO) {
         Assert.notNull(enderecoDTO.getBairro(),"Por favor, informe um bairro!");
