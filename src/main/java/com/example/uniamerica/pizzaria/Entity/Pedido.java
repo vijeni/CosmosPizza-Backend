@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -42,9 +43,18 @@ public class Pedido {
     @Getter @Setter @Column(name="valor_total", nullable = false)
     private Double valorTotal;
 
-    @Enumerated(EnumType.STRING) @Getter @Setter
-    @NotNull @Column(name="forma_pagamento", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Getter @Setter
+    @Column(name="forma_pagamento", nullable = false)
     private Pagamento formaPagamento;
+
+    @Getter @Setter
+    @Column(name = "data_abertura", nullable = false)
+    private Date dataAbertura;
+
+    @Getter @Setter
+    @Column(name = "data_conclusao", nullable = false)
+    private Date dataConclusao;
 
     @Getter @Setter
     @ManyToMany
