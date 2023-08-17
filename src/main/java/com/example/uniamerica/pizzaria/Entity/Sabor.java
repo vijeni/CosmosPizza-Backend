@@ -23,7 +23,10 @@ public class Sabor {
     @Column(name="descricao", length = 50)
     private String descricao;
 
-    @Getter @Setter @NotNull
-    @OneToMany @JoinColumn(name="sabores_ingredientes", nullable = false)
+    @ManyToMany @Getter @Setter
+    @JoinTable(
+            name = "sabores_ingredientes",
+            joinColumns = @JoinColumn(name = "sabor_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredientes_id"))
     private List <Ingrediente> ingredientes;
 }

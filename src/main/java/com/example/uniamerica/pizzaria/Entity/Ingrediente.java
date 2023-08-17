@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table (name="ingredientes", schema = "public")
 public class Ingrediente {
@@ -21,4 +23,6 @@ public class Ingrediente {
     @Column (name="quantidade", nullable = false)
     private Integer quantidade;
 
+    @ManyToMany(mappedBy = "ingredientes")
+    List<Sabor>sabores;
 }

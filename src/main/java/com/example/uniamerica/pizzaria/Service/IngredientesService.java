@@ -5,6 +5,7 @@ import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -16,27 +17,16 @@ public class IngredientesService {
     @Autowired
     IngredienteRepository repository;
 
-    public Ingrediente toIngredientes(IngredienteDTO ingredienteDTO){
-        Ingrediente ingrediente = new Ingrediente();
-        ingrediente.setNome(ingredienteDTO.getNome());
-        ingrediente.setQuantidade(ingredienteDTO.getQuantidade());
+    private ModelMapper modelMapper = new ModelMapper();
 
-        return ingrediente;
-    }
-    public IngredienteDTO toIngredientesDTO(Ingrediente ingrediente){
-        IngredienteDTO ingredienteDTO = new IngredienteDTO();
-        ingredienteDTO.setNome(ingrediente.getNome());
-        ingredienteDTO.setQuantidade(ingrediente.getQuantidade());
 
-        return ingredienteDTO;
-    }
 
     @Transactional
       public IngredienteDTO post(IngredienteDTO ingredientes) {
         Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
-        return toIngredientesDTO(repository.save(toIngredientes(ingredientes)));
+        return modelMapper.map(repository.save(modelMapper.map(ingredientes,Ingrediente.class)),IngredienteDTO.class);
 
     }
     @Transactional
@@ -45,7 +35,7 @@ public class IngredientesService {
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
 
-        return toIngredientesDTO(repository.save(toIngredientes(ingredientes)));
+        return modelMapper.map(repository.save(modelMapper.map(ingredientes,Ingrediente.class)),IngredienteDTO.class);
     }
 
     public void delete(long id) {

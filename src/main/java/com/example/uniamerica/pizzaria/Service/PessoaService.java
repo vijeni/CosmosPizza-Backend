@@ -5,6 +5,7 @@ import com.example.uniamerica.pizzaria.Entity.Pessoa;
 import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.query.derived.AnonymousTupleSimpleSqmPathSource;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -15,24 +16,14 @@ public class PessoaService {
     @Autowired
     private PessoaRepository repository;
 
-    public Pessoa toPessoa(PessoaDTO pessoaDTO){
-        Pessoa pessoaEntidade = new Pessoa();
-        pessoaEntidade.setTipoPessoa(pessoaDTO.getTipoPessoa());
-        pessoaEntidade.setNome(pessoaDTO.getNome());
-        pessoaEntidade.setCpf(pessoaDTO.getCpf());
-        pessoaEntidade.setTelefone(pessoaDTO.getTelefone());
+    private ModelMapper modelMapper = new ModelMapper();
 
-        return pessoaEntidade;
+    public Pessoa toPessoa(PessoaDTO pessoaDTO){
+        return modelMapper.map(pessoaDTO,Pessoa.class);
     }
 
     public PessoaDTO toPessoaDTO(Pessoa pessoaEntidade){
-        PessoaDTO pessoaDTO = new PessoaDTO();
-        pessoaDTO.setTipoPessoa(pessoaEntidade.getTipoPessoa());
-        pessoaDTO.setNome(pessoaEntidade.getNome());
-        pessoaDTO.setCpf(pessoaEntidade.getCpf());
-        pessoaDTO.setTelefone(pessoaEntidade.getTelefone());
-
-        return pessoaDTO;
+        return modelMapper.map(pessoaEntidade, PessoaDTO.class);
     }
 
     public PessoaDTO post(PessoaDTO pessoa) {
@@ -48,7 +39,6 @@ public class PessoaService {
 
     public PessoaDTO put(PessoaDTO pessoa) {
         Assert.notNull(pessoa.getId(),"Por favor, insira um ID!");
-        Assert.notNull(pessoa.getNome(),"Por favor, digite um nome!");
         Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
         Assert.hasText(pessoa.getNome(),"Por favor, digite um nome válido!");
         Assert.hasText(pessoa.getCpf(),"Por favor, digite um CPF válido!");
