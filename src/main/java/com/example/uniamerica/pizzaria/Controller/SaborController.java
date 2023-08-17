@@ -24,7 +24,7 @@ public class SaborController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/todos")
     public ResponseEntity<?>getAll(){
         try {
             return ResponseEntity.ok(service.getAll());
