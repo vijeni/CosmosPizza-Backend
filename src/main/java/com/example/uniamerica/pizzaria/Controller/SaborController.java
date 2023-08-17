@@ -24,6 +24,15 @@ public class SaborController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?>getAll(){
+        try {
+            return ResponseEntity.ok(service.getAll());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<?>cadastrar(@RequestBody SaborDTO sabor){
         try{
