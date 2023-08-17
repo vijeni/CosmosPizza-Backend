@@ -17,6 +17,15 @@ public class EnderecoController {
     @Autowired
     private EnderecosService enderecosService;
 
+    @GetMapping("/todos")
+    public ResponseEntity<?>findAll(){
+        try{
+            return ResponseEntity.ok(enderecosService.listAll());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?>findById(@RequestParam("id") final Long id){
     try{

@@ -19,14 +19,30 @@ public class IngredientesService {
 
     private ModelMapper modelMapper = new ModelMapper();
 
+    public Ingrediente toIngredienteEntidade (IngredienteDTO ingredienteDTO){
+        return modelMapper.map(ingredienteDTO,Ingrediente.class);
+    }
 
+    public IngredienteDTO toIngredienteDTO(Ingrediente ingredienteEntidade){
+        return modelMapper.map(ingredienteEntidade,IngredienteDTO.class);
+    }
+
+    public IngredienteDTO findByID(long id){
+        Ingrediente ingrediente = repository.findById(id).orElse(null);
+        Assert.notNull(ingrediente,"Lamentamos, nenhum ingrediente localizado com o ID informado.");
+        return toIngredienteDTO(ingrediente);
+    }
+
+    public List<IngredienteDTO> getAll(){
+        return repository.findAll().stream().map(this::toIngredienteDTO).toList();
+    }
 
     @Transactional
       public IngredienteDTO post(IngredienteDTO ingredientes) {
         Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
-        return modelMapper.map(repository.save(modelMapper.map(ingredientes,Ingrediente.class)),IngredienteDTO.class);
+        return toIngredienteDTO(repository.save(toIngredienteEntidade(ingredientes)));
 
     }
     @Transactional
@@ -35,7 +51,7 @@ public class IngredientesService {
         Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
         Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
 
-        return modelMapper.map(repository.save(modelMapper.map(ingredientes,Ingrediente.class)),IngredienteDTO.class);
+        return toIngredienteDTO(repository.save(toIngredienteEntidade(ingredientes)));
     }
 
     public void delete(long id) {

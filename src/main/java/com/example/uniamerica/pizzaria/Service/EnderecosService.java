@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 @Service
 public class EnderecosService {
 
@@ -35,6 +37,16 @@ public class EnderecosService {
     public EnderecoDTO toEnderecosDTO (Endereco endereco){
 
         return modelMapper.map(endereco,EnderecoDTO.class);
+    }
+
+    public EnderecoDTO findById(long id){
+        Endereco endereco = repository.findById(id).orElse(null);
+        Assert.notNull(endereco,"Lamentamos, nenhum endereço localizado com esse ID.");
+        return toEnderecosDTO(endereco);
+    }
+
+    public List<EnderecoDTO>listAll(){
+        return repository.findAll().stream().map(this::toEnderecosDTO).toList();
     }
 
     @Transactional
