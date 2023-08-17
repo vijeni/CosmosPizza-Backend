@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pizzas")
+@RequestMapping("/api/pizza")
 public class PizzaController {
     @Autowired
     PizzaService service;
