@@ -17,12 +17,12 @@ public class Pedido {
     private Long codigoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "pessoas_id")
+    @JoinColumn(name = "clientes_id")
     @Getter @Setter
     private Pessoa cliente;
 
     @ManyToOne
-    @JoinColumn(name = "pessoas_id")
+    @JoinColumn(name = "funcionarios_id")
     @Getter @Setter
     private Pessoa funcionario;
 
