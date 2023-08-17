@@ -41,7 +41,7 @@ public class EnderecosService {
 
     public EnderecoDTO findById(long id){
         Endereco endereco = repository.findById(id).orElse(null);
-        Assert.notNull(endereco.getId(),"Lamentamos, nenhum endereço localizado com esse ID.");
+        Assert.notNull(endereco,"Lamentamos, nenhum endereço localizado com esse ID.");
         return toEnderecosDTO(endereco);
     }
 
