@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.StringReader;
-
 @RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
@@ -25,6 +23,14 @@ public class ProdutoController {
     public ResponseEntity<?> getAll(){
         try{
             return ResponseEntity.ok(service.getAll());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping("/nome")
+    public ResponseEntity<?> getAllByNome(@RequestParam String nome){
+        try{
+            return ResponseEntity.ok(service.getAllByNome(nome));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

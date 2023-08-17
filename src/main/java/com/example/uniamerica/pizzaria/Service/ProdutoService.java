@@ -15,7 +15,7 @@ import java.util.List;
 public class ProdutoService {
     @Autowired
     ProdutoRepository repository;
-    private final ModelMapper modelMapper = new ModelMapper();;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public ProdutoDTO toProdutoDTO(Produto produtoEntidade){
         return modelMapper.map(produtoEntidade, ProdutoDTO.class);
@@ -49,5 +49,9 @@ public class ProdutoService {
 
     public List<ProdutoDTO> getAll() {
         return repository.findAll().stream().map(this::toProdutoDTO).toList();
+    }
+
+    public List<ProdutoDTO> getAllByNome(String nome) {
+        return repository.findByNameLike(nome.trim()).stream().map(this::toProdutoDTO).toList();
     }
 }
