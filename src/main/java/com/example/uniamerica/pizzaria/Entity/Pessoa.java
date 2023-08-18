@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @NotNull @Column(name="id", unique = true)
+    @Getter @Column(name="id", unique = true)
     private Long id;
 
     @Getter @Setter
