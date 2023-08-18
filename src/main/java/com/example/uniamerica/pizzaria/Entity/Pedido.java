@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -54,11 +57,11 @@ public class Pedido {
 
     @Getter @Setter
     @Column(name = "data_abertura", nullable = false)
-    private Date dataAbertura;
+    private LocalDateTime dataAbertura;
 
     @Getter @Setter
     @Column(name = "data_conclusao", nullable = false)
-    private Date dataConclusao;
+    private LocalDateTime dataConclusao;
 
     @Getter @Setter
     @ManyToMany
@@ -75,4 +78,14 @@ public class Pedido {
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "pizzas_id"))
     private  List <Pizza> pizzas;
+
+    @PrePersist
+    private void valoresPadrao(){
+        if(this.status == null){
+            this.status = Status.AGUARDANDO_CONFIRMACAO;
+        }
+        if(this.dataAbertura == null){
+            this.dataAbertura = LocalDateTime.now();
+        }
+    }
 }

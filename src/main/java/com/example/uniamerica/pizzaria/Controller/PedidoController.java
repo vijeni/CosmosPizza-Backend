@@ -4,6 +4,7 @@ import com.example.uniamerica.pizzaria.DTO.PedidoDTO;
 import com.example.uniamerica.pizzaria.Service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,7 +29,7 @@ public class PedidoController {
         }
     }
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody PedidoDTO pedido){
+    public ResponseEntity<?> cadastrar(@RequestBody @Validated  PedidoDTO pedido){
         try{
             return ResponseEntity.ok(service.cadastrar(pedido));
         }catch (Exception e){
@@ -37,7 +38,7 @@ public class PedidoController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?> editar(@RequestParam Long id, @RequestBody PedidoDTO pedido){
+    public ResponseEntity<?> editar(@RequestParam Long id, @RequestBody @Validated PedidoDTO pedido){
         try{
             return ResponseEntity.ok(service.editar(id, pedido));
         }catch (Exception e){
