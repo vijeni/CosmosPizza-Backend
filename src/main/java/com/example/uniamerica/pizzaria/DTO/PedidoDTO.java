@@ -31,7 +31,7 @@ public class PedidoDTO {
     @NotNull(message = "Forma de pagamento não informado!")
     private Pagamento formaPagamento;
     private List<ProdutoDTO> produtos;
-    private List<PizzaDTO> pizzas;
+    private List<Pizza> pizzas;
 
 
 }

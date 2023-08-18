@@ -1,7 +1,6 @@
 package com.example.uniamerica.pizzaria.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +16,12 @@ public class Pizza {
     private Long id;
 
     @Getter @Setter
-    @OneToMany
-    @JoinColumn(name="sabor_pizza", nullable = false)
-    private List <Sabor> sabor;
+    @ManyToMany
+    @JoinTable(
+            name = "sabores_pizza",
+            joinColumns = @JoinColumn(name = "sabor_id"),
+            inverseJoinColumns = @JoinColumn(name = "pizza_id"))
+    private List <Sabor> sabores;
 
     @Getter @Setter
     @Enumerated(EnumType.STRING)

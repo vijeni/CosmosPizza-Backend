@@ -1,6 +1,5 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.Pedido;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,7 +17,7 @@ public class PizzaDTO {
 
     @NotNull(message = "Informe o(s) sabor(es)")
     @NotEmpty(message = "Informe o(s) sabor(es)")
-    private List <SaborDTO> sabor;
+    private List <Sabor> sabores;
 
     @NotNull(message = "Informe o tamanho!")
     private Tamanho tamanho;

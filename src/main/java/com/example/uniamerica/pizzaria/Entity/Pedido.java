@@ -1,14 +1,12 @@
 package com.example.uniamerica.pizzaria.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Cascade;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -72,6 +70,7 @@ public class Pedido {
     private List<Produto> produtos;
 
     @Getter @Setter
+    @Cascade(CascadeType.ALL)
     @ManyToMany
     @JoinTable(
             name = "pedidos_pizzas",
