@@ -44,7 +44,7 @@ public class EnderecoController {
         }
     }
     @PutMapping("/editar")
-    public ResponseEntity<?>put(@RequestBody EnderecoDTO enderecos, @RequestParam long id){
+    public ResponseEntity<?>put(@RequestParam Long id,@RequestBody EnderecoDTO enderecos){
         try{
             return ResponseEntity.ok(enderecosService.update(enderecos, id));
         }catch (Exception e){

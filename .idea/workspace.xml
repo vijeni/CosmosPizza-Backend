@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e7abc16-8133-40b4-bd6c-1cd1c7278b1f" name="Changes" comment="Editar Pedido OK!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PizzaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PizzaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Sabor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Sabor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/EnderecoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Ingrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Ingrediente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/EnderecosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/EnderecosService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692329706179</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Editar Pedido OK!">
+      <created>1692332466940</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692332466940</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

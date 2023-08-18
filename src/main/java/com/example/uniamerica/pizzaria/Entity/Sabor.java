@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class Sabor {
     private List <Ingrediente> ingredientes;
 
     @Getter @Setter
+    @JsonIgnore
     @ManyToMany(mappedBy = "sabores")
     private List<Pizza> pizzas;
 }

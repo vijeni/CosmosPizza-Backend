@@ -60,7 +60,7 @@ public class EnderecosService {
     }
 
     @Transactional
-    public EnderecoDTO update (EnderecoDTO enderecoDTO, long id){
+    public EnderecoDTO update (EnderecoDTO enderecoDTO, Long id){
         Assert.notNull(enderecoDTO.getId(),"Por favor, insira um ID!");
         Assert.notNull(enderecoDTO.getBairro(),"Por favor, informe um bairro!");
         Assert.notNull(enderecoDTO.getCep(),"Por favor, informe um CEP!");
