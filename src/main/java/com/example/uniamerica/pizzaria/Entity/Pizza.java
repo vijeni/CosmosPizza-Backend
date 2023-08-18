@@ -17,8 +17,11 @@ public class Pizza {
     private Long id;
 
     @Getter @Setter
-    @OneToMany
-    @JoinColumn(name="sabor_pizza", nullable = false)
+    @ManyToMany
+    @JoinTable(
+            name = "pizza_sabores",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "sabores_id"))
     private List <Sabor> sabor;
 
     @Getter @Setter

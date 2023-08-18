@@ -29,4 +29,9 @@ public class Sabor {
             joinColumns = @JoinColumn(name = "sabor_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredientes_id"))
     private List <Ingrediente> ingredientes;
+
+    @Getter @Setter
+    @ManyToMany(mappedBy = "sabor")
+    private List<Pizza> pizzas;
+
 }
