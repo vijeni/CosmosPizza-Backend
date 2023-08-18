@@ -46,7 +46,7 @@ public class PedidoService {
             pedidoDTO.setDataAbertura(LocalDateTime.now());
         }
         if(pedidoDTO.getDataConclusao() != null){
-            Assert.isTrue(pedidoDTO.getDataAbertura().isBefore(pedidoDTO.getDataConclusao()));
+            Assert.isTrue(pedidoDTO.getDataAbertura().isBefore(pedidoDTO.getDataConclusao()), "Data de abertura não deve ser depois da data de conclusão do pedido!");
         }
 
         return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
