@@ -13,7 +13,7 @@ import java.util.List;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
+    @Getter @Setter
     @Column(name="codigo_pedido", unique = true)
     private Long codigoPedido;
 
