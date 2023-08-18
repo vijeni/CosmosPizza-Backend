@@ -38,9 +38,9 @@ public class PedidoController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?> editar(@RequestParam Long id, @RequestBody @Validated PedidoDTO pedido){
+    public ResponseEntity<?> editar(@RequestParam Long codigoPedido, @RequestBody @Validated PedidoDTO pedido){
         try{
-            return ResponseEntity.ok(service.editar(id, pedido));
+            return ResponseEntity.ok(service.editar(codigoPedido, pedido));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

@@ -37,10 +37,9 @@ public class PedidoService {
         return pedidoRepository.findAll().stream().map(this::toPedidoDTO).toList();
     }
 
-    @Transactional
-    public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
+    public PedidoDTO validaPedido(PedidoDTO pedidoDTO){
         Assert.notNull(pessoaRepository.findById(pedidoDTO.getCliente().getId()).orElse(null), "Cliente informado não existe!");
-        Assert.notNull(pessoaRepository.findById(pedidoDTO.getFuncionario().getId()).orElse(null), String.format("Funcionário com ID %s não existe!", pedidoDTO.getFuncionario().getId()));
+        Assert.notNull(pessoaRepository.findById(pedidoDTO.getFuncionario().getId()).orElse(null), "Funcionário informado não existe!");
         pedidoDTO.setValorTotal(pedidoDTO.getValorPedido() + pedidoDTO.getValorEntrega());
         if(pedidoDTO.getDataAbertura() == null){
             pedidoDTO.setDataAbertura(LocalDateTime.now());
@@ -48,14 +47,20 @@ public class PedidoService {
         if(pedidoDTO.getDataConclusao() != null){
             Assert.isTrue(pedidoDTO.getDataAbertura().isBefore(pedidoDTO.getDataConclusao()), "Data de abertura não deve ser depois da data de conclusão do pedido!");
         }
-
-        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
+        return pedidoDTO;
     }
 
     @Transactional
-    public PedidoDTO editar(Long id, PedidoDTO pedidoDTO) {
-        Assert.notNull(pedidoRepository.findById(id).orElse(null), String.format("Pedido com ID %s não exite!"));
-        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
+    public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
+        return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
+    }
+
+    @Transactional
+    public PedidoDTO editar(Long codigoPedido, PedidoDTO pedidoDTO) {
+        Assert.notNull(pedidoDTO.getCodigoPedido(), "Código do Pedido não informado!");
+        Assert.isTrue(pedidoDTO.getCodigoPedido().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
+        Assert.notNull(pedidoRepository.findById(codigoPedido).orElse(null), String.format("Pedido com código %s não exite!", codigoPedido));
+        return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
     public void deletar(Long id) {
