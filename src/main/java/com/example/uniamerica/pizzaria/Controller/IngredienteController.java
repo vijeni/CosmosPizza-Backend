@@ -6,6 +6,7 @@ import com.example.uniamerica.pizzaria.Service.IngredientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,7 +38,7 @@ public class IngredienteController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>post(@RequestBody IngredienteDTO ingredientes){
+    public ResponseEntity<?>post(@RequestBody @Validated IngredienteDTO ingredientes){
         try{
             return ResponseEntity.ok(service.post(ingredientes));
         }catch (Exception e){
@@ -45,7 +46,7 @@ public class IngredienteController {
         }
     }
     @PutMapping("/editar")
-    public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody IngredienteDTO ingredientes){
+    public ResponseEntity<?>put(@RequestParam("id") Long id, @RequestBody @Validated IngredienteDTO ingredientes){
         try{
             return ResponseEntity.ok(service.update(id, ingredientes));
         }catch (Exception e){
