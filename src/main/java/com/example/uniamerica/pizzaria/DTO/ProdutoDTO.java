@@ -1,5 +1,7 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.Pedido;
+import com.example.uniamerica.pizzaria.Entity.Pizza;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,4 +20,5 @@ public class ProdutoDTO {
     @Length(max = 50, message = "A descrição deve ter no máximo 50 caracteres")
     private String descricao;
     private List<PedidoDTO> pedidos;
+    private List<PizzaDTO> pizzas;
 }

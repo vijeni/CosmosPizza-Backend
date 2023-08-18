@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotNull;
@@ -31,7 +32,5 @@ public class PedidoDTO {
     @NotNull(message = "Forma de pagamento não informado!")
     private Pagamento formaPagamento;
     private List<ProdutoDTO> produtos;
-    private List<Pizza> pizzas;
-
-
+    private List<PizzaDTO> pizzas;
 }

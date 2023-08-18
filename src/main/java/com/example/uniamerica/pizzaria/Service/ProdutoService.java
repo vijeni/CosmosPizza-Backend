@@ -14,7 +14,9 @@ import java.util.List;
 @Service
 public class ProdutoService {
     @Autowired
-    ProdutoRepository repository;
+    ProdutoRepository produtoRepository;
+    @Autowired
+    PizzaService pizzaService;
     private final ModelMapper modelMapper = new ModelMapper();
 
     public ProdutoDTO toProdutoDTO(Produto produtoEntidade){
@@ -25,33 +27,34 @@ public class ProdutoService {
     }
 
     public ProdutoDTO findById(Long id){
-        Produto produto = repository.findById(id).orElse(null);
+        Produto produto = produtoRepository.findById(id).orElse(null);
         Assert.notNull(produto, "Produto não existe!");
         return toProdutoDTO(produto);
     }
     @Transactional
     public ProdutoDTO cadastrar(ProdutoDTO produtoDTO){
-        return toProdutoDTO(repository.save(toProduto(produtoDTO)));
+        pizzaService.validarPizzas(produtoDTO.getPizzas());
+        return toProdutoDTO(produtoRepository.save(toProduto(produtoDTO)));
     }
 
     @Transactional
     public ProdutoDTO editar(Long id, ProdutoDTO produtoDTO) {
-        Produto produto = repository.findById(id).orElse(null);
+        Produto produto = produtoRepository.findById(id).orElse(null);
         Assert.notNull(produto, "Produto não existe!");
-        return toProdutoDTO(repository.save(toProduto(produtoDTO)));
+        return toProdutoDTO(produtoRepository.save(toProduto(produtoDTO)));
     }
 
     @Transactional
     public void deletar(Long id){
-        Assert.notNull(repository.findById(id).orElse(null), String.format("Produto com ID %s não encontrado!", id));
-        repository.deleteById(id);
+        Assert.notNull(produtoRepository.findById(id).orElse(null), String.format("Produto com ID %s não encontrado!", id));
+        produtoRepository.deleteById(id);
     }
 
     public List<ProdutoDTO> getAll() {
-        return repository.findAll().stream().map(this::toProdutoDTO).toList();
+        return produtoRepository.findAll().stream().map(this::toProdutoDTO).toList();
     }
 
     public List<ProdutoDTO> getAllByNome(String nome) {
-        return repository.findByNameLike(nome.trim()).stream().map(this::toProdutoDTO).toList();
+        return produtoRepository.findByNameLike(nome.trim()).stream().map(this::toProdutoDTO).toList();
     }
 }

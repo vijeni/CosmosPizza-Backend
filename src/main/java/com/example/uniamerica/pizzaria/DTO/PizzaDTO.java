@@ -1,7 +1,9 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.Pedido;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class PizzaDTO {
 
     @Length(max = 100, message = "A observação deve ter no máximo 100 caracteres")
     private String observacao;
-    private List<PedidoDTO> pedidos;
+    @JsonIgnore
+    private List<Pedido> pedidos;
 
 }

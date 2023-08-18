@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -72,6 +73,7 @@ public class Pedido {
     @Getter @Setter
     @Cascade(CascadeType.ALL)
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "pedidos_pizzas",
             joinColumns = @JoinColumn(name = "pedido_id"),
