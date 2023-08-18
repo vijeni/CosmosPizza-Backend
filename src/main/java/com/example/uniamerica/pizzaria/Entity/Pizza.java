@@ -12,7 +12,7 @@ import java.util.List;
 public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
+    @Getter @Setter
     @Column(name="id", unique = true)
     private Long id;
 

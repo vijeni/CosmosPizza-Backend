@@ -12,7 +12,7 @@ import java.util.List;
 public class Sabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Column(name="id", unique = true)
+    @Getter @Setter  @Column(name="id", unique = true)
     private Long id;
 
     @Getter @Setter
