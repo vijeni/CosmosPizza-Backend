@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,8 @@ public class PedidoDTO {
     @NotNull(message = "Informe o status do pedido!")
     private Status status;
 
+    @NotNull(message = "Informe a necessidade de entrega")
+    private boolean isEntrega;
     @NotNull(message = "Valor do pedido não informado!")
     private Double valorPedido;
 

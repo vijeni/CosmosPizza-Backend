@@ -49,6 +49,10 @@ public class Pedido {
     private Pagamento formaPagamento;
 
     @Getter @Setter
+    @Column(name = "is_entrega", nullable = false)
+    private boolean isEntrega;
+
+    @Getter @Setter
     @Column(name = "data_abertura", nullable = false)
     private Date dataAbertura;
 
