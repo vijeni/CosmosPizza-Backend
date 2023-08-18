@@ -3,9 +3,11 @@ package com.example.uniamerica.pizzaria.Controller;
 import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
 import com.example.uniamerica.pizzaria.Repository.EnderecoRepository;
 import com.example.uniamerica.pizzaria.Service.EnderecosService;
+import jakarta.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,7 +38,7 @@ public class EnderecoController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>post(@RequestBody EnderecoDTO enderecos){
+    public ResponseEntity<?>post(@RequestBody @Validated EnderecoDTO enderecos){
         try{
             return ResponseEntity.ok(enderecosService.post(enderecos));
         }catch (Exception e){
@@ -44,7 +46,7 @@ public class EnderecoController {
         }
     }
     @PutMapping("/editar")
-    public ResponseEntity<?>put(@RequestParam Long id,@RequestBody EnderecoDTO enderecos){
+    public ResponseEntity<?>put(@RequestParam @Validated Long id,@RequestBody EnderecoDTO enderecos){
         try{
             return ResponseEntity.ok(enderecosService.update(enderecos, id));
         }catch (Exception e){
