@@ -5,6 +5,7 @@ import com.example.uniamerica.pizzaria.Repository.SaborRepository;
 import com.example.uniamerica.pizzaria.Service.SaborService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,7 +35,7 @@ public class SaborController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>cadastrar(@RequestBody SaborDTO sabor){
+    public ResponseEntity<?>cadastrar(@RequestBody @Validated SaborDTO sabor){
         try{
             return ResponseEntity.ok(service.cadastrar(sabor));
         }catch (Exception e){
@@ -43,7 +44,7 @@ public class SaborController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?>editar(@RequestBody SaborDTO sabor, @RequestParam("id")final long id){
+    public ResponseEntity<?>editar(@RequestBody @Validated SaborDTO sabor, @RequestParam("id")final long id){
         try {
             return ResponseEntity.ok(service.update(sabor,id));
         }catch (Exception e){

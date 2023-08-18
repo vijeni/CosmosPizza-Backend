@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="IngredienteDTO - Validations Ok!">
+    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="PessoaDTO - Validations Ok!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/PessoaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PessoaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/SaborController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/SaborController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692360035512</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="PessoaDTO - Validations Ok!">
+      <created>1692361845667</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692361845667</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +228,7 @@
     <MESSAGE value="Editar Pedido OK!" />
     <MESSAGE value="EnderecoDTO - Validations Ok!" />
     <MESSAGE value="IngredienteDTO - Validations Ok!" />
-    <option name="LAST_COMMIT_MESSAGE" value="IngredienteDTO - Validations Ok!" />
+    <MESSAGE value="PessoaDTO - Validations Ok!" />
+    <option name="LAST_COMMIT_MESSAGE" value="PessoaDTO - Validations Ok!" />
   </component>
 </project>
