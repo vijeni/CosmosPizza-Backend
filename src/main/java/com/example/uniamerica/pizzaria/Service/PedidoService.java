@@ -21,6 +21,9 @@ public class PedidoService {
     PedidoRepository pedidoRepository;
     @Autowired
     PessoaRepository pessoaRepository;
+    @Autowired
+    ProdutoService produtoService;
+
     private ModelMapper modelMapper = new ModelMapper();
 
     public PedidoDTO toPedidoDTO(Pedido pedido){
@@ -54,7 +57,12 @@ public class PedidoService {
 
     @Transactional
     public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
-        pizzaService.validarPizzas(pedidoDTO.getPizzas());
+        if(!pedidoDTO.getPizzas().isEmpty()) {
+            pizzaService.validarPizzas(pedidoDTO.getPizzas());
+        }
+        if(!pedidoDTO.getProdutos().isEmpty()) {
+            produtoService.validarProdutos(pedidoDTO.getProdutos());
+        }
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
@@ -63,7 +71,12 @@ public class PedidoService {
         Assert.notNull(pedidoDTO.getCodigoPedido(), "Código do Pedido não informado!");
         Assert.isTrue(pedidoDTO.getCodigoPedido().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
         Assert.notNull(pedidoRepository.findById(codigoPedido).orElse(null), String.format("Pedido com código %s não exite!", codigoPedido));
-        pizzaService.validarPizzas(pedidoDTO.getPizzas());
+        if(!pedidoDTO.getPizzas().isEmpty()) {
+            pizzaService.validarPizzas(pedidoDTO.getPizzas());
+        }
+        if(!pedidoDTO.getProdutos().isEmpty()) {
+            produtoService.validarProdutos(pedidoDTO.getProdutos());
+        }
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
