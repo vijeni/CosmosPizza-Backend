@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PedidoDTO;
 import com.example.uniamerica.pizzaria.Entity.Pedido;
+import com.example.uniamerica.pizzaria.Entity.Status;
 import com.example.uniamerica.pizzaria.Repository.PedidoRepository;
 import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
 import org.modelmapper.ModelMapper;
@@ -83,5 +84,13 @@ public class PedidoService {
     public void deletar(Long id) {
         Assert.notNull(pedidoRepository.findById(id).orElse(null), String.format("Pedido com ID %s não exite!"));
         pedidoRepository.deleteById(id);
+    }
+
+    public PedidoDTO finalizarPedido(Long codigoPedido) {
+        PedidoDTO pedidoDTO = toPedidoDTO(pedidoRepository.findById(codigoPedido).orElse(null));
+        Assert.notNull(pedidoDTO, String.format( "Pedido com ID %s não existe!", codigoPedido));
+        Assert.isTrue(!pedidoDTO.getStatus().equals(Status.PRONTO), "Esse pedido já foi finalizado!");
+        pedidoDTO.setStatus(Status.PRONTO);
+        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
     }
 }

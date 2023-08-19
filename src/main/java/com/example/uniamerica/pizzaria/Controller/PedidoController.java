@@ -46,6 +46,15 @@ public class PedidoController {
         }
     }
 
+    @PutMapping("/finalizar")
+    public ResponseEntity<?> finalizarPedido(@RequestParam Long codigoPedido){
+        try{
+            return ResponseEntity.ok(service.finalizarPedido(codigoPedido));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/deletar")
     public ResponseEntity<?> deletar(@RequestParam Long id){
         try{
