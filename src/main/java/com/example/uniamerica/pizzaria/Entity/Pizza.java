@@ -20,8 +20,8 @@ public class Pizza {
     @ManyToMany
     @JoinTable(
             name = "sabores_pizza",
-            joinColumns = @JoinColumn(name = "sabor_id"),
-            inverseJoinColumns = @JoinColumn(name = "pizza_id"))
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "sabor_id"))
     private List <Sabor> sabores;
 
     @Getter @Setter

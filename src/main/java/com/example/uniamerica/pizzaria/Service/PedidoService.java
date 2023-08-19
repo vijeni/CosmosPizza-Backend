@@ -63,6 +63,7 @@ public class PedidoService {
         Assert.notNull(pedidoDTO.getCodigoPedido(), "Código do Pedido não informado!");
         Assert.isTrue(pedidoDTO.getCodigoPedido().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
         Assert.notNull(pedidoRepository.findById(codigoPedido).orElse(null), String.format("Pedido com código %s não exite!", codigoPedido));
+        pizzaService.validarPizzas(pedidoDTO.getPizzas());
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 

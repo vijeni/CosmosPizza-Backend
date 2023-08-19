@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="Validação de pizza ok">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="Iniciando logica da Pizza no Pedido">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/PizzaController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
