@@ -1,9 +1,10 @@
 package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
+import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
+import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
-import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import com.example.uniamerica.pizzaria.Repository.PizzaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PizzaService {
     @Autowired
-    PizzaRepository repository;
+    private PizzaRepository repository;
     @Autowired
-    SaborService saborService;
+    private SaborService saborService;
+    @Autowired
+    private TamanhoService tamanhoService;
+
     private final ModelMapper modelMapper = new ModelMapper();
 
     public Pizza toPizza(PizzaDTO pizzaDTO){
@@ -57,18 +60,25 @@ public class PizzaService {
     public void validarPizzas(List<PizzaDTO> pizzas) {
         for (PizzaDTO pizza:
              pizzas) {
-            Tamanho tamanho = pizza.getTamanho();
+            TamanhoDTO tamanhoDTO = tamanhoService.findById(pizza.getTamanho().getId());
+            int qntdMaximaSabores = tamanhoDTO.getMaximoSabores();
             int qntdSabores = pizza.getSabores().size();
-            switch (tamanho) {
-                case PEQUENA -> Assert.isTrue(qntdSabores == 1, "A pizza pequena deve conter apenas 1 sabor");
-                case MEDIA -> Assert.isTrue(qntdSabores <= 2, "A pizza pequena deve conter até 2 sabores");
-                case GRANDE -> Assert.isTrue(qntdSabores <= 3, "A pizza pequena deve conter até 3 sabores");
-                case GIGANTE -> Assert.isTrue(qntdSabores <= 4, "A pizza pequena deve conter até 4 sabores");
-            }
+            String tamanho = tamanhoDTO.getTamanho();
+            Assert.isTrue(qntdSabores <= qntdMaximaSabores, String.format("A pizza tamanho %s deve ter no máximo %s sabor(es)", tamanho, qntdMaximaSabores));
             for (Sabor sabor :
                     pizza.getSabores()) {
                 saborService.findById(sabor.getId());
             }
         }
+    }
+
+    public Double valorPizzas(List<PizzaDTO> pizzas) {
+        Double valor = (double) 0;
+        for (PizzaDTO pizza:
+             pizzas) {
+            TamanhoDTO tamanhoDTO = tamanhoService.findById(pizza.getTamanho().getId());
+            valor += tamanhoDTO.getValor();
+        }
+        return valor;
     }
 }

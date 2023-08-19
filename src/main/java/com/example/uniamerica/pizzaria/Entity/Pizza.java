@@ -25,8 +25,8 @@ public class Pizza {
     private List <Sabor> sabores;
 
     @Getter @Setter
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tamanho", nullable = false)
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Tamanho tamanho;
 
     @Getter @Setter
