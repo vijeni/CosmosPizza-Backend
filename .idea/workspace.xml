@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="Correcao de banco de dados">
+    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="Code Clean up">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Controller/TamanhoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Repository/TamanhoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/TamanhoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/ProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Tamanho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Tamanho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,28 +86,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;jean&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;e2c8620c1e1216a49527788d35df251c&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "jean",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "e2c8620c1e1216a49527788d35df251c",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.uniamerica.pizzaria.Service" />
@@ -229,7 +236,28 @@
       <option name="project" value="LOCAL" />
       <updated>1692405550050</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Editar de pedidos ok">
+      <created>1692406696456</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692406696456</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Editar de Pedidos ok">
+      <created>1692407161267</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692407161267</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Code Clean up">
+      <created>1692407390074</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692407390074</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +275,9 @@
     <MESSAGE value="PessoaDTO - Validations Ok!" />
     <MESSAGE value="Validação de pizza ok" />
     <MESSAGE value="Correcao de banco de dados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correcao de banco de dados" />
+    <MESSAGE value="Editar de pedidos ok" />
+    <MESSAGE value="Editar de Pedidos ok" />
+    <MESSAGE value="Code Clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Clean up" />
   </component>
 </project>

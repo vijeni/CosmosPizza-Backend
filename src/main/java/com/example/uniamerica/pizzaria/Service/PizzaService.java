@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
+import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
@@ -20,6 +21,9 @@ public class PizzaService {
     PizzaRepository repository;
     @Autowired
     SaborService saborService;
+    @Autowired
+    TamanhoService tamanhoService;
+
     private final ModelMapper modelMapper = new ModelMapper();
 
     public Pizza toPizza(PizzaDTO pizzaDTO){
@@ -57,14 +61,11 @@ public class PizzaService {
     public void validarPizzas(List<PizzaDTO> pizzas) {
         for (PizzaDTO pizza:
              pizzas) {
-            Tamanho tamanho = pizza.getTamanho();
+            TamanhoDTO tamanhoDTO = tamanhoService.findById(pizza.getTamanho().getId());
+            int qntdMaximaSabores = tamanhoDTO.getMaximoSabores();
             int qntdSabores = pizza.getSabores().size();
-            switch (tamanho) {
-                case PEQUENA -> Assert.isTrue(qntdSabores == 1, "A pizza pequena deve conter apenas 1 sabor");
-                case MEDIA -> Assert.isTrue(qntdSabores <= 2, "A pizza pequena deve conter até 2 sabores");
-                case GRANDE -> Assert.isTrue(qntdSabores <= 3, "A pizza pequena deve conter até 3 sabores");
-                case GIGANTE -> Assert.isTrue(qntdSabores <= 4, "A pizza pequena deve conter até 4 sabores");
-            }
+            String tamanho = tamanhoDTO.getTamanho();
+            Assert.isTrue(qntdSabores <= qntdMaximaSabores, String.format("A pizza tamanho %s deve ter no máximo %s sabor(es)", tamanho, qntdMaximaSabores));
             for (Sabor sabor :
                     pizza.getSabores()) {
                 saborService.findById(sabor.getId());
