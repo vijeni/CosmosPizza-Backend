@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class PedidoService {
     @Autowired
+    PizzaService pizzaService;
+    @Autowired
     PedidoRepository pedidoRepository;
     @Autowired
     PessoaRepository pessoaRepository;
@@ -52,6 +54,7 @@ public class PedidoService {
 
     @Transactional
     public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
+        pizzaService.validarPizzas(pedidoDTO.getPizzas());
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 

@@ -1,8 +1,9 @@
 package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
+import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
-import com.example.uniamerica.pizzaria.Entity.Produto;
+import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import com.example.uniamerica.pizzaria.Repository.PizzaRepository;
 import org.modelmapper.ModelMapper;
@@ -11,13 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PizzaService {
     @Autowired
     PizzaRepository repository;
-
+    @Autowired
+    SaborService saborService;
     private ModelMapper modelMapper = new ModelMapper();
 
     public Pizza toPizza(PizzaDTO pizzaDTO){
@@ -62,6 +65,10 @@ public class PizzaService {
                 case MEDIA -> Assert.isTrue(qntdSabores <= 2, "A pizza pequena deve conter até 2 sabores");
                 case GRANDE -> Assert.isTrue(qntdSabores <= 3, "A pizza pequena deve conter até 3 sabores");
                 case GIGANTE -> Assert.isTrue(qntdSabores <= 4, "A pizza pequena deve conter até 4 sabores");
+            }
+            for (Sabor sabor :
+                    pizza.getSabores()) {
+                saborService.findById(sabor.getId());
             }
         }
     }
