@@ -1,6 +1,8 @@
 package com.example.uniamerica.pizzaria.Service;
 
+import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
 import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
+import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
 import com.example.uniamerica.pizzaria.Entity.Produto;
 import com.example.uniamerica.pizzaria.Repository.ProdutoRepository;
 import org.modelmapper.ModelMapper;
@@ -61,5 +63,15 @@ public class ProdutoService {
                 produtos) {
             findById(produto.getId());
         }
+    }
+
+    public Double valorProdutos(List<ProdutoDTO> produtos) {
+        Double valor = (double) 0;
+        for (ProdutoDTO produtoId:
+                produtos) {
+            ProdutoDTO produto = findById(produtoId.getId());
+            valor += produto.getValorUnitario();
+        }
+        return valor;
     }
 }

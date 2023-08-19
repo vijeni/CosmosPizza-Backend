@@ -46,12 +46,28 @@ public class PedidoService {
     public PedidoDTO validaPedido(PedidoDTO pedidoDTO){
         Assert.notNull(pessoaRepository.findById(pedidoDTO.getCliente().getId()).orElse(null), "Cliente informado não existe!");
         Assert.notNull(pessoaRepository.findById(pedidoDTO.getFuncionario().getId()).orElse(null), "Funcionário informado não existe!");
-        pedidoDTO.setValorTotal(pedidoDTO.getValorPedido() + pedidoDTO.getValorEntrega());
         if(pedidoDTO.getDataAbertura() == null){
             pedidoDTO.setDataAbertura(LocalDateTime.now());
         }
         if(pedidoDTO.getDataConclusao() != null){
             Assert.isTrue(pedidoDTO.getDataAbertura().isBefore(pedidoDTO.getDataConclusao()), "Data de abertura não deve ser depois da data de conclusão do pedido!");
+        }
+        return calculaValores(pedidoDTO);
+    }
+
+    private PedidoDTO calculaValores(PedidoDTO pedidoDTO) {
+        if(!pedidoDTO.getPizzas().isEmpty()) {
+            Double valorPizzas = pizzaService.valorPizzas(pedidoDTO.getPizzas());
+            pedidoDTO.addValorPedido(valorPizzas);
+        }
+        if(!pedidoDTO.getProdutos().isEmpty()) {
+            Double valorProdutos = produtoService.valorProdutos(pedidoDTO.getProdutos());
+            pedidoDTO.addValorPedido(valorProdutos);
+        }
+        if(pedidoDTO.getValorEntrega() != null){
+            pedidoDTO.addValorTotal(pedidoDTO.getValorEntrega() + pedidoDTO.getValorPedido());
+        }else{
+            pedidoDTO.addValorTotal(pedidoDTO.getValorPedido());
         }
         return pedidoDTO;
     }
@@ -64,6 +80,7 @@ public class PedidoService {
         if(!pedidoDTO.getProdutos().isEmpty()) {
             produtoService.validarProdutos(pedidoDTO.getProdutos());
         }
+        System.out.println(pedidoDTO.isEntrega());
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
