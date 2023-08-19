@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Sabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @NotNull @Column(name="id", unique = true)
+    @Getter @Column(name="id", unique = true)
     private Long id;
 
     @Getter @Setter
@@ -23,7 +24,15 @@ public class Sabor {
     @Column(name="descricao", length = 50)
     private String descricao;
 
-    @Getter @Setter @NotNull
-    @OneToMany @JoinColumn(name="sabores_ingredientes", nullable = false)
-    private List <Ingredientes> ingredientes;
+    @ManyToMany @Getter @Setter
+    @JoinTable(
+            name = "sabores_ingredientes",
+            joinColumns = @JoinColumn(name = "sabor_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredientes_id"))
+    private List <Ingrediente> ingredientes;
+
+    @Getter @Setter
+    @JsonIgnore
+    @ManyToMany(mappedBy = "sabores")
+    private List<Pizza> pizzas;
 }

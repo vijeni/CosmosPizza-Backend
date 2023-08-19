@@ -1,7 +1,7 @@
 package com.example.uniamerica.pizzaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,20 +9,22 @@ import java.util.List;
 
 @Entity
 @Table(name="pizzas", schema="public")
-public class Pizzas {
+public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @NotNull
+    @Getter @Setter
     @Column(name="id", unique = true)
     private Long id;
 
-    @NotNull @Getter @Setter
-    @OneToMany
-    @JoinColumn(name="sabor_pizza", nullable = false)
-    private List <Sabor> sabor;
+    @Getter @Setter
+    @ManyToMany
+    @JoinTable(
+            name = "sabores_pizza",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "sabor_id"))
+    private List <Sabor> sabores;
 
-    @NotNull @Getter @Setter
+    @Getter @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "tamanho", nullable = false)
     private Tamanho tamanho;
@@ -30,4 +32,9 @@ public class Pizzas {
     @Getter @Setter
     @Column(name="observacao", length = 100)
     private String observacao;
+
+    @Getter @Setter
+    @ManyToMany(mappedBy = "pizzas")
+    @JsonIgnore
+    private List<Pedido> pedidos;
 }

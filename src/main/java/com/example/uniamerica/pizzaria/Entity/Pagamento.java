@@ -5,6 +5,6 @@ public enum Pagamento {
     DEBITO,
     DINHEIRO,
     PIX,
-    OUTRO;
+    OUTRO
 
 }
