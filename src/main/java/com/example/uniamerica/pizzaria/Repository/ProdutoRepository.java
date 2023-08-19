@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     @Query("from Produto where nome like :nome")
-    public List<Produto> findByNameLike(@Param("nome") final String nome);
+    List<Produto> findByNameLike(@Param("nome") final String nome);
 }

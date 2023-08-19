@@ -2,7 +2,6 @@ package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
 import com.example.uniamerica.pizzaria.Entity.Produto;
-import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.ProdutoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

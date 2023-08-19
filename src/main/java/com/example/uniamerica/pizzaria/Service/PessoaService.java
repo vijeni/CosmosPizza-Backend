@@ -3,8 +3,6 @@ package com.example.uniamerica.pizzaria.Service;
 import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
 import com.example.uniamerica.pizzaria.Entity.Pessoa;
 import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.hibernate.query.derived.AnonymousTupleSimpleSqmPathSource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ public class PessoaService {
     @Autowired
     private PessoaRepository repository;
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Pessoa toPessoa(PessoaDTO pessoaDTO){
         return modelMapper.map(pessoaDTO,Pessoa.class);

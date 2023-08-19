@@ -25,7 +25,7 @@ public class PedidoService {
     @Autowired
     ProdutoService produtoService;
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public PedidoDTO toPedidoDTO(Pedido pedido){
         return modelMapper.map(pedido, PedidoDTO.class);
@@ -82,7 +82,7 @@ public class PedidoService {
     }
 
     public void deletar(Long id) {
-        Assert.notNull(pedidoRepository.findById(id).orElse(null), String.format("Pedido com ID %s não exite!"));
+        Assert.notNull(pedidoRepository.findById(id).orElse(null), "Pedido com ID %s não exite!");
         pedidoRepository.deleteById(id);
     }
 

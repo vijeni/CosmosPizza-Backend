@@ -17,7 +17,7 @@ import java.util.List;
 public class SaborService {
     @Autowired
     private SaborRepository repository;
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Sabor toSabor(SaborDTO saborDTO){
         return modelMapper.map(saborDTO,Sabor.class);

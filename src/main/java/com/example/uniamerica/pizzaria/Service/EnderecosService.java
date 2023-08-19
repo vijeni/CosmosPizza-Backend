@@ -20,7 +20,7 @@ public class EnderecosService {
     @Autowired
     private EnderecoRepository repository;
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Pessoa toPessoa(PessoaDTO pessoaDTO){
         return modelMapper.map(pessoaDTO,Pessoa.class);

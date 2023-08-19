@@ -3,7 +3,6 @@ package com.example.uniamerica.pizzaria.Service;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class IngredientesService {
     @Autowired
     IngredienteRepository repository;
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Ingrediente toIngredienteEntidade (IngredienteDTO ingredienteDTO){
         return modelMapper.map(ingredienteDTO,Ingrediente.class);

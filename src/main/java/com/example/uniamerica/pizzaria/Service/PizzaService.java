@@ -1,7 +1,6 @@
 package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
-import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
@@ -21,7 +20,7 @@ public class PizzaService {
     PizzaRepository repository;
     @Autowired
     SaborService saborService;
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public Pizza toPizza(PizzaDTO pizzaDTO){
         return modelMapper.map(pizzaDTO, Pizza.class);
