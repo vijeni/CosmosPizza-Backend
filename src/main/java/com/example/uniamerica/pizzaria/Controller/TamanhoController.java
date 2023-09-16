@@ -9,54 +9,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tamanho")
 public class TamanhoController {
-
     @Autowired
     TamanhoService service;
     @GetMapping
-    public ResponseEntity<?> findById(@RequestParam("id") final Long id){
-        try{
-            return ResponseEntity.ok(service.findById(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<TamanhoDTO> findById(@RequestParam("id") final Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
-
     @GetMapping("/todos")
-    public ResponseEntity<?>getAll(){
-        try {
-            return ResponseEntity.ok(service.getAll());
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<List<TamanhoDTO>>getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>cadastrar(@RequestBody @Validated TamanhoDTO tamanhoDTO){
-        try{
-            return ResponseEntity.ok(service.cadastrar(tamanhoDTO));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<TamanhoDTO>cadastrar(@RequestBody @Validated TamanhoDTO tamanhoDTO){
+        return ResponseEntity.ok(service.cadastrar(tamanhoDTO));
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?>editar(@RequestBody @Validated TamanhoDTO tamanhoDTO, @RequestParam("id")final long id){
-        try {
-            return ResponseEntity.ok(service.editar(id, tamanhoDTO));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<TamanhoDTO>editar(@RequestBody @Validated TamanhoDTO tamanhoDTO, @RequestParam("id")final long id){
+        return ResponseEntity.ok(service.editar(id, tamanhoDTO));
     }
     @DeleteMapping("deletar")
-    public ResponseEntity<?>deletar(@RequestParam("id") final long id){
-        try{
-            service.deletar(id);
-            return ResponseEntity.ok(String.format("O tamanho com o id [%s] foi deletado com sucesso.", id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<String>deletar(@RequestParam("id") final long id){
+        service.deletar(id);
+        return ResponseEntity.ok(String.format("O tamanho com o id [%s] foi deletado com sucesso.", id));
     }
 }

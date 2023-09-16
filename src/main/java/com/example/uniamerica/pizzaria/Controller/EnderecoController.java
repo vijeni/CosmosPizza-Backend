@@ -8,59 +8,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/endereco")
 public class EnderecoController {
-
     @Autowired
-    private EnderecoRepository enderecoRepository;
-    @Autowired
-    private EnderecosService enderecosService;
+    private EnderecosService service;
 
     @GetMapping("/todos")
-    public ResponseEntity<?> findAll() {
-        try {
-            return ResponseEntity.ok(enderecosService.listAll());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<List<EnderecoDTO>> findAll() {
+        return ResponseEntity.ok(service.listAll());
     }
 
     @GetMapping
-    public ResponseEntity<?> findById(@RequestParam("id") final Long id) {
-        try {
-            return ResponseEntity.ok(enderecoRepository.findById(id).orElse(null));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<EnderecoDTO> findById(@RequestParam("id") final Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> post(@RequestBody @Validated EnderecoDTO enderecos) {
-        try {
-            return ResponseEntity.ok(enderecosService.post(enderecos));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<EnderecoDTO> post(@RequestBody @Validated EnderecoDTO enderecos) {
+        return ResponseEntity.ok(service.post(enderecos));
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?> put(@RequestParam @Validated Long id, @RequestBody EnderecoDTO enderecos) {
-        try {
-            return ResponseEntity.ok(enderecosService.update(enderecos, id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<EnderecoDTO> put(@RequestParam @Validated Long id, @RequestBody EnderecoDTO enderecos) {
+        return ResponseEntity.ok(service.update(enderecos, id));
     }
 
     @DeleteMapping("/deletar")
-    public ResponseEntity<?> delete(@RequestParam long id) {
-        try {
-            enderecosService.delete(id);
-            return ResponseEntity.ok(String.format("O endereço com o ID [%s] foi deletado com sucesso!", id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<String> delete(@RequestParam long id) {
+        service.delete(id);
+        return ResponseEntity.ok(String.format("O endereço com o ID [%s] foi deletado com sucesso!", id));
     }
 
 

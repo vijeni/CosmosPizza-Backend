@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.Controller;
 
+import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
 import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Repository.SaborRepository;
 import com.example.uniamerica.pizzaria.Service.SaborService;
@@ -8,56 +9,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value="/api/sabor")
 public class SaborController {
     @Autowired
-    SaborRepository repository;
-    @Autowired
     SaborService service;
-
     @GetMapping
-    public ResponseEntity<?>findById(@RequestParam("id") final long id){
-        try{
-           return ResponseEntity.ok(repository.findById(id).orElse(null));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<SaborDTO>findById(@RequestParam("id") final long id){
+        return ResponseEntity.ok(service.findById(id));
     }
-
     @GetMapping("/todos")
-    public ResponseEntity<?>getAll(){
-        try {
-            return ResponseEntity.ok(service.getAll());
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<List<SaborDTO>>getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?>cadastrar(@RequestBody @Validated SaborDTO sabor){
-        try{
-            return ResponseEntity.ok(service.cadastrar(sabor));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<SaborDTO>cadastrar(@RequestBody @Validated SaborDTO sabor){
+        return ResponseEntity.ok(service.cadastrar(sabor));
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?>editar(@RequestBody @Validated SaborDTO sabor, @RequestParam("id")final long id){
-        try {
-            return ResponseEntity.ok(service.update(sabor,id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<SaborDTO>editar(@RequestBody @Validated SaborDTO sabor, @RequestParam("id")final long id){
+        return ResponseEntity.ok(service.update(sabor,id));
     }
     @DeleteMapping("deletar")
-    public ResponseEntity<?>deletar(@RequestParam("id") final long id){
-        try{
-            service.delete(id);
-            return ResponseEntity.ok(String.format("O sabor com o id [%s] foi deletado com sucesso.", id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<String>deletar(@RequestParam("id") final long id){
+        service.delete(id);
+        return ResponseEntity.ok(String.format("O sabor com o id [%s] foi deletado com sucesso.", id));
     }
 }

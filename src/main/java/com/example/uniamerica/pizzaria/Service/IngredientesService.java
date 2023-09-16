@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
+import com.example.uniamerica.pizzaria.Entity.Endereco;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import jakarta.transaction.Transactional;
@@ -28,7 +29,7 @@ public class IngredientesService {
 
     public IngredienteDTO findByID(long id){
         Ingrediente ingrediente = repository.findById(id).orElse(null);
-        Assert.notNull(ingrediente,"Lamentamos, nenhum ingrediente localizado com o ID informado.");
+        Assert.notNull(ingrediente,"Nenhum ingrediente foi localizado com esse ID.");
         return toIngredienteDTO(ingrediente);
     }
 
@@ -58,5 +59,9 @@ public class IngredientesService {
         Assert.notNull(ingrediente,String.format("Nenhum ingrediente localizado com o id [%s]",id));
 
         repository.deleteById(id);
+    }
+
+    public IngredienteDTO findById(Long id) {
+        return toIngredienteDTO(repository.findById(id).orElse(null));
     }
 }
