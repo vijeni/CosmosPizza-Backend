@@ -7,61 +7,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/pedido")
 public class PedidoController {
     @Autowired
     PedidoService service;
     @GetMapping
-    public ResponseEntity<?> findById(@RequestParam Long id){
-        try{
-            return ResponseEntity.ok(service.findById(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<PedidoDTO> findById(@RequestParam Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
-    public ResponseEntity<?> getAll(){
-        try{
-            return ResponseEntity.ok(service.getAll());
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<List<PedidoDTO>> getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody @Validated  PedidoDTO pedido){
-        try{
-            return ResponseEntity.ok(service.cadastrar(pedido));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<PedidoDTO> cadastrar(@RequestBody @Validated  PedidoDTO pedido){
+        return ResponseEntity.ok(service.cadastrar(pedido));
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<?> editar(@RequestParam Long codigoPedido, @RequestBody @Validated PedidoDTO pedido){
-        try{
-            return ResponseEntity.ok(service.editar(codigoPedido, pedido));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<PedidoDTO> editar(@RequestParam Long codigoPedido, @RequestBody @Validated PedidoDTO pedido){
+        return ResponseEntity.ok(service.editar(codigoPedido, pedido));
     }
 
     @PutMapping("/finalizar")
-    public ResponseEntity<?> finalizarPedido(@RequestParam Long codigoPedido){
-        try{
-            return ResponseEntity.ok(service.finalizarPedido(codigoPedido));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<PedidoDTO> finalizarPedido(@RequestParam Long codigoPedido){
+        return ResponseEntity.ok(service.finalizarPedido(codigoPedido));
     }
 
     @DeleteMapping("/deletar")
-    public ResponseEntity<?> deletar(@RequestParam Long id){
-        try{
-            service.deletar(id);
-            return ResponseEntity.ok(String.format("Pedido com ID %s foi deletado com sucesso!", id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<String> deletar(@RequestParam Long id){
+        service.deletar(id);
+        return ResponseEntity.ok(String.format("Pedido com ID %s foi deletado com sucesso!", id));
     }
 }
