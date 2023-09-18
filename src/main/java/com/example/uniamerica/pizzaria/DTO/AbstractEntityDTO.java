@@ -16,8 +16,6 @@ public class AbstractEntityDTO {
 
     private LocalDateTime edicao;
 
-    private boolean ativo;
-
     private LocalDateTime delecao;
 
 }

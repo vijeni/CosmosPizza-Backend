@@ -23,8 +23,7 @@ public class AbstractEntity {
     private LocalDateTime edicao;
 
     @Getter @Setter
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo;
+    @Column(name = "delecao", nullable = false)
     private LocalDateTime delecao;
 
 @PrePersist
