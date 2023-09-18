@@ -1,18 +1,31 @@
 package com.example.uniamerica.pizzaria.Entity;
 
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class AbstractEntity {
+    @Id
+    @Getter @Setter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
+    private Long id;
 
-private Long id;
-private LocalDateTime cadastro;
-private LocalDateTime edicao;
-private LocalDateTime delecao;
+    @Getter @Setter
+    @Column(name = "data_Cadastro", nullable = false)
+    private LocalDateTime cadastro;
+
+    @Getter @Setter
+    @Column(name = "data_edicao")
+    private LocalDateTime edicao;
+
+    @Getter @Setter
+    @Column(name = "ativo", nullable = false)
+    private boolean ativo;
+    private LocalDateTime delecao;
 
 @PrePersist
     private void prePersist(){
