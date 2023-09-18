@@ -7,11 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="enderecos", schema = "public")
-public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter  @Column(name="id", unique = true)
-    private Long id;
+public class Endereco extends AbstractEntity {
 
     /*
     não criamos esse campo no DER,

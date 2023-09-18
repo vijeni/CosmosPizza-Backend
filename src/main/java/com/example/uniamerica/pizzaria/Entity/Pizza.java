@@ -9,12 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="pizzas", schema="public")
-public class Pizza {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
-    @Column(name="id", unique = true)
-    private Long id;
+public class Pizza extends AbstractEntity {
 
     @Getter @Setter
     @ManyToMany

@@ -9,11 +9,7 @@ import java.util.List;
 
 @Entity
 @Table (name="ingredientes", schema = "public")
-public class Ingrediente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter  @Column(name="id", unique = true)
-    private Long id;
+public class Ingrediente extends AbstractEntity {
 
     @NotNull @Getter @Setter
     @Column(name="nome", length = 20, nullable = false)

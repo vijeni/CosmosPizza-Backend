@@ -8,11 +8,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="pessoas_table", schema = "public")
-public class Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter  @Column(name="id", unique = true)
-    private Long id;
+public class Pessoa extends AbstractEntity {
 
     @Getter @Setter
     @NotNull @Size(min = 2, max = 40)

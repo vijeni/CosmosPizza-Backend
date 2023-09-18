@@ -12,12 +12,7 @@ import java.util.List;
 
 @Entity
 @Table (name="pedidos", schema = "public")
-public class Pedido {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
-    @Column(name="codigo_pedido", unique = true)
-    private Long codigoPedido;
+public class Pedido extends  AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "clientes_id")

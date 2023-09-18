@@ -86,8 +86,8 @@ public class PedidoService {
 
     @Transactional
     public PedidoDTO editar(Long codigoPedido, PedidoDTO pedidoDTO) {
-        Assert.notNull(pedidoDTO.getCodigoPedido(), "Código do Pedido não informado!");
-        Assert.isTrue(pedidoDTO.getCodigoPedido().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
+        Assert.notNull(pedidoDTO.getId(), "Código do Pedido não informado!");
+        Assert.isTrue(pedidoDTO.getId().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
         Assert.notNull(pedidoRepository.findById(codigoPedido).orElse(null), String.format("Pedido com código %s não exite!", codigoPedido));
         if(!pedidoDTO.getPizzas().isEmpty()) {
             pizzaService.validarPizzas(pedidoDTO.getPizzas());

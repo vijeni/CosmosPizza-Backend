@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter @Setter
 public class PedidoDTO {
-    private Long codigoPedido;
+    private Long id;
     @NotNull(message = "Cliente não informado!")
     private Pessoa cliente;
     @NotNull(message = "Funcionário não informado!")
