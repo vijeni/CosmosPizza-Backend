@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
+import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter @Setter
-public class PedidoDTO {
-    private Long id;
+public class PedidoDTO extends AbstractEntityDTO {
     @NotNull(message = "Cliente não informado!")
     private Pessoa cliente;
     @NotNull(message = "Funcionário não informado!")

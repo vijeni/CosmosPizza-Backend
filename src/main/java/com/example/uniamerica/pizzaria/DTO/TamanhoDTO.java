@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 @Getter @Setter
-public class TamanhoDTO {
+public class TamanhoDTO extends AbstractEntityDTO {
 
     private Long id;
     @NotNull(message = "O tamanho deve ser informado!")

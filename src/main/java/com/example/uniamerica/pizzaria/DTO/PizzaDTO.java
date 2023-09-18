@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.example.uniamerica.pizzaria.Entity.Pedido;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
@@ -13,9 +14,7 @@ import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
 @Getter @Setter
-public class PizzaDTO {
-
-    private Long id;
+public class PizzaDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Informe o(s) sabor(es)")
     @NotEmpty(message = "Informe o(s) sabor(es)")

@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,9 +13,8 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter @Setter
-public class SaborDTO {
+public class SaborDTO extends AbstractEntityDTO {
 
-    private Long id;
     @NotNull(message = "Insira um nome!") @NotEmpty(message = "Insira um nome!")
     @Size(min = 3, max = 20, message = "No mínimo 3 e no máximo 20 caracteres!")
     private String nome;

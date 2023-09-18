@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.DTO;
 
+import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,9 +9,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 @Getter @Setter
-public class EnderecoDTO {
-
-    private Long id;
+public class EnderecoDTO extends AbstractEntityDTO {
 
     @Length(max = 40, message = "No máximo 40 caracteres!")
     private String logradouro;
