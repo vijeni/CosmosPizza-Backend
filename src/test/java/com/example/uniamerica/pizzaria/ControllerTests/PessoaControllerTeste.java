@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,17 @@ public class PessoaControllerTeste {
         Assertions.assertEquals(pessoaDTOList,response.getBody());
     }
 
+    @Test
+    void pessoaPutTest(){
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        Long pessoaId = 1L;
+
+        when(pessoaService.put(pessoaDTO,pessoaId)).thenReturn(pessoaDTO);
+        ResponseEntity<PessoaDTO>response = pessoaController.atualizar(pessoaDTO,pessoaId);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(pessoaDTO,response.getBody());
+    }
 
 
 }
