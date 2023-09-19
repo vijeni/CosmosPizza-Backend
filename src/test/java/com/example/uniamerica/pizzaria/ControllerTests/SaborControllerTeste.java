@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -39,11 +42,29 @@ public class SaborControllerTeste {
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
         Assertions.assertEquals(saborDTO,response.getBody());
         verify(saborService,times(1)).findById(id);
-
     }
 
+    @Test
+    void saborGetAll(){
+        List<SaborDTO> saborDTOList = new ArrayList<>();
+        when(saborService.getAll()).thenReturn(saborDTOList);
 
+        ResponseEntity<List<SaborDTO>>response = saborController.getAll();
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(saborDTOList,response.getBody());
+        verify(saborService,times(1)).getAll();
+    }
 
+    @Test
+    void saborPost(){
+        SaborDTO saborDTO = new SaborDTO();
+        when(saborService.cadastrar(saborDTO)).thenReturn(saborDTO);
 
+        ResponseEntity<SaborDTO>response = saborController.cadastrar(saborDTO);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(saborDTO,response.getBody());
+        verify(saborService,times(1)).cadastrar(saborDTO);
+    }
 
 }
