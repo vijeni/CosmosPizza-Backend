@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 
 import com.example.uniamerica.pizzaria.Controller.PessoaController;
 import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
+import com.example.uniamerica.pizzaria.Entity.Pessoa;
 import com.example.uniamerica.pizzaria.Service.PessoaService;
 import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.junit.jupiter.api.Assertions;
@@ -19,8 +20,7 @@ import org.springframework.util.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class PessoaControllerTeste {
@@ -60,6 +60,7 @@ public class PessoaControllerTeste {
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
         Assertions.assertEquals(pessoaDTOList,response.getBody());
+        verify(pessoaService,times(1)).getAll();
     }
 
     @Test
@@ -72,7 +73,19 @@ public class PessoaControllerTeste {
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
         Assertions.assertEquals(pessoaDTO,response.getBody());
+        verify(pessoaService,times(1)).put(pessoaDTO,pessoaId);
     }
 
+    @Test
+    void pessoaPostTest(){
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        when(pessoaService.post(pessoaDTO)).thenReturn(pessoaDTO);
+
+        ResponseEntity<PessoaDTO>response = pessoaController.cadastrar(pessoaDTO);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(pessoaDTO,response.getBody());
+        verify(pessoaService,times(1)).post(pessoaDTO);
+    }
 
 }
