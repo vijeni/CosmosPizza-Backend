@@ -75,5 +75,17 @@ public class IngredienteControllerTeste {
         verify(ingredientesService,times(1)).post(ingredienteDTO);
     }
 
+    @Test
+    void ingredientesPutTest(){
+        Long ingredienteId = 1L;
+        IngredienteDTO ingredienteDTO = new IngredienteDTO();
+
+        when(ingredientesService.update(ingredienteId,ingredienteDTO)).thenReturn(ingredienteDTO);
+        ResponseEntity<IngredienteDTO>response = ingredienteController.put(ingredienteId,ingredienteDTO);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(ingredienteDTO,response.getBody());
+    }
+
 
 }
