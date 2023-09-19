@@ -56,5 +56,16 @@ public class EnderecosControllerTeste {
         verify(enderecosService,times(1)).listAll();
     }
 
+    @Test
+    void post(){
+        EnderecoDTO enderecoDTO = new EnderecoDTO();
+        when(enderecosService.post(enderecoDTO)).thenReturn(enderecoDTO);
+
+        ResponseEntity<EnderecoDTO> response = enderecoController.post(enderecoDTO);
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(enderecoDTO,response.getBody());
+        verify(enderecosService, times(1));
+    }
+
 
 }
