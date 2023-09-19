@@ -15,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
@@ -45,6 +48,17 @@ public class PessoaControllerTeste {
 
         Mockito.verify(pessoaService,times(1)).findById(pessoaId);
 
+    }
+
+    @Test
+    void pessoaGetAllTest(){
+        List<PessoaDTO> pessoaDTOList = new ArrayList<>();
+
+        when(pessoaService.getAll()).thenReturn(pessoaDTOList);
+        ResponseEntity<List<PessoaDTO>>response = pessoaController.getAll();
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(pessoaDTOList,response.getBody());
     }
 
 
