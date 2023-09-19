@@ -80,4 +80,14 @@ public class SaborControllerTeste {
         verify(saborService,times(1)).update(saborDTO,saborId);
     }
 
+    @Test
+    void saborDeleteTeste(){
+        Long saborId = 1L;
+
+        ResponseEntity<String>response = saborController.deletar(saborId);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        verify(saborService,times(1)).delete(saborId);
+
+    }
 }
