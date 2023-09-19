@@ -14,6 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -47,6 +50,17 @@ public class IngredienteControllerTeste {
 
     }
 
+    @Test
+    void getAllTest(){
+        List<IngredienteDTO> ingredienteDTOList = new ArrayList<>();
+
+        when(ingredientesService.getAll()).thenReturn(ingredienteDTOList);
+        ResponseEntity<List<IngredienteDTO>>response = ingredienteController.getAll();
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(ingredienteDTOList,response.getBody());
+        verify(ingredientesService,times(1)).getAll();
+    }
 
 
 
