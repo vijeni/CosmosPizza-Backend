@@ -88,4 +88,14 @@ public class PessoaControllerTeste {
         verify(pessoaService,times(1)).post(pessoaDTO);
     }
 
+    @Test
+    void pessoaDeleteTest(){
+        Long pessoaId = 1L;
+
+        ResponseEntity<String> response = pessoaController.deletar(pessoaId);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        verify(pessoaService,times(1)).deletar(pessoaId);
+    }
+
 }
