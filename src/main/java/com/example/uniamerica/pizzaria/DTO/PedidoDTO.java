@@ -1,15 +1,18 @@
 package com.example.uniamerica.pizzaria.DTO;
 
 import com.example.uniamerica.pizzaria.Entity.*;
-import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PedidoDTO extends AbstractEntityDTO {
     @NotNull(message = "Cliente não informado!")
     private Pessoa cliente;

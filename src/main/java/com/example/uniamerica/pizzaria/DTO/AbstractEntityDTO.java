@@ -1,4 +1,4 @@
-package com.example.uniamerica.pizzaria.Entity;
+package com.example.uniamerica.pizzaria.DTO;
 
 import jakarta.persistence.*;
 import lombok.Getter;

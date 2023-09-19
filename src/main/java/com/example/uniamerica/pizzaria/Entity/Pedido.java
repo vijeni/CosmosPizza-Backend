@@ -2,7 +2,9 @@ package com.example.uniamerica.pizzaria.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Cascade;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Entity
 @Table (name="pedidos", schema = "public")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pedido extends  AbstractEntity {
 
     @ManyToOne

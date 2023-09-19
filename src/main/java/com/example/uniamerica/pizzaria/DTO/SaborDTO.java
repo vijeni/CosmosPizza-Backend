@@ -1,18 +1,21 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class SaborDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Insira um nome!") @NotEmpty(message = "Insira um nome!")

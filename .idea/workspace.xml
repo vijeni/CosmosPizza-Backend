@@ -7,13 +7,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="Tamanho é entidade agora">
+    <list default="true" id="6e0b4449-b229-433a-94c2-5541b2a74b09" name="Changes" comment="test: GetByID test, test: GetAll test CREATED.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/EnderecoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/EnderecoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/IngredienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/IngredienteDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PedidoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/PizzaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Service/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PessoaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PizzaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/PizzaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/ProdutoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/SaborDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/TamanhoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/TamanhoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/AbstractEntityDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/DTO/AbstractEntityDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Ingrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Ingrediente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Pizza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Sabor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Sabor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Tamanho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/uniamerica/pizzaria/Entity/Tamanho.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/uniamerica/pizzaria/ControllerTests/EnderecosControllerTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/uniamerica/pizzaria/ControllerTests/EnderecosControllerTeste.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +37,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -75,47 +90,98 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2TziGIDZexVX2ElSmPGy5gpaTNP" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "jean",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "e2c8620c1e1216a49527788d35df251c",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vini&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;e2c8620c1e1216a49527788d35df251c&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.uniamerica.pizzaria.Entity" />
       <recent name="com.example.uniamerica.pizzaria.Service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jeanf\Desenvolvimento\Facul\periodo-04\pizza" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.EnderecosControllerTeste">
+    <configuration name="EnderecosControllerTeste" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pizzaria" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.uniamerica.pizzaria.ControllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.uniamerica.pizzaria.ControllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.uniamerica.pizzaria.ControllerTests.EnderecosControllerTeste" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EnderecosControllerTeste.getAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pizzaria" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.uniamerica.pizzaria.ControllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.uniamerica.pizzaria.ControllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.uniamerica.pizzaria.ControllerTests.EnderecosControllerTeste" />
+      <option name="METHOD_NAME" value="getAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EnderecosControllerTeste.getById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pizzaria" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.uniamerica.pizzaria.ControllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.uniamerica.pizzaria.ControllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.uniamerica.pizzaria.ControllerTests.EnderecosControllerTeste" />
+      <option name="METHOD_NAME" value="getById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="pizza" />
       <method v="2">
@@ -136,6 +202,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.EnderecosControllerTeste" />
+        <item itemvalue="JUnit.EnderecosControllerTeste.getAll" />
+        <item itemvalue="JUnit.EnderecosControllerTeste.getById" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -149,6 +222,8 @@
       <workItem from="1692141522970" duration="3114000" />
       <workItem from="1692294111881" duration="2657000" />
       <workItem from="1692395136477" duration="7619000" />
+      <workItem from="1695092893320" duration="2824000" />
+      <workItem from="1695161433678" duration="2680000" />
     </task>
     <task id="LOCAL-00001" summary="Padronização nas rotas para substantivo singular">
       <created>1692294556208</created>
@@ -269,7 +344,47 @@
       <option name="project" value="LOCAL" />
       <updated>1692409947141</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: AbstractEntity created">
+      <option name="closed" value="true" />
+      <created>1695078490994</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1695078490996</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix: AbstractEntity annotations ok">
+      <option name="closed" value="true" />
+      <created>1695078805581</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1695078805581</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix: Refatorando entidades utilizando AbstractEntity">
+      <option name="closed" value="true" />
+      <created>1695080017842</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1695080017842</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat: AbstractEntityDTO, feat: Refatorando extendendo AbstractEntityDTO">
+      <option name="closed" value="true" />
+      <created>1695080845733</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1695080845733</updated>
+    </task>
+    <task id="LOCAL-00022" summary="test: GetByID test, test: GetAll test CREATED.">
+      <option name="closed" value="true" />
+      <created>1695095219506</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1695095219506</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +405,17 @@
     <MESSAGE value="Editar de pedidos ok" />
     <MESSAGE value="Editar de Pedidos ok" />
     <MESSAGE value="Code Clean up" />
+    <MESSAGE value="feat: AbstractEntity created" />
+    <MESSAGE value="fix: AbstractEntity annotations ok" />
+    <MESSAGE value="fix: Refatorando entidades utilizando AbstractEntity" />
+    <MESSAGE value="feat: AbstractEntityDTO, feat: Refatorando extendendo AbstractEntityDTO" />
     <MESSAGE value="Tamanho é entidade agora" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tamanho é entidade agora" />
+    <MESSAGE value="test: GetByID test, test: GetAll test CREATED." />
+    <option name="LAST_COMMIT_MESSAGE" value="test: GetByID test, test: GetAll test CREATED." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CosmosPizza_Backend$EnderecosControllerTeste.ic" NAME="EnderecosControllerTeste Coverage Results" MODIFIED="1695161870691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.uniamerica.pizzaria.ControllerTests.*</FILTER>
+    </SUITE>
   </component>
 </project>

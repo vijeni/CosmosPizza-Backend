@@ -29,6 +29,8 @@ public class EnderecosControllerTeste {
     @Mock
     private EnderecosService enderecosService; //Nota mental: O @InjectMocks não funciona em Service.
 
+    EnderecoDTO enderecoDTO = new EnderecoDTO("Rua",2,"complemento","bairro","cep");
+
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
@@ -37,8 +39,9 @@ public class EnderecosControllerTeste {
     @Test
     void getById(){
         Long enderecoId = 1L;
-        EnderecoDTO enderecoDTO = new EnderecoDTO();
         when(enderecosService.findById(enderecoId)).thenReturn(enderecoDTO);
+
+
 
         ResponseEntity<EnderecoDTO> response = enderecoController.findById(enderecoId);
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());

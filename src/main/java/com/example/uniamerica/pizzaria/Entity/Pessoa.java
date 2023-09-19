@@ -3,11 +3,15 @@ package com.example.uniamerica.pizzaria.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="pessoas_table", schema = "public")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pessoa extends AbstractEntity {
 
     @Getter @Setter
