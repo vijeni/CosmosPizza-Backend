@@ -85,7 +85,17 @@ public class IngredienteControllerTeste {
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
         Assertions.assertEquals(ingredienteDTO,response.getBody());
+        verify(ingredientesService,times(1)).update(ingredienteId,ingredienteDTO);
     }
 
+    @Test
+    void ingredientesDeleteTest(){
+        Long ingredienteId = 1L;
+
+        ResponseEntity<String> response = ingredienteController.deletar(ingredienteId);
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        verify(ingredientesService,times(1)).delete(ingredienteId);
+
+    }
 
 }
