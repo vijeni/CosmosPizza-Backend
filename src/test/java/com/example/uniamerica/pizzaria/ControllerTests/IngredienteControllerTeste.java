@@ -3,6 +3,7 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 import com.example.uniamerica.pizzaria.Controller.IngredienteController;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,6 +63,17 @@ public class IngredienteControllerTeste {
         verify(ingredientesService,times(1)).getAll();
     }
 
+    @Test
+    void ingredientesPostTest(){
+        IngredienteDTO ingredienteDTO = new IngredienteDTO();
+
+        when(ingredientesService.post(ingredienteDTO)).thenReturn(ingredienteDTO);
+        ResponseEntity<IngredienteDTO>response = ingredienteController.post(ingredienteDTO);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(ingredienteDTO,response.getBody());
+        verify(ingredientesService,times(1)).post(ingredienteDTO);
+    }
 
 
 }
