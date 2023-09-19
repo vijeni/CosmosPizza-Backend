@@ -30,7 +30,7 @@ public class PessoaController {
     }
     @PutMapping("/editar")
     public ResponseEntity<PessoaDTO>atualizar(@RequestBody @Validated PessoaDTO pessoa, @RequestParam long id){
-        return ResponseEntity.ok(service.put(pessoa));
+        return ResponseEntity.ok(service.put(pessoa, id));
     }
     @DeleteMapping("/deletar")
     public ResponseEntity<String>deletar(@RequestParam ("id") final long id){
