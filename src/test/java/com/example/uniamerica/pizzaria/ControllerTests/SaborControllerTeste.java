@@ -67,4 +67,17 @@ public class SaborControllerTeste {
         verify(saborService,times(1)).cadastrar(saborDTO);
     }
 
+    @Test
+    void saborPutTeste(){
+        Long saborId = 1L;
+        SaborDTO saborDTO = new SaborDTO();
+
+        when(saborService.update(saborDTO,saborId)).thenReturn(saborDTO);
+        ResponseEntity<SaborDTO>response = saborController.editar(saborDTO,saborId);
+
+        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+        Assertions.assertEquals(saborDTO,response.getBody());
+        verify(saborService,times(1)).update(saborDTO,saborId);
+    }
+
 }
