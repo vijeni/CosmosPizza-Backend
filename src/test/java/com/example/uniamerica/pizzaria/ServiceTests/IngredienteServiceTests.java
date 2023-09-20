@@ -42,18 +42,26 @@ public class IngredienteServiceTests {
     void setUp(){
         MockitoAnnotations.openMocks(this);
         ingredienteDTO = new IngredienteDTO();
+        ingredienteDTO.setId(1L);
         ingredienteDTO.setNome("nome");
         ingredienteDTO.setQuantidade(5);
+
+
+        Ingrediente ingredienteEntidade = new Ingrediente();
+        ingredienteEntidade.setId(1L);
+        ingredienteEntidade.setNome("nome");
+        ingredienteEntidade.setQuantidade(5);
+
         ingredienteDTOList.add(ingredienteDTO);
 
         when(ingredienteRepository.findAll()).thenReturn(ingredienteDTOList.stream().map(ingredienteDTO -> ingredientesService.toIngredienteEntidade(ingredienteDTO)).toList());
+        when(ingredienteRepository.save(Mockito.any(Ingrediente.class))).thenReturn(ingredienteEntidade);
+        when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
 
     }
 
     @Test
     void ingredienteFindByIdTest(){
-        Ingrediente ingredienteEntidade = new Ingrediente();
-        when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
 
         IngredienteDTO result = ingredientesService.findByID(1L);
 
@@ -64,11 +72,6 @@ public class IngredienteServiceTests {
 
     @Test
     void ingredientePostTest(){
-        Ingrediente ingredienteEntidade = new Ingrediente();
-        ingredienteEntidade.setNome("nome");
-        ingredienteEntidade.setQuantidade(5);
-
-        when(ingredienteRepository.save(Mockito.any(Ingrediente.class))).thenReturn(ingredienteEntidade);
 
         IngredienteDTO result = ingredientesService.post(ingredienteDTO);
 
@@ -107,6 +110,14 @@ public class IngredienteServiceTests {
 
     }
 
+    @Test
+    void ingredientePutTest(){
+        Ingrediente ingredienteEntidade = new Ingrediente();
+
+        IngredienteDTO result = ingredientesService.update(1L,ingredienteDTO);
+        Assertions.assertNotNull(ingredientesService);
+        assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTO);
+    }
 
 
 }
