@@ -31,12 +31,12 @@ public class TamanhoController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<TamanhoDTO>editar(@RequestBody @Validated TamanhoDTO tamanhoDTO, @RequestParam("id")final long id){
+    public ResponseEntity<TamanhoDTO>editar(@RequestParam("id")final long id, @RequestBody @Validated TamanhoDTO tamanhoDTO){
         return ResponseEntity.ok(service.editar(id, tamanhoDTO));
     }
     @DeleteMapping("deletar")
     public ResponseEntity<String>deletar(@RequestParam("id") final long id){
         service.deletar(id);
-        return ResponseEntity.ok(String.format("O tamanho com o id [%s] foi deletado com sucesso.", id));
+        return ResponseEntity.ok(String.format("O tamanho com o ID %s foi deletado com sucesso.", id));
     }
 }
