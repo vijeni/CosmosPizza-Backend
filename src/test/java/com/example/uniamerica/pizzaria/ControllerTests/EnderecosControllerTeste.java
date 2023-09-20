@@ -21,7 +21,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class EnderecosControllerTeste {
+class EnderecosControllerTeste {
 
     @InjectMocks
     private EnderecoController enderecoController;

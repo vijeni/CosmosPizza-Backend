@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PedidoControllerTeste {
+class PedidoControllerTeste {
     @InjectMocks
     private PedidoController controller;
 

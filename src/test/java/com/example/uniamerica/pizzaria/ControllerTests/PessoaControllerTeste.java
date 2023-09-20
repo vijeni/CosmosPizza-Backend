@@ -23,7 +23,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class PessoaControllerTeste {
+class PessoaControllerTeste {
 
     @InjectMocks
     private PessoaController pessoaController;
