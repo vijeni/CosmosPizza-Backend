@@ -1,13 +1,11 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.Controller.IngredienteController;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
-import jakarta.persistence.Table;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,10 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
@@ -39,6 +35,7 @@ public class IngredienteServiceTests {
 
     private IngredienteDTO ingredienteDTO;
     private Sabor sabor;
+    private List<IngredienteDTO> ingredienteDTOList = new ArrayList<IngredienteDTO>();
 
 
     @BeforeEach
@@ -47,6 +44,10 @@ public class IngredienteServiceTests {
         ingredienteDTO = new IngredienteDTO();
         ingredienteDTO.setNome("nome");
         ingredienteDTO.setQuantidade(5);
+        ingredienteDTOList.add(ingredienteDTO);
+
+        when(ingredienteRepository.findAll()).thenReturn(ingredienteDTOList.stream().map(ingredienteDTO -> ingredientesService.toIngredienteEntidade(ingredienteDTO)).toList());
+
     }
 
     @Test
@@ -80,6 +81,7 @@ public class IngredienteServiceTests {
 
     @Test
     void ingredienteGetAllTest() {
+        /*
         List<Ingrediente> ingredienteList = new ArrayList<>();
         List<Sabor> saboresSimulados = new ArrayList<>();
         saboresSimulados.add(new Sabor("Sabor 1", "Descrição 1", null, null));
@@ -97,6 +99,12 @@ public class IngredienteServiceTests {
                 .collect(Collectors.toList());
 
         assertThat(resultado).isEqualTo(ingredienteDTOList);
+
+         */
+        List<IngredienteDTO> result = ingredientesService.getAll();
+        Assertions.assertNotNull(result);
+        assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTOList);
+
     }
 
 
