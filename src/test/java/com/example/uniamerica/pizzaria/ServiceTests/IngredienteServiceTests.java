@@ -2,7 +2,9 @@ package com.example.uniamerica.pizzaria.ServiceTests;
 
 import com.example.uniamerica.pizzaria.Controller.IngredienteController;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
+import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
+import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
 import jakarta.persistence.Table;
@@ -18,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.in;
@@ -35,7 +38,7 @@ public class IngredienteServiceTests {
 
 
     private IngredienteDTO ingredienteDTO;
-
+    private Sabor sabor;
 
 
     @BeforeEach
@@ -75,6 +78,26 @@ public class IngredienteServiceTests {
         Assertions.assertEquals(5,result.getQuantidade());
     }
 
+    @Test
+    void ingredienteGetAllTest() {
+        List<Ingrediente> ingredienteList = new ArrayList<>();
+        List<Sabor> saboresSimulados = new ArrayList<>();
+        saboresSimulados.add(new Sabor("Sabor 1", "Descrição 1", null, null));
+        saboresSimulados.add(new Sabor("Sabor 2", "Descrição 2", null, null));
+        ingredienteList.add(new Ingrediente("Nome 01", 2, saboresSimulados));
+        ingredienteList.add(new Ingrediente("Nome 02", 2, saboresSimulados));
+
+        when(ingredienteRepository.findAll()).thenReturn(ingredienteList);
+
+        List<IngredienteDTO> resultado = ingredientesService.getAll();
+
+        // Converter a lista de entidades em uma lista de DTOs para comparação
+        List<IngredienteDTO> ingredienteDTOList = ingredienteList.stream()
+                .map(ingredientesService::toIngredienteDTO) // Usar seu método de conversão
+                .collect(Collectors.toList());
+
+        assertThat(resultado).isEqualTo(ingredienteDTOList);
+    }
 
 
 
