@@ -17,10 +17,10 @@ public class TamanhoService {
     TamanhoRepository repository;
 
     ModelMapper modelMapper = new ModelMapper();
-    private Tamanho toTamanho(TamanhoDTO tamanhoDTO){
+    public Tamanho toTamanho(TamanhoDTO tamanhoDTO){
         return modelMapper.map(tamanhoDTO, Tamanho.class);
     }
-    private TamanhoDTO toTamanhoDTO(Tamanho tamanho){
+    public TamanhoDTO toTamanhoDTO(Tamanho tamanho){
         return modelMapper.map(tamanho, TamanhoDTO.class);
     }
     public TamanhoDTO findById(Long id){
