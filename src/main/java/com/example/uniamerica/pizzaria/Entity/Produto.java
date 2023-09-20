@@ -2,13 +2,17 @@ package com.example.uniamerica.pizzaria.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table (name="produtos", schema = "public")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Produto extends AbstractEntity {
 
     @Getter @Setter

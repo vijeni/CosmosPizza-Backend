@@ -1,19 +1,22 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.example.uniamerica.pizzaria.Entity.Pedido;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PizzaDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Informe o(s) sabor(es)")

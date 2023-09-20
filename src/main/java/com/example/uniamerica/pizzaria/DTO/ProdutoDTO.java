@@ -1,15 +1,18 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProdutoDTO extends AbstractEntityDTO {
 
     @NotNull(message = "O nome deve ser informado!")

@@ -1,16 +1,19 @@
 package com.example.uniamerica.pizzaria.DTO;
 
-import com.example.uniamerica.pizzaria.Entity.AbstractEntityDTO;
 import com.example.uniamerica.pizzaria.Entity.Endereco;
 import com.example.uniamerica.pizzaria.Entity.TipoPessoa;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PessoaDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Insira um nome!") @NotEmpty(message = "Insira um nome!")
