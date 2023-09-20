@@ -12,9 +12,9 @@ import java.util.List;
 @Getter @Setter
 public class PedidoDTO extends AbstractEntityDTO {
     @NotNull(message = "Cliente não informado!")
-    private Pessoa cliente;
+    private PessoaDTO cliente;
     @NotNull(message = "Funcionário não informado!")
-    private Pessoa funcionario;
+    private PessoaDTO funcionario;
     private Status status;
     @NotNull(message = "Informe a necessidade de entrega")
     private boolean isEntrega;
