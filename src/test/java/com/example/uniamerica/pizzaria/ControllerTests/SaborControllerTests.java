@@ -19,7 +19,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class SaborControllerTeste {
+class SaborControllerTests {
 
     @InjectMocks
     private SaborController saborController;

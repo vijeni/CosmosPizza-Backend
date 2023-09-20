@@ -1,10 +1,7 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.Controller.ProdutoController;
 import com.example.uniamerica.pizzaria.Controller.TamanhoController;
-import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
 import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
-import com.example.uniamerica.pizzaria.Service.ProdutoService;
 import com.example.uniamerica.pizzaria.Service.TamanhoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class TamanhoControllerTeste {
+class TamanhoControllerTests {
     @InjectMocks
     private TamanhoController controller;
     @Mock

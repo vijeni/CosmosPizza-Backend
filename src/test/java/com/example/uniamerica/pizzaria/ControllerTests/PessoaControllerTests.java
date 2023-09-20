@@ -2,9 +2,7 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 
 import com.example.uniamerica.pizzaria.Controller.PessoaController;
 import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
-import com.example.uniamerica.pizzaria.Entity.Pessoa;
 import com.example.uniamerica.pizzaria.Service.PessoaService;
-import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class PessoaControllerTeste {
+class PessoaControllerTests {
 
     @InjectMocks
     private PessoaController pessoaController;
