@@ -39,6 +39,7 @@ public class TamanhoServiceTests {
 
         when(repository.findById(1L)).thenReturn(Optional.of(service.toTamanho(tamanho)));
         when(repository.findAll()).thenReturn(tamanhosDTOList.stream().map(tamanhoDTO -> service.toTamanho(tamanhoDTO)).toList());
+        when(repository.save(service.toTamanho(tamanho))).thenReturn(service.toTamanho(tamanho));
     }
     @Test
     void findByIdTest(){
@@ -57,4 +58,12 @@ public class TamanhoServiceTests {
                 .usingRecursiveComparison()
                 .isEqualTo(tamanhosDTOList);
     }
+
+//    @Test
+//    void cadastrarTest(){
+//        System.out.println(tamanho.getTamanho());
+//        TamanhoDTO retornoService = service.cadastrar(tamanho);
+//        assertNotNull(retornoService);
+////        assertThat(retornoService).usingRecursiveComparison().isEqualTo(tamanho);
+//    }
 }
