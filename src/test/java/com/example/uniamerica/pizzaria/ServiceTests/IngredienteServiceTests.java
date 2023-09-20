@@ -15,7 +15,14 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.in;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class IngredienteServiceTests {
@@ -26,18 +33,23 @@ public class IngredienteServiceTests {
     @InjectMocks
     private IngredientesService ingredientesService;
 
-    private IngredienteDTO ingredienteDTO = new IngredienteDTO();
-    private Ingrediente ingrediente = new Ingrediente();
+
+    private IngredienteDTO ingredienteDTO;
+
+
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
-
+        ingredienteDTO = new IngredienteDTO();
+        ingredienteDTO.setNome("nome");
+        ingredienteDTO.setQuantidade(5);
     }
 
     @Test
     void ingredienteFindByIdTest(){
-        Mockito.when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingrediente));
+        Ingrediente ingredienteEntidade = new Ingrediente();
+        when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
 
         IngredienteDTO result = ingredientesService.findByID(1L);
 
@@ -48,7 +60,19 @@ public class IngredienteServiceTests {
 
     @Test
     void ingredientePostTest(){
+        Ingrediente ingredienteEntidade = new Ingrediente();
+        ingredienteEntidade.setNome("nome");
+        ingredienteEntidade.setQuantidade(5);
 
+        when(ingredienteRepository.save(Mockito.any(Ingrediente.class))).thenReturn(ingredienteEntidade);
+
+        IngredienteDTO result = ingredientesService.post(ingredienteDTO);
+
+        Mockito.verify(ingredienteRepository,times(1)).save(Mockito.any(Ingrediente.class));
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals("nome",result.getNome());
+        Assertions.assertEquals(5,result.getQuantidade());
     }
 
 
