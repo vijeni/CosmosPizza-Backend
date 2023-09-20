@@ -3,13 +3,11 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 import com.example.uniamerica.pizzaria.Controller.IngredienteController;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class IngredienteControllerTeste {
+class IngredienteControllerTests {
 
     @InjectMocks
     private IngredienteController ingredienteController;
