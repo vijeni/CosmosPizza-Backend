@@ -96,4 +96,11 @@ import static org.mockito.Mockito.*;
         Assertions.assertEquals("complemento",result.getComplemento());
     }
 
+    @Test
+    void enderecoPut(){
+        EnderecoDTO result = service.update(enderecoDTO,1L);
+        Assertions.assertNotNull(service);
+        assertThat(result).usingRecursiveComparison().isEqualTo(enderecoDTO);
+    }
+
 }
