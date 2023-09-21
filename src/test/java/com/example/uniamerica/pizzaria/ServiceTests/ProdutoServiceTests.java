@@ -44,14 +44,16 @@ public class ProdutoServiceTests {
         produtoDTO.setQuantidadeEstoque(10);
         produtoDTO.setDescricao("Descrição");
         produtoDTO.setValorUnitario(10D);
+        produtoDTOList.add(produtoDTO);
 
         List<Pedido> pedidosEntity = new ArrayList<>();
         pedidosEntity.add(new Pedido());
-        produtoDTO.setId(1L);
+        produtoEntity.setId(1L);
         produtoEntity.setNome("Nome");
         produtoEntity.setQuantidadeEstoque(10);
         produtoEntity.setDescricao("Descrição");
         produtoEntity.setValorUnitario(10D);
+        produtoEntityList.add(produtoEntity);
 
         when(repository.findById(1L)).thenReturn(Optional.of(produtoEntity));
         when(repository.findAll()).thenReturn(produtoEntityList);
@@ -96,12 +98,12 @@ public class ProdutoServiceTests {
 
         ProdutoDTO retornoService = service.cadastrar(produtoCadastrar);
         assertNotNull(retornoService);
-        assertThat(retornoService).usingRecursiveComparison().ignoringFields("id").isEqualTo(produtoDTO);
+        assertThat(retornoService).usingRecursiveComparison().isEqualTo(produtoDTO);
     }
     @Test
     void produtoEditarTest(){
         ProdutoDTO retornoService = service.editar(1L, produtoDTO);
         assertNotNull(retornoService);
-        assertThat(retornoService).usingRecursiveComparison().ignoringFields("id").isEqualTo(produtoDTO);
+        assertThat(retornoService).usingRecursiveComparison().isEqualTo(produtoDTO);
     }
 }
