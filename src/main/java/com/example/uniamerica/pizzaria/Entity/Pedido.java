@@ -78,14 +78,4 @@ public class Pedido extends  AbstractEntity {
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "pizzas_id"))
     private  List <Pizza> pizzas;
-
-    @PrePersist
-    private void valoresPadrao(){
-        if(this.status == null){
-            this.status = Status.AGUARDANDO_CONFIRMACAO;
-        }
-        if(this.dataAbertura == null){
-            this.dataAbertura = LocalDateTime.now();
-        }
-    }
 }
