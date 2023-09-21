@@ -32,7 +32,6 @@ public class PizzaDTOTests {
         tamanho.setValor(10D);
         tamanho.setTamanho("Mini");
 
-
         pizzaDTO = new PizzaDTO();
         pizzaDTO.setId(1L);
         pizzaDTO.setObservacao("Observacao X");
