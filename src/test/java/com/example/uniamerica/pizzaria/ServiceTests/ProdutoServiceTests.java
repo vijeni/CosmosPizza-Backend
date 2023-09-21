@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ProdutoServiceTests {
+ class ProdutoServiceTests {
     @Mock
     ProdutoRepository repository;
     @InjectMocks

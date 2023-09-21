@@ -24,7 +24,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class IngredienteServiceTests {
+ class IngredienteServiceTests {
 
     @Mock
     private IngredienteRepository ingredienteRepository;

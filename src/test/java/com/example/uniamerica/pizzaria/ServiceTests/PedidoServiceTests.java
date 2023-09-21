@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PedidoServiceTests {
+ class PedidoServiceTests {
     @Mock
     PedidoRepository repository;
     @Mock

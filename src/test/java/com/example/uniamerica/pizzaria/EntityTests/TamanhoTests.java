@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class TamanhoTests {
+ class TamanhoTests {
     private Tamanho tamanho = new Tamanho();
 
     @BeforeEach

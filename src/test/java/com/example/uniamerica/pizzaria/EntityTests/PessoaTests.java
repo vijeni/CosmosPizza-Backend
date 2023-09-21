@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class PessoaTests {
+ class PessoaTests {
     private Pessoa pessoa = new Pessoa();
     private Endereco endereco = new Endereco();
     @BeforeEach

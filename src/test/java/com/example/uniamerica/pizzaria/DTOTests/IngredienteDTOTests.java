@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class IngredienteDTOTests {
+ class IngredienteDTOTests {
     private IngredienteDTO ingredienteDTO = new IngredienteDTO();
     private List<SaborDTO> sabores = new ArrayList<>();
     @BeforeEach

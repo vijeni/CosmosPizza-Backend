@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class EnderecoDTOTests {
+ class EnderecoDTOTests {
     private EnderecoDTO enderecoDTO = new EnderecoDTO();
 
     @BeforeEach

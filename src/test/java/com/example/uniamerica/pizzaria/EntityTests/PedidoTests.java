@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class PedidoTests {
+ class PedidoTests {
     private Pedido pedido = new Pedido();
     private Pessoa pessoa = new Pessoa();
     private List<Pizza> pizzas = new ArrayList<>();

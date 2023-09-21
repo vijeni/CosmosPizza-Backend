@@ -27,7 +27,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class SaborServiceTests {
+ class SaborServiceTests {
 
     @Mock
     private SaborRepository repository;

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class TamanhoServiceTests {
+ class TamanhoServiceTests {
     @Mock
     TamanhoRepository repository;
     @InjectMocks
