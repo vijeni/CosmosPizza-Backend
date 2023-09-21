@@ -47,6 +47,7 @@ public class PessoaService {
     }
 
     public PessoaDTO put(PessoaDTO pessoa, Long id) {
+        Assert.notNull(id, "Por favor, insira um ID!");
         Assert.notNull(pessoa.getId(),"Por favor, insira um ID!");
         Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
         Assert.hasText(pessoa.getNome(),"Por favor, digite um nome válido!");
