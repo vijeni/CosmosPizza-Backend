@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.contentOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -91,19 +92,21 @@ class EnderecosControllerTests {
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(enderecoDTO);
     }
-/*
+
     @Test
     void enderecoPut(){
-        EnderecoDTO result = service.update(enderecoDTO,1L);
-        Assertions.assertNotNull(service);
-        assertThat(result).usingRecursiveComparison().isEqualTo(enderecoDTO);
+       ResponseEntity<EnderecoDTO>response = enderecoController.put(1L,enderecoDTO);
+       assertEquals(HttpStatus.OK,response.getStatusCode());
+       assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(enderecoDTO);
+
     }
 
     @Test
     void enderecoDeletarTest() {
-        service.delete(1L);
+        ResponseEntity<String>response = enderecoController.delete(1L);
+        assertEquals(HttpStatus.OK,response.getStatusCode());
         verify(repository, times(1)).deleteById(1L);
     }
 
-     */
+
 }
