@@ -80,9 +80,13 @@ public class SaborServiceTests {
     void saborPostTest(){
         SaborDTO result = service.cadastrar(saborDTO);
         Assertions.assertNotNull(result);
+        verify(repository,times(1)).save(Mockito.any(Sabor.class));
+
         Assertions.assertEquals("nome",result.getNome());
         Assertions.assertEquals(1L,result.getId());
         Assertions.assertEquals("descrição",result.getDescricao());
     }
 
+    @Test
+    void saborPutTest
 }
