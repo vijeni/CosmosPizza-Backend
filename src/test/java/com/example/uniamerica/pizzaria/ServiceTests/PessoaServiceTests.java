@@ -37,11 +37,11 @@ import static org.mockito.Mockito.*;
     private List<PessoaDTO> pessoaDTOList = new ArrayList<>();
     private PessoaDTO pessoaDTO = new PessoaDTO();
     private List<Endereco>enderecoList;
+    private Pessoa pessoaEntidade = new Pessoa();
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        Pessoa pessoaEntidade = new Pessoa();
         pessoaEntidade.setTipoPessoa(TipoPessoa.FUNCIONARIO);
         pessoaEntidade.setId(1L);
         pessoaEntidade.setNome("nome");
@@ -61,6 +61,16 @@ import static org.mockito.Mockito.*;
         when(repository.save(Mockito.any(Pessoa.class))).thenReturn(pessoaEntidade);
         when(repository.findById(1L)).thenReturn(Optional.of(pessoaEntidade));
 
+    }
+    @Test
+    void pessoaDtoToPessoaEntityTest(){
+        Pessoa pessoa = service.toPessoa(pessoaDTO);
+        org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(pessoaEntidade);
+    }
+    @Test
+    void pessoaEntidadeToPessoaDtoTest(){
+        PessoaDTO pessoa = service.toPessoaDTO(pessoaEntidade);
+        org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(pessoaDTO);
     }
 
     @Test

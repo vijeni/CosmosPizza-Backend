@@ -35,6 +35,7 @@ import static org.mockito.Mockito.*;
     private IngredienteDTO ingredienteDTO;
     private Sabor sabor;
     private List<IngredienteDTO> ingredienteDTOList = new ArrayList<IngredienteDTO>();
+    private Ingrediente ingredienteEntidade = new Ingrediente();
 
 
     @BeforeEach
@@ -46,7 +47,6 @@ import static org.mockito.Mockito.*;
         ingredienteDTO.setQuantidade(5);
 
 
-        Ingrediente ingredienteEntidade = new Ingrediente();
         ingredienteEntidade.setId(1L);
         ingredienteEntidade.setNome("nome");
         ingredienteEntidade.setQuantidade(5);
@@ -58,7 +58,11 @@ import static org.mockito.Mockito.*;
         when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
 
     }
-
+    @Test
+    void ingredienteDtoToingredienteEntityTest(){
+        Ingrediente ingrediente = ingredientesService.toIngredienteEntidade(ingredienteDTO);
+        org.assertj.core.api.Assertions.assertThat(ingrediente).usingRecursiveComparison().isEqualTo(ingredienteEntidade);
+    }
     @Test
     void ingredienteFindByIdTest(){
 
@@ -83,26 +87,6 @@ import static org.mockito.Mockito.*;
 
     @Test
     void ingredienteGetAllTest() {
-        /*
-        List<Ingrediente> ingredienteList = new ArrayList<>();
-        List<Sabor> saboresSimulados = new ArrayList<>();
-        saboresSimulados.add(new Sabor("Sabor 1", "Descrição 1", null, null));
-        saboresSimulados.add(new Sabor("Sabor 2", "Descrição 2", null, null));
-        ingredienteList.add(new Ingrediente("Nome 01", 2, saboresSimulados));
-        ingredienteList.add(new Ingrediente("Nome 02", 2, saboresSimulados));
-
-        when(ingredienteRepository.findAll()).thenReturn(ingredienteList);
-
-        List<IngredienteDTO> resultado = ingredientesService.getAll();
-
-        // Converter a lista de entidades em uma lista de DTOs para comparação
-        List<IngredienteDTO> ingredienteDTOList = ingredienteList.stream()
-                .map(ingredientesService::toIngredienteDTO) // Usar seu método de conversão
-                .collect(Collectors.toList());
-
-        assertThat(resultado).isEqualTo(ingredienteDTOList);
-
-         */
         List<IngredienteDTO> result = ingredientesService.getAll();
         Assertions.assertNotNull(result);
         assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTOList);

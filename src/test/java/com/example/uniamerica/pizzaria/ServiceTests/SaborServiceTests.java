@@ -4,6 +4,7 @@ import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
 import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
+import com.example.uniamerica.pizzaria.Entity.Pessoa;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.SaborRepository;
@@ -42,6 +43,7 @@ import static org.mockito.Mockito.*;
     private List<IngredienteDTO>ingredienteDTOList = new ArrayList<>();
     private List<Ingrediente>ingredienteList = new ArrayList<>();
     private List<Pizza>pizzaList = new ArrayList<>();
+    private Sabor saborEntidade = new Sabor();
 
     @BeforeEach
     void setUp(){
@@ -58,7 +60,6 @@ import static org.mockito.Mockito.*;
         saborDTO.setPizzas(pizzaDTOList);
         saborDTO.setIngredientes(ingredienteDTOList);
 
-        Sabor saborEntidade = new Sabor();
         saborEntidade.setNome("nome");
         saborEntidade.setId(1L);
         saborEntidade.setDescricao("descrição");
@@ -77,6 +78,18 @@ import static org.mockito.Mockito.*;
         when(repository.findById(1L)).thenReturn(Optional.of(saborEntidade));
 
     }
+    @Test
+    void saborDtoToSaborEntityTest(){
+        Sabor sabor = service.toSabor(saborDTO);
+        org.assertj.core.api.Assertions.assertThat(sabor).usingRecursiveComparison().isEqualTo(saborEntidade);
+    }
+
+    @Test
+    void saborEntidadeToSaborDtoTest(){
+        SaborDTO sabor = service.toSaborDTO(saborEntidade);
+        org.assertj.core.api.Assertions.assertThat(sabor).usingRecursiveComparison().isEqualTo(saborDTO);
+    }
+
 
     @Test
     void saborGetByIdTest(){

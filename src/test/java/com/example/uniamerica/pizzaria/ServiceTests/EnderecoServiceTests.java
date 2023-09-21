@@ -4,6 +4,7 @@ import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.Entity.Endereco;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
+import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import com.example.uniamerica.pizzaria.Repository.EnderecoRepository;
 import com.example.uniamerica.pizzaria.Service.EnderecosService;
 import org.junit.Before;
@@ -34,6 +35,7 @@ import static org.mockito.Mockito.*;
 
     private List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
     private EnderecoDTO enderecoDTO;
+    private Endereco enderecoEntidade = new Endereco();
 
 
 
@@ -41,7 +43,6 @@ import static org.mockito.Mockito.*;
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        Endereco enderecoEntidade = new Endereco();
         enderecoEntidade.setBairro("bairro");
         enderecoEntidade.setCep("cep");
         enderecoEntidade.setId(1L);
@@ -64,6 +65,16 @@ import static org.mockito.Mockito.*;
         when(repository.findAll()).thenReturn(enderecoDTOList.stream().map(enderecoDTO -> service.toEnderecos(enderecoDTO)).toList());
 
 
+    }
+    @Test
+    void enderecoDtoToEnderecoEntityTest(){
+        Endereco endereco = service.toEnderecos(enderecoDTO);
+        org.assertj.core.api.Assertions.assertThat(endereco).usingRecursiveComparison().isEqualTo(enderecoEntidade);
+    }
+    @Test
+    void enderecoEntityToEnderecoDtoTest(){
+        EnderecoDTO endereco = service.toEnderecosDTO(enderecoEntidade);
+        org.assertj.core.api.Assertions.assertThat(endereco).usingRecursiveComparison().isEqualTo(enderecoDTO);
     }
     @Test
     void enderecoFindById(){
