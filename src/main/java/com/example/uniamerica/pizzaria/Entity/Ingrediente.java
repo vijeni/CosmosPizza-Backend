@@ -23,6 +23,7 @@ public class Ingrediente extends AbstractEntity {
     @Column (name="quantidade", nullable = false)
     private Integer quantidade;
 
+    @Getter @Setter
     @ManyToMany(mappedBy = "ingredientes")
     List<Sabor>sabores;
 }
