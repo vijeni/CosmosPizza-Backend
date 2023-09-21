@@ -7,6 +7,7 @@ import com.example.uniamerica.pizzaria.repository.ProdutoRepository;
 import com.example.uniamerica.pizzaria.service.ProdutoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,6 +49,8 @@ class ProdutoControllerTests {
 
         when(repository.findById(1L)).thenReturn(Optional.ofNullable(produtoEntity));
         when(repository.findAll()).thenReturn(produtoEntityList);
+        when(repository.findByNameLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
+        when(repository.save(Mockito.any(Produto.class))).thenReturn(produtoEntity);
 
     }
 
@@ -65,42 +68,26 @@ class ProdutoControllerTests {
     }
     @Test
     void getAllByNome(){
-        ProdutoDTO produto = new ProdutoDTO();
-        produto.setId(1L);
-        produto.setNome("Produto A");
-        List<ProdutoDTO> produtosList = new ArrayList<>();
-        produtosList.add(produto);
-        when(service.getAllByNome("Produto A")).thenReturn(produtosList);
         ResponseEntity<List<ProdutoDTO>> controllerResponse = controller.getAllByNome("Produto A");
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals(produtosList, controllerResponse.getBody());
-        System.out.println(controllerResponse.getBody());
+        assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(produtoDTOList);
     }
     @Test
     void cadastrarProdutoTest() {
-        ProdutoDTO produto = new ProdutoDTO();
-        when(service.cadastrar(produto)).thenReturn(produto);
-        ResponseEntity<ProdutoDTO> controllerResponse = controller.cadastrar(produto);
+        ResponseEntity<ProdutoDTO> controllerResponse = controller.cadastrar(produtoDTO);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals(produto, controllerResponse.getBody());
+        assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(produtoEntity);
     }
     @Test
     void editarProdutoTest() {
-        Long idProduto = 1L;
-        ProdutoDTO produto = new ProdutoDTO();
-        produto.setId(idProduto);
-        when(service.editar(idProduto, produto)).thenReturn(produto);
-        ResponseEntity<ProdutoDTO> controllerResponse = controller.editar(idProduto, produto);
+        ResponseEntity<ProdutoDTO> controllerResponse = controller.editar(1L, produtoDTO);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals(produto, controllerResponse.getBody());
+        assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(produtoEntity);
     }
     @Test
     void deletarProdutoTest() {
-        Long idProduto = 1L;
-        ResponseEntity<String> controllerResponse = controller.deletar(idProduto);
-        assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
+        ResponseEntity<String> controllerResponse = controller.deletar(1L);
         assertEquals("Produto com ID 1 foi deletado com sucesso!", controllerResponse.getBody());
-        System.out.println(controllerResponse.getBody());
     }
 
 }
