@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.Service;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
 import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
+import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
@@ -65,7 +66,7 @@ public class PizzaService {
             int qntdSabores = pizza.getSabores().size();
             String tamanho = tamanhoDTO.getTamanho();
             Assert.isTrue(qntdSabores <= qntdMaximaSabores, String.format("A pizza tamanho %s deve ter no máximo %s sabor(es)", tamanho, qntdMaximaSabores));
-            for (Sabor sabor :
+            for (SaborDTO sabor :
                     pizza.getSabores()) {
                 saborService.findById(sabor.getId());
             }

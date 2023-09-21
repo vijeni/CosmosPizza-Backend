@@ -21,14 +21,14 @@ public class PizzaDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Informe o(s) sabor(es)")
     @NotEmpty(message = "Informe o(s) sabor(es)")
-    private List <Sabor> sabores;
+    private List <SaborDTO> sabores;
 
     @NotNull(message = "Informe o tamanho!")
-    private Tamanho tamanho;
+    private TamanhoDTO tamanho;
 
     @Length(max = 100, message = "A observação deve ter no máximo 100 caracteres")
     private String observacao;
     @JsonIgnore
-    private List<Pedido> pedidos;
+    private List<PedidoDTO> pedidos;
 
 }
