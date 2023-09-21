@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 
 import com.example.uniamerica.pizzaria.controller.EnderecoController;
 import com.example.uniamerica.pizzaria.dto.EnderecoDTO;
+import com.example.uniamerica.pizzaria.dto.TamanhoDTO;
 import com.example.uniamerica.pizzaria.entity.Endereco;
 import com.example.uniamerica.pizzaria.repository.EnderecoRepository;
 import com.example.uniamerica.pizzaria.service.EnderecosService;
@@ -40,7 +41,7 @@ class EnderecosControllerTests {
 
     private List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
     private List<Endereco>enderecoList = new ArrayList<>();
-    private EnderecoDTO enderecoDTO;
+    EnderecoDTO enderecoDTO = new EnderecoDTO();
     private Endereco enderecoEntidade = new Endereco();
 
     @BeforeEach
@@ -54,7 +55,6 @@ class EnderecosControllerTests {
         enderecoEntidade.setLogradouro("logradouro");
         enderecoEntidade.setComplemento("complemento");
 
-        enderecoDTO = new EnderecoDTO();
         enderecoDTO.setBairro("bairro");
         enderecoDTO.setCep("cep");
         enderecoDTO.setId(1L);
@@ -77,28 +77,21 @@ class EnderecosControllerTests {
        assertEquals(HttpStatus.OK,result.getStatusCode());
        assertThat(result.getBody()).usingRecursiveComparison().isEqualTo(enderecoDTO);
     }
-    /*
+
     @Test
     void enderecoListAll(){
-        List<EnderecoDTO> result = service.listAll();
-        Assertions.assertNotNull(result);
-        assertThat(result).usingRecursiveComparison().isEqualTo(enderecoDTOList);
+        ResponseEntity<List<EnderecoDTO>>response = enderecoController.findAll();
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(enderecoDTOList);
     }
 
     @Test
     void enderecoPost(){
-        EnderecoDTO result = service.post(enderecoDTO);
-        verify(repository,times(1)).save(Mockito.any(Endereco.class));
-
-        Assertions.assertNotNull(result);
-        assertEquals("bairro",result.getBairro());
-        assertEquals("cep",result.getCep());
-        assertEquals(1L,result.getId());
-        assertEquals(579,result.getNumero());
-        assertEquals("logradouro",result.getLogradouro());
-        assertEquals("complemento",result.getComplemento());
+        ResponseEntity<EnderecoDTO>response = enderecoController.post(enderecoDTO);
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(enderecoDTO);
     }
-
+/*
     @Test
     void enderecoPut(){
         EnderecoDTO result = service.update(enderecoDTO,1L);
