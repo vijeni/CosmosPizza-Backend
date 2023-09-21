@@ -61,6 +61,7 @@ public class PedidoServiceTests {
         pedidoDTO.setEntrega(true);
         pedidoDTO.setFormaPagamento(Pagamento.DEBITO);
         pedidoDTO.setValorEntrega(5D);
+        pedidoDTO.setValorTotal(15D);
         pedidoDTO.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
         pedidoDTO.setFuncionario(pessoaDTO);
         pedidoDTO.setCliente(pessoaDTO);
@@ -123,6 +124,7 @@ public class PedidoServiceTests {
 
     @Test
     void pedidoCadastrarTest(){
+        pedidoDTO.setValorTotal(0D);
         PedidoDTO retornoService = service.cadastrar(pedidoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
@@ -133,6 +135,7 @@ public class PedidoServiceTests {
     void pedidoEditarTest(){
         PedidoDTO retornoService = service.editar(1L, pedidoDTO);
         assertNotNull(retornoService);
+        System.out.println(pedidoDTO.getValorTotal());
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
     }
 
