@@ -20,7 +20,7 @@ public class IngredienteController {
 
     @GetMapping
     public ResponseEntity<IngredienteDTO> findById(@RequestParam("id") final Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        return ResponseEntity.ok().body(service.findByID(id));
     }
 
     @GetMapping("/todos")

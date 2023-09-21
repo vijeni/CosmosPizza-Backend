@@ -48,6 +48,7 @@ import static org.mockito.Mockito.when;
 
         when(repository.findById(1L)).thenReturn(Optional.of(tamanhoEntity));
         when(repository.findAll()).thenReturn(tamanhosEntityList);
+        when(repository.findByNameLike(Mockito.any(String.class))).thenReturn(tamanhosEntityList);
         when(repository.save(Mockito.any(Tamanho.class))).thenReturn(tamanhoEntity);
     }
     @Test
@@ -69,10 +70,18 @@ import static org.mockito.Mockito.when;
                 .usingRecursiveComparison()
                 .isEqualTo(tamanhoDTO);
     }
-
     @Test
     void tamanhoGetAllTest(){
         List<TamanhoDTO> retornoService = service.getAll();
+        assertNotNull(retornoService);
+        assertThat(retornoService)
+                .usingRecursiveComparison()
+                .isEqualTo(tamanhosDTOList);
+    }
+
+    @Test
+    void tamanhoGetAllByNomeTest(){
+        List<TamanhoDTO> retornoService = service.getAllByNome("GRANDE");
         assertNotNull(retornoService);
         assertThat(retornoService)
                 .usingRecursiveComparison()

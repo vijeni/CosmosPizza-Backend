@@ -45,7 +45,7 @@ class IngredienteControllerTests {
          */
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(ingredientesService,times(1)).findById(ingredienteId);
+        verify(ingredientesService,times(1)).findByID(ingredienteId);
 
     }
 

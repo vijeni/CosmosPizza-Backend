@@ -60,8 +60,4 @@ public class IngredientesService {
 
         repository.deleteById(id);
     }
-
-    public IngredienteDTO findById(Long id) {
-        return toIngredienteDTO(repository.findById(id).orElse(null));
-    }
 }

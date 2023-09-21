@@ -21,15 +21,6 @@ public class EnderecosService {
     private EnderecoRepository repository;
 
     private final ModelMapper modelMapper = new ModelMapper();
-
-    public Pessoa toPessoa(PessoaDTO pessoaDTO){
-        return modelMapper.map(pessoaDTO,Pessoa.class);
-    }
-
-    public PessoaDTO toPessoaDTO(Pessoa pessoaEntidade){
-        return modelMapper.map(pessoaEntidade, PessoaDTO.class);
-    }
-
     public Endereco toEnderecos (EnderecoDTO enderecoDTO){
         return modelMapper.map(enderecoDTO,Endereco.class);
     }
