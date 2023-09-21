@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
+import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
@@ -31,21 +32,27 @@ public class SaborServiceTests {
     @InjectMocks
     private SaborService service;
 
-    private SaborDTO saborDTO = new SaborDTO();
+    private SaborDTO saborDTO;
     private List<SaborDTO>saborDTOList = new ArrayList<>();
+    private List<IngredienteDTO> ingredienteDTO = new ArrayList<>();
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
+        saborDTO = new SaborDTO();
 
         saborDTO.setNome("nome");
         saborDTO.setId(1L);
         saborDTO.setDescricao("descrição");
 
+        ingredienteDTO.add(new IngredienteDTO());
+        saborDTO.setIngredientes(ingredienteDTO);
+
         Sabor saborEntidade = new Sabor();
         saborEntidade.setNome("nome");
         saborEntidade.setId(1L);
         saborEntidade.setDescricao("descrição");
+
 
         saborDTOList.add(saborDTO);
 
@@ -69,5 +76,13 @@ public class SaborServiceTests {
         assertThat(result).usingRecursiveComparison().isEqualTo(saborDTOList);
     }
 
+    @Test
+    void saborPostTest(){
+        SaborDTO result = service.cadastrar(saborDTO);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals("nome",result.getNome());
+        Assertions.assertEquals(1L,result.getId());
+        Assertions.assertEquals("descrição",result.getDescricao());
+    }
 
 }
