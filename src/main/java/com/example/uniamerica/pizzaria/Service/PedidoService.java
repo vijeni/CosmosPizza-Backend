@@ -56,6 +56,7 @@ public class PedidoService {
     }
 
     private PedidoDTO calculaValores(PedidoDTO pedidoDTO) {
+        pedidoDTO.setValorTotal(0D);
         if(!pedidoDTO.getPizzas().isEmpty()) {
             Double valorPizzas = pizzaService.valorPizzas(pedidoDTO.getPizzas());
             pedidoDTO.addValorPedido(valorPizzas);
