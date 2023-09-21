@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -59,5 +60,10 @@ public class PizzaDTOTests {
     @Test
     void pizzaPedidosTest(){
         assertEquals(pedidos, pizzaDTO.getPedidos());
+    }
+    @Test
+    void pizzaAllArgsConstructorTest(){
+        PizzaDTO pizzaAllArgs = new PizzaDTO(sabores, tamanho, "Observacao X", pedidos);
+        assertThat(pizzaDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(pizzaAllArgs);
     }
 }
