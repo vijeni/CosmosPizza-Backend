@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -105,6 +105,26 @@ import static org.mockito.Mockito.*;
         ProdutoDTO retornoService = service.editar(1L, produtoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(produtoDTO);
+    }
+
+    @Test
+    void validarProdutosTest(){
+        service.validarProdutos(produtoDTOList);
+        verify(repository, times(1)).findById(1L);
+    }
+    @Test
+    void validarProdutosExceptionTest(){
+        ProdutoDTO produtoInexistente = new ProdutoDTO();
+        produtoInexistente.setId(2L);
+        produtoDTOList.add(produtoInexistente);
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.valorProdutos(produtoDTOList);
+        });
+    }
+    @Test
+    void produtoValorTest(){
+        Double valor = service.valorProdutos(produtoDTOList);
+        assertEquals(10D, valor);
     }
 
     @Test
