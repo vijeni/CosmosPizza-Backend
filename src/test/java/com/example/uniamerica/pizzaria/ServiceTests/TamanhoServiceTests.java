@@ -91,8 +91,7 @@ public class TamanhoServiceTests {
         tamanhoCadastrar.setMaximoSabores(4);
         TamanhoDTO retornoService = service.cadastrar(tamanhoCadastrar);
         assertNotNull(retornoService);
-        assertThat(retornoService).usingRecursiveComparison().ignoringFields("id").isEqualTo(tamanhoDTO);
-        assertEquals(retornoService.getId(), 1L);
+        assertThat(retornoService).usingRecursiveComparison().isEqualTo(tamanhoDTO);
     }
     @Test
     void tamanhoEditarTest(){
