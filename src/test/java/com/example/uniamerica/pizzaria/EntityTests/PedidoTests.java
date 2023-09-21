@@ -1,8 +1,6 @@
 package com.example.uniamerica.pizzaria.EntityTests;
 
-import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
-import com.example.uniamerica.pizzaria.DTO.ProdutoDTO;
-import com.example.uniamerica.pizzaria.Entity.*;
+import com.example.uniamerica.pizzaria.entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

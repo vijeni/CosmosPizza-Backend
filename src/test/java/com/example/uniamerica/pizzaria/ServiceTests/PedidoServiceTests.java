@@ -1,12 +1,12 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.*;
-import com.example.uniamerica.pizzaria.Entity.*;
-import com.example.uniamerica.pizzaria.Repository.PedidoRepository;
-import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
-import com.example.uniamerica.pizzaria.Service.PedidoService;
-import com.example.uniamerica.pizzaria.Service.PizzaService;
-import com.example.uniamerica.pizzaria.Service.ProdutoService;
+import com.example.uniamerica.pizzaria.dto.*;
+import com.example.uniamerica.pizzaria.entity.*;
+import com.example.uniamerica.pizzaria.repository.PedidoRepository;
+import com.example.uniamerica.pizzaria.repository.PessoaRepository;
+import com.example.uniamerica.pizzaria.service.PedidoService;
+import com.example.uniamerica.pizzaria.service.PizzaService;
+import com.example.uniamerica.pizzaria.service.ProdutoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

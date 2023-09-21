@@ -1,15 +1,15 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
-import com.example.uniamerica.pizzaria.DTO.SaborDTO;
-import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
-import com.example.uniamerica.pizzaria.Entity.Pizza;
-import com.example.uniamerica.pizzaria.Entity.Sabor;
-import com.example.uniamerica.pizzaria.Entity.Tamanho;
-import com.example.uniamerica.pizzaria.Repository.PizzaRepository;
-import com.example.uniamerica.pizzaria.Service.PizzaService;
-import com.example.uniamerica.pizzaria.Service.SaborService;
-import com.example.uniamerica.pizzaria.Service.TamanhoService;
+import com.example.uniamerica.pizzaria.dto.PizzaDTO;
+import com.example.uniamerica.pizzaria.dto.SaborDTO;
+import com.example.uniamerica.pizzaria.dto.TamanhoDTO;
+import com.example.uniamerica.pizzaria.entity.Pizza;
+import com.example.uniamerica.pizzaria.entity.Sabor;
+import com.example.uniamerica.pizzaria.entity.Tamanho;
+import com.example.uniamerica.pizzaria.repository.PizzaRepository;
+import com.example.uniamerica.pizzaria.service.PizzaService;
+import com.example.uniamerica.pizzaria.service.SaborService;
+import com.example.uniamerica.pizzaria.service.TamanhoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

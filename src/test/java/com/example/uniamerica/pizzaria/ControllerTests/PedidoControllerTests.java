@@ -1,9 +1,9 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.Controller.PedidoController;
-import com.example.uniamerica.pizzaria.DTO.PedidoDTO;
-import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
-import com.example.uniamerica.pizzaria.Service.PedidoService;
+import com.example.uniamerica.pizzaria.controller.PedidoController;
+import com.example.uniamerica.pizzaria.dto.PedidoDTO;
+import com.example.uniamerica.pizzaria.dto.PessoaDTO;
+import com.example.uniamerica.pizzaria.service.PedidoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

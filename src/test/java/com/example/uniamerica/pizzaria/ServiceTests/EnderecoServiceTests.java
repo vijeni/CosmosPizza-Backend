@@ -1,13 +1,9 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
-import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.Entity.Endereco;
-import com.example.uniamerica.pizzaria.Entity.Ingrediente;
-import com.example.uniamerica.pizzaria.Entity.Tamanho;
-import com.example.uniamerica.pizzaria.Repository.EnderecoRepository;
-import com.example.uniamerica.pizzaria.Service.EnderecosService;
-import org.junit.Before;
+import com.example.uniamerica.pizzaria.dto.EnderecoDTO;
+import com.example.uniamerica.pizzaria.entity.Endereco;
+import com.example.uniamerica.pizzaria.repository.EnderecoRepository;
+import com.example.uniamerica.pizzaria.service.EnderecosService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

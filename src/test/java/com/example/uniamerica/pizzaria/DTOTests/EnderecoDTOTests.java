@@ -1,7 +1,6 @@
 package com.example.uniamerica.pizzaria.DTOTests;
 
-import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
-import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
+import com.example.uniamerica.pizzaria.dto.EnderecoDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

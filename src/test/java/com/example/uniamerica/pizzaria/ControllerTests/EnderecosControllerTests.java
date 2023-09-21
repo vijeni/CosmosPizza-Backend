@@ -1,8 +1,8 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.Controller.EnderecoController;
-import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
-import com.example.uniamerica.pizzaria.Service.EnderecosService;
+import com.example.uniamerica.pizzaria.controller.EnderecoController;
+import com.example.uniamerica.pizzaria.dto.EnderecoDTO;
+import com.example.uniamerica.pizzaria.service.EnderecosService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

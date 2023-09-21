@@ -1,8 +1,8 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.Controller.IngredienteController;
-import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.Service.IngredientesService;
+import com.example.uniamerica.pizzaria.controller.IngredienteController;
+import com.example.uniamerica.pizzaria.dto.IngredienteDTO;
+import com.example.uniamerica.pizzaria.service.IngredientesService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

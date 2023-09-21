@@ -1,14 +1,11 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
-import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
-import com.example.uniamerica.pizzaria.Entity.Endereco;
-import com.example.uniamerica.pizzaria.Entity.Ingrediente;
-import com.example.uniamerica.pizzaria.Entity.Pessoa;
-import com.example.uniamerica.pizzaria.Entity.TipoPessoa;
-import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
-import com.example.uniamerica.pizzaria.Service.PessoaService;
+import com.example.uniamerica.pizzaria.dto.PessoaDTO;
+import com.example.uniamerica.pizzaria.entity.Endereco;
+import com.example.uniamerica.pizzaria.entity.Pessoa;
+import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.repository.PessoaRepository;
+import com.example.uniamerica.pizzaria.service.PessoaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoSettings;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;

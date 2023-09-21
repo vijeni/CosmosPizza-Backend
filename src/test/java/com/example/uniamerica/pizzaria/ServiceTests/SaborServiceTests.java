@@ -1,16 +1,13 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
-import com.example.uniamerica.pizzaria.DTO.SaborDTO;
-import com.example.uniamerica.pizzaria.Entity.Ingrediente;
-import com.example.uniamerica.pizzaria.Entity.Pessoa;
-import com.example.uniamerica.pizzaria.Entity.Pizza;
-import com.example.uniamerica.pizzaria.Entity.Sabor;
-import com.example.uniamerica.pizzaria.Repository.SaborRepository;
-import com.example.uniamerica.pizzaria.Service.SaborService;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
+import com.example.uniamerica.pizzaria.dto.IngredienteDTO;
+import com.example.uniamerica.pizzaria.dto.PizzaDTO;
+import com.example.uniamerica.pizzaria.dto.SaborDTO;
+import com.example.uniamerica.pizzaria.entity.Ingrediente;
+import com.example.uniamerica.pizzaria.entity.Pizza;
+import com.example.uniamerica.pizzaria.entity.Sabor;
+import com.example.uniamerica.pizzaria.repository.SaborRepository;
+import com.example.uniamerica.pizzaria.service.SaborService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

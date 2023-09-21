@@ -1,11 +1,10 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.Entity.Ingrediente;
-import com.example.uniamerica.pizzaria.Entity.Sabor;
-import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
-import com.example.uniamerica.pizzaria.Service.IngredientesService;
-import org.junit.Assert;
+import com.example.uniamerica.pizzaria.dto.IngredienteDTO;
+import com.example.uniamerica.pizzaria.entity.Ingrediente;
+import com.example.uniamerica.pizzaria.entity.Sabor;
+import com.example.uniamerica.pizzaria.repository.IngredienteRepository;
+import com.example.uniamerica.pizzaria.service.IngredientesService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

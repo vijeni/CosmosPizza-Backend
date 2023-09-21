@@ -1,10 +1,10 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.Controller.TamanhoController;
-import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
-import com.example.uniamerica.pizzaria.Entity.Tamanho;
-import com.example.uniamerica.pizzaria.Repository.TamanhoRepository;
-import com.example.uniamerica.pizzaria.Service.TamanhoService;
+import com.example.uniamerica.pizzaria.controller.TamanhoController;
+import com.example.uniamerica.pizzaria.dto.TamanhoDTO;
+import com.example.uniamerica.pizzaria.entity.Tamanho;
+import com.example.uniamerica.pizzaria.repository.TamanhoRepository;
+import com.example.uniamerica.pizzaria.service.TamanhoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
