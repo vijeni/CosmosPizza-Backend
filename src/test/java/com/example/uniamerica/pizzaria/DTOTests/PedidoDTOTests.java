@@ -78,7 +78,7 @@ public class PedidoDTOTests {
         assertEquals(produtoDTOS, pedidoDTO.getProdutos());
     }
     @Test
-    void pizzaAllArgsConstructorTest(){
+    void pedidoAllArgsConstructorTest(){
         PedidoDTO produtoAllArgs = new PedidoDTO(pessoaDTO, pessoaDTO, Status.AGUARDANDO_CONFIRMACAO, true, 10D, data, data, 5D, 15D, Pagamento.DEBITO, produtoDTOS, pizzasDTO);
         assertThat(pedidoDTO).usingRecursiveComparison().ignoringFields("id", "dataConclusao").isEqualTo(produtoAllArgs);
     }
