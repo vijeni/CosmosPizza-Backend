@@ -81,7 +81,6 @@ public class PedidoService {
         if(!pedidoDTO.getProdutos().isEmpty()) {
             produtoService.validarProdutos(pedidoDTO.getProdutos());
         }
-        System.out.println(pedidoDTO.isEntrega());
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
