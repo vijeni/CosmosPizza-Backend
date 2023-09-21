@@ -1,13 +1,11 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.Controller.IngredienteController;
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
-import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.IngredienteRepository;
 import com.example.uniamerica.pizzaria.Service.IngredientesService;
-import jakarta.persistence.Table;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,10 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
@@ -39,20 +35,33 @@ public class IngredienteServiceTests {
 
     private IngredienteDTO ingredienteDTO;
     private Sabor sabor;
+    private List<IngredienteDTO> ingredienteDTOList = new ArrayList<IngredienteDTO>();
 
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
         ingredienteDTO = new IngredienteDTO();
+        ingredienteDTO.setId(1L);
         ingredienteDTO.setNome("nome");
         ingredienteDTO.setQuantidade(5);
+
+
+        Ingrediente ingredienteEntidade = new Ingrediente();
+        ingredienteEntidade.setId(1L);
+        ingredienteEntidade.setNome("nome");
+        ingredienteEntidade.setQuantidade(5);
+
+        ingredienteDTOList.add(ingredienteDTO);
+
+        when(ingredienteRepository.findAll()).thenReturn(ingredienteDTOList.stream().map(ingredienteDTO -> ingredientesService.toIngredienteEntidade(ingredienteDTO)).toList());
+        when(ingredienteRepository.save(Mockito.any(Ingrediente.class))).thenReturn(ingredienteEntidade);
+        when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
+
     }
 
     @Test
     void ingredienteFindByIdTest(){
-        Ingrediente ingredienteEntidade = new Ingrediente();
-        when(ingredienteRepository.findById(1L)).thenReturn(Optional.of(ingredienteEntidade));
 
         IngredienteDTO result = ingredientesService.findByID(1L);
 
@@ -63,11 +72,6 @@ public class IngredienteServiceTests {
 
     @Test
     void ingredientePostTest(){
-        Ingrediente ingredienteEntidade = new Ingrediente();
-        ingredienteEntidade.setNome("nome");
-        ingredienteEntidade.setQuantidade(5);
-
-        when(ingredienteRepository.save(Mockito.any(Ingrediente.class))).thenReturn(ingredienteEntidade);
 
         IngredienteDTO result = ingredientesService.post(ingredienteDTO);
 
@@ -80,6 +84,7 @@ public class IngredienteServiceTests {
 
     @Test
     void ingredienteGetAllTest() {
+        /*
         List<Ingrediente> ingredienteList = new ArrayList<>();
         List<Sabor> saboresSimulados = new ArrayList<>();
         saboresSimulados.add(new Sabor("Sabor 1", "Descrição 1", null, null));
@@ -97,8 +102,22 @@ public class IngredienteServiceTests {
                 .collect(Collectors.toList());
 
         assertThat(resultado).isEqualTo(ingredienteDTOList);
+
+         */
+        List<IngredienteDTO> result = ingredientesService.getAll();
+        Assertions.assertNotNull(result);
+        assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTOList);
+
     }
 
+    @Test
+    void ingredientePutTest(){
+        Ingrediente ingredienteEntidade = new Ingrediente();
+
+        IngredienteDTO result = ingredientesService.update(1L,ingredienteDTO);
+        Assertions.assertNotNull(ingredientesService);
+        assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTO);
+    }
 
 
 }
