@@ -1,0 +1,138 @@
+package com.example.uniamerica.pizzaria.ServiceTests;
+
+import com.example.uniamerica.pizzaria.DTO.*;
+import com.example.uniamerica.pizzaria.Entity.*;
+import com.example.uniamerica.pizzaria.Repository.PedidoRepository;
+import com.example.uniamerica.pizzaria.Repository.PessoaRepository;
+import com.example.uniamerica.pizzaria.Service.PedidoService;
+import com.example.uniamerica.pizzaria.Service.PizzaService;
+import com.example.uniamerica.pizzaria.Service.ProdutoService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
+public class PedidoServiceTests {
+    @Mock
+    PedidoRepository repository;
+    @Mock
+    PizzaService pizzaService;
+    @Mock
+    ProdutoService produtoService;
+    @Mock
+    PessoaRepository pessoaRepository;
+    @InjectMocks
+    private PedidoService service;
+
+    PedidoDTO pedidoDTO = new PedidoDTO();
+    Pedido pedidoEntity = new Pedido();
+    List<PedidoDTO> pedidoDTOList = new ArrayList<>();
+    List<Pedido> pedidoEntityList = new ArrayList<>();
+    List<PizzaDTO> pizzasDTO = new ArrayList<>();
+    List<Pizza> pizzas = new ArrayList<>();
+    List<ProdutoDTO> produtoDTOS = new ArrayList<>();
+    List<Produto> produtos = new ArrayList<>();
+    Pessoa pessoa = new Pessoa();
+    PessoaDTO pessoaDTO = new PessoaDTO();
+
+    @BeforeEach
+    void setUp(){
+        MockitoAnnotations.openMocks(this);
+
+        pessoa.setId(1L);
+        pessoaDTO.setId(1L);
+
+        pedidoDTO.setId(1L);
+        pedidoDTO.setStatus(Status.AGUARDANDO_CONFIRMACAO);
+        pedidoDTO.setValorPedido(10D);
+        pedidoDTO.setDataAbertura(LocalDateTime.now());
+        pedidoDTO.setEntrega(true);
+        pedidoDTO.setFormaPagamento(Pagamento.DEBITO);
+        pedidoDTO.setValorEntrega(5D);
+        pedidoDTO.setValorTotal(15D);
+        pedidoDTO.setFuncionario(pessoaDTO);
+        pedidoDTO.setCliente(pessoaDTO);
+        pizzasDTO.add(new PizzaDTO());
+        produtoDTOS.add(new ProdutoDTO());
+        pedidoDTO.setPizzas(pizzasDTO);
+        pedidoDTO.setProdutos(produtoDTOS);
+        pedidoDTOList.add(pedidoDTO);
+
+        pedidoEntity.setId(1L);
+        pedidoEntity.setStatus(Status.AGUARDANDO_CONFIRMACAO);
+        pedidoEntity.setValorPedido(10D);
+        pedidoEntity.setEntrega(true);
+        pedidoEntity.setFormaPagamento(Pagamento.DEBITO);
+        pedidoEntity.setValorEntrega(5D);
+        pedidoEntity.setValorTotal(15D);
+        pedidoEntity.setFuncionario(pessoa);
+        pedidoEntity.setCliente(pessoa);
+        pizzas.add(new Pizza());
+        produtos.add(new Produto());
+        pedidoEntity.setPizzas(pizzas);
+        pedidoEntity.setProdutos(produtos);
+        pedidoEntityList.add(pedidoEntity);
+
+
+        when(repository.findById(1L)).thenReturn(Optional.of(pedidoEntity));
+        when(repository.findAll()).thenReturn(pedidoEntityList);
+        when(repository.save(Mockito.any(Pedido.class))).thenReturn(pedidoEntity);
+        when(pessoaRepository.findById(Mockito.any(Long.class))).thenReturn(Optional.of(pessoa));
+    }
+    @Test
+    void pedidoDtoToPedidoEntityTest(){
+        Pedido pedido = service.toPedido(pedidoDTO);
+        assertThat(pedido).usingRecursiveComparison().isEqualTo(pedidoEntity);
+    }
+
+    @Test
+    void pedidoEntityToPedidoDTOTest(){
+        PedidoDTO pedido = service.toPedidoDTO(pedidoEntity);
+        assertThat(pedido).usingRecursiveComparison().isEqualTo(this.pedidoDTO);
+    }
+    @Test
+    void pedidoFindByIdTest(){
+        PedidoDTO retornoService = service.findById(1L);
+        assertNotNull(retornoService);
+        assertThat(retornoService)
+                .usingRecursiveComparison()
+                .isEqualTo(pedidoDTO);
+    }
+
+    @Test
+    void pedidoGetAllTest(){
+        List<PedidoDTO> retornoService = service.getAll();
+        assertNotNull(retornoService);
+        assertThat(retornoService)
+                .usingRecursiveComparison()
+                .isEqualTo(pedidoDTOList);
+    }
+
+    @Test
+    void pedidoCadastrarTest(){
+        pedidoDTO.setId(null);
+
+        PedidoDTO retornoService = service.cadastrar(pedidoDTO);
+        assertNotNull(retornoService);
+        assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
+    }
+    @Test
+    void pedidoEditarTest(){
+        PedidoDTO retornoService = service.editar(1L, pedidoDTO);
+        assertNotNull(retornoService);
+        assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
+    }
+}
