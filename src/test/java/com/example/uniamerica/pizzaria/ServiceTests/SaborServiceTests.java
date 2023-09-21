@@ -109,4 +109,10 @@ import static org.mockito.Mockito.*;
         Assertions.assertNotNull(service);
         assertThat(result).usingRecursiveComparison().isEqualTo(saborDTO);
     }
+
+    @Test
+    void saborDeletarTest() {
+        service.delete(1L);
+        verify(repository, times(1)).deleteById(1L);
+    }
 }

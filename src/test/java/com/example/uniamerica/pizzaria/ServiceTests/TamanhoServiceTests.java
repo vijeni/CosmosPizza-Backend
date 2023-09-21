@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -93,5 +94,11 @@ import static org.mockito.Mockito.when;
         TamanhoDTO retornoService = service.editar(1L, tamanhoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(tamanhoDTO);
+    }
+
+    @Test
+    void tamanhoDeletarTest() {
+        service.deletar(1L);
+        Mockito.verify(repository, times(1)).deleteById(1L);
     }
 }

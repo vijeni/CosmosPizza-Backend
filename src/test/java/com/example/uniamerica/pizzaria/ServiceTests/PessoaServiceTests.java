@@ -97,10 +97,11 @@ import static org.mockito.Mockito.*;
         PessoaDTO result = service.put(pessoaDTO,1L);
         Assertions.assertNotNull(result);
         assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTO);
-
     }
 
-
-
-
+    @Test
+    void pessoaDeletarTest() {
+        service.deletar(1L);
+        verify(repository, times(1)).deleteById(1L);
+    }
 }

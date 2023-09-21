@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
  class ProdutoServiceTests {
@@ -105,5 +105,11 @@ import static org.mockito.Mockito.when;
         ProdutoDTO retornoService = service.editar(1L, produtoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(produtoDTO);
+    }
+
+    @Test
+    void produtoDeletarTest() {
+        service.deletar(1L);
+        verify(repository, times(1)).deleteById(1L);
     }
 }

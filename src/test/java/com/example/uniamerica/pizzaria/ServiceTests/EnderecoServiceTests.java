@@ -103,4 +103,10 @@ import static org.mockito.Mockito.*;
         assertThat(result).usingRecursiveComparison().isEqualTo(enderecoDTO);
     }
 
+    @Test
+    void enderecoDeletarTest() {
+        service.delete(1L);
+        verify(repository, times(1)).deleteById(1L);
+    }
+
 }

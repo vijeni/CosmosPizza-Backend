@@ -18,7 +18,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
  class PizzaServiceTests {
@@ -66,7 +66,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-    void tamanhoGetAllTest(){
+    void pizzaGetAllTest(){
         List<PizzaDTO> retornoService = service.getAll();
         assertNotNull(retornoService);
         assertThat(retornoService)
@@ -75,15 +75,21 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-    void tamanhoCadastrarTest(){
+    void pizzaCadastrarTest(){
         PizzaDTO retornoService = service.cadastrar(pizzaDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pizzaDTO);
     }
     @Test
-    void tamanhoEditarTest(){
+    void pizzaEditarTest(){
         PizzaDTO retornoService = service.editar(1L, pizzaDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pizzaDTO);
+    }
+
+    @Test
+    void pizzaDeletarTest() {
+        service.deletar(1L);
+        verify(repository, times(1)).deleteById(1L);
     }
 }

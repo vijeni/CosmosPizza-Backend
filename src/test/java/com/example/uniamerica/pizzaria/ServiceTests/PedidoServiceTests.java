@@ -21,7 +21,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
  class PedidoServiceTests {
@@ -145,5 +145,11 @@ import static org.mockito.Mockito.when;
         when(repository.save(pedidoCaptor.capture())).thenAnswer(invocation -> invocation.<Pedido>getArgument(0));
         PedidoDTO pedidoFinalizado = service.finalizarPedido(1L);
         assertEquals(Status.PRONTO, pedidoFinalizado.getStatus());
+    }
+
+    @Test
+    void pedidoDeletarTest() {
+        service.deletar(1L);
+        verify(repository, times(1)).deleteById(1L);
     }
 }

@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
  class IngredienteServiceTests {
@@ -117,6 +116,11 @@ import static org.mockito.Mockito.when;
         IngredienteDTO result = ingredientesService.update(1L,ingredienteDTO);
         Assertions.assertNotNull(ingredientesService);
         assertThat(result).usingRecursiveComparison().isEqualTo(ingredienteDTO);
+    }
+    @Test
+    void ingredienteDeletarTest() {
+        ingredientesService.delete(1L);
+        verify(ingredienteRepository, times(1)).deleteById(1L);
     }
 
 
