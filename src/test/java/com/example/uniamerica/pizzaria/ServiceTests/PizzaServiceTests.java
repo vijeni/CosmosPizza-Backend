@@ -53,12 +53,12 @@ import static org.mockito.Mockito.*;
     void setUp(){
         MockitoAnnotations.openMocks(this);
         tamanhoDTO.setId(1L);
-        tamanhoDTO.setTamanho("Média");
+        tamanhoDTO.setNome("Média");
         tamanhoDTO.setValor(40D);
         tamanhoDTO.setMaximoSabores(3);
 
         tamanho.setId(1L);
-        tamanho.setTamanho("Média");
+        tamanho.setNome("Média");
         tamanho.setValor(40D);
         tamanho.setMaximoSabores(3);
 

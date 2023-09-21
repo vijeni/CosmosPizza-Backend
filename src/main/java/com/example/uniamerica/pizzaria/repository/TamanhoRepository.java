@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TamanhoRepository extends JpaRepository<Tamanho, Long> {
-    @Query("from Tamanho where tamanho like :tamanho")
+    @Query("from Tamanho where nome like :tamanho")
     List<Tamanho> findByNameLike(@Param("tamanho") String tamanho);
 }

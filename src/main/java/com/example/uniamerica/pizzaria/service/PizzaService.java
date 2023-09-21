@@ -62,7 +62,7 @@ public class PizzaService {
             TamanhoDTO tamanhoDTO = tamanhoService.findById(pizza.getTamanho().getId());
             int qntdMaximaSabores = tamanhoDTO.getMaximoSabores();
             int qntdSabores = pizza.getSabores().size();
-            String tamanho = tamanhoDTO.getTamanho();
+            String tamanho = tamanhoDTO.getNome();
             Assert.isTrue(qntdSabores <= qntdMaximaSabores, String.format("A pizza tamanho %s deve ter no máximo %s sabor(es)", tamanho, qntdMaximaSabores));
             for (SaborDTO sabor :
                     pizza.getSabores()) {

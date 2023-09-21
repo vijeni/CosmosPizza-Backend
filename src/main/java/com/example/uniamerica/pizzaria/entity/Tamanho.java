@@ -14,7 +14,7 @@ public class Tamanho extends AbstractEntity {
 
     @Getter @Setter
     @Column(nullable = false)
-    private String tamanho;
+    private String nome;
 
     @Getter @Setter
     @Column(nullable = false)

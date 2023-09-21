@@ -35,13 +35,13 @@ import static org.mockito.Mockito.when;
     void setUp(){
         MockitoAnnotations.openMocks(this);
         tamanhoDTO.setId(1L);
-        tamanhoDTO.setTamanho("GRANDE");
+        tamanhoDTO.setNome("GRANDE");
         tamanhoDTO.setValor(80D);
         tamanhoDTO.setMaximoSabores(4);
         tamanhosDTOList.add(tamanhoDTO);
 
         tamanhoEntity.setId(1L);
-        tamanhoEntity.setTamanho("GRANDE");
+        tamanhoEntity.setNome("GRANDE");
         tamanhoEntity.setValor(80D);
         tamanhoEntity.setMaximoSabores(4);
         tamanhosEntityList.add(tamanhoEntity);
@@ -91,7 +91,7 @@ import static org.mockito.Mockito.when;
     @Test
     void tamanhoCadastrarTest(){
         TamanhoDTO tamanhoCadastrar = new TamanhoDTO();
-        tamanhoCadastrar.setTamanho("GRANDE");
+        tamanhoCadastrar.setNome("GRANDE");
         tamanhoCadastrar.setValor(80D);
         tamanhoCadastrar.setMaximoSabores(4);
         TamanhoDTO retornoService = service.cadastrar(tamanhoCadastrar);

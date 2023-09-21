@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         tamanhoDTO.setId(1L);
         tamanhoDTO.setMaximoSabores(1);
         tamanhoDTO.setValor(10D);
-        tamanhoDTO.setTamanho("Mini");
+        tamanhoDTO.setNome("Mini");
     }
 
     @Test
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void tamanhoTest(){
-        assertEquals("Mini", tamanhoDTO.getTamanho());
+        assertEquals("Mini", tamanhoDTO.getNome());
     }
     @Test
     void tamanhoAllArgsConstructorTest(){

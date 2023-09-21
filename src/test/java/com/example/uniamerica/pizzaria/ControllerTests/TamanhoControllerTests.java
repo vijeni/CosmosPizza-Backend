@@ -39,13 +39,13 @@ class TamanhoControllerTests {
     @BeforeEach
     void setupMocks() {
         tamanhoDTO.setId(1L);
-        tamanhoDTO.setTamanho("Média");
+        tamanhoDTO.setNome("Média");
         tamanhoDTO.setMaximoSabores(2);
         tamanhoDTO.setValor(10D);
         tamanhoDTOList.add(tamanhoDTO);
 
         tamanhoEntity.setId(1L);
-        tamanhoEntity.setTamanho("Média");
+        tamanhoEntity.setNome("Média");
         tamanhoEntity.setMaximoSabores(2);
         tamanhoEntity.setValor(10D);
         tamanhoEntityList.add(tamanhoEntity);

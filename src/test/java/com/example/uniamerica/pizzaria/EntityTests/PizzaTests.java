@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         tamanho.setId(1L);
         tamanho.setMaximoSabores(1);
         tamanho.setValor(10D);
-        tamanho.setTamanho("Mini");
+        tamanho.setNome("Mini");
 
         pizza = new Pizza();
         pizza.setId(1L);
