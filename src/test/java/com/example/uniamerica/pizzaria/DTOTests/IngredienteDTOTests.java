@@ -31,15 +31,15 @@ public class IngredienteDTOTests {
     }
     @Test
     void ingredienteNomeTest(){
-        assertEquals(1L, ingredienteDTO.getId());
+        assertEquals("Ingrediente A", ingredienteDTO.getNome());
     }
     @Test
     void ingredienteQuantidadeTest(){
-        assertEquals(1L, ingredienteDTO.getId());
+        assertEquals(10, ingredienteDTO.getQuantidade());
     }
     @Test
     void ingredienteSaboresTest(){
-        assertEquals(1L, ingredienteDTO.getId());
+        assertEquals(sabores, ingredienteDTO.getSabores());
     }
     @Test
     void ingredienteAllArgsConstructorTest(){
