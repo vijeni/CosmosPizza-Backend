@@ -24,41 +24,33 @@ public class PessoaDTOTests {
         pessoaDTO.setEndereco(endereco);
         pessoaDTO.setTipoPessoa(TipoPessoa.FUNCIONARIO);
     }
-
     @Test
     void pessoaIdTest(){
         assertEquals(1L, pessoaDTO.getId());
     }
-
     @Test
     void pessoaNomeTest(){
         assertEquals("Joao", pessoaDTO.getNome());
     }
-
     @Test
     void pessoaCpfTest(){
         assertEquals("676.990.230-30", pessoaDTO.getCpf());
     }
-
     @Test
     void pessoaTelefoneTest(){
         assertEquals("999999999", pessoaDTO.getTelefone());
     }
-
     @Test
     void pessoaEnderecoTest(){
         assertEquals(endereco, pessoaDTO.getEndereco());
     }
-
     @Test
     void pessoaTipoTest(){
         assertEquals(TipoPessoa.FUNCIONARIO, pessoaDTO.getTipoPessoa());
     }
-
     @Test
     void pessoaAllArgsConstructorTest(){
         PessoaDTO pessoaAllArgs = new PessoaDTO("Joao", "676.990.230-30", "999999999", endereco, TipoPessoa.FUNCIONARIO);
         assertThat(pessoaDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(pessoaAllArgs);
     }
-
 }

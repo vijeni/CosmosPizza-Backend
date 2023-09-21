@@ -24,8 +24,8 @@ public class SaborDTO extends AbstractEntityDTO {
     @Size(max = 50, message = "No máximo 50 caracteres!")
     private String descricao;
 
-    private List <Ingrediente> ingredientes;
+    private List <IngredienteDTO> ingredientes;
 
     @JsonIgnore
-    private  List<Pizza> pizzas;
+    private  List<PizzaDTO> pizzas;
 }
