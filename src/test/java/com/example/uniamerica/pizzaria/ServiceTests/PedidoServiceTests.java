@@ -9,18 +9,17 @@ import com.example.uniamerica.pizzaria.Service.PizzaService;
 import com.example.uniamerica.pizzaria.Service.ProdutoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
@@ -62,7 +61,7 @@ public class PedidoServiceTests {
         pedidoDTO.setEntrega(true);
         pedidoDTO.setFormaPagamento(Pagamento.DEBITO);
         pedidoDTO.setValorEntrega(5D);
-        pedidoDTO.setValorTotal(15D);
+        pedidoDTO.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
         pedidoDTO.setFuncionario(pessoaDTO);
         pedidoDTO.setCliente(pessoaDTO);
         pizzasDTO.add(new PizzaDTO());
@@ -78,6 +77,7 @@ public class PedidoServiceTests {
         pedidoEntity.setFormaPagamento(Pagamento.DEBITO);
         pedidoEntity.setValorEntrega(5D);
         pedidoEntity.setValorTotal(15D);
+        pedidoEntity.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
         pedidoEntity.setFuncionario(pessoa);
         pedidoEntity.setCliente(pessoa);
         pizzas.add(new Pizza());
@@ -123,15 +123,24 @@ public class PedidoServiceTests {
 
     @Test
     void pedidoCadastrarTest(){
-        pedidoDTO.setId(null);
         PedidoDTO retornoService = service.cadastrar(pedidoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
+        // Testar se o valor total é calculado corretamente
+        assertEquals(15D, retornoService.getValorTotal());
     }
     @Test
     void pedidoEditarTest(){
         PedidoDTO retornoService = service.editar(1L, pedidoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
+    }
+
+    @Test
+    void pedidoFinalizarTest(){
+        ArgumentCaptor<Pedido> pedidoCaptor = ArgumentCaptor.forClass(Pedido.class);
+        when(repository.save(pedidoCaptor.capture())).thenAnswer(invocation -> invocation.<Pedido>getArgument(0));
+        PedidoDTO pedidoFinalizado = service.finalizarPedido(1L);
+        assertEquals(Status.PRONTO, pedidoFinalizado.getStatus());
     }
 }
