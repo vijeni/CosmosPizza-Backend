@@ -49,22 +49,18 @@ public class PedidoDTOTests {
     void pedidoStatusTest(){
         assertEquals(Status.AGUARDANDO_CONFIRMACAO, pedidoDTO.getStatus());
     }
-
     @Test
     void pedidoValorPedidoTest(){
         assertEquals(10, pedidoDTO.getValorPedido());
     }
-
     @Test
     void pedidoValorEntregaTest(){
         assertEquals(5D, pedidoDTO.getValorEntrega());
     }
-
     @Test
     void pedidoValorTotalTest(){
         assertEquals(15D, pedidoDTO.getValorTotal());
     }
-
     @Test
     void pedidoClienteTest(){
         assertEquals(pessoaDTO, pedidoDTO.getCliente());
@@ -81,7 +77,6 @@ public class PedidoDTOTests {
     void pedidoProdutosTest(){
         assertEquals(produtoDTOS, pedidoDTO.getProdutos());
     }
-
     @Test
     void pizzaAllArgsConstructorTest(){
         PedidoDTO produtoAllArgs = new PedidoDTO(pessoaDTO, pessoaDTO, Status.AGUARDANDO_CONFIRMACAO, true, 10D, data, data, 5D, 15D, Pagamento.DEBITO, produtoDTOS, pizzasDTO);
