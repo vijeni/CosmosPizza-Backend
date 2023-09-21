@@ -1,6 +1,7 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
 import com.example.uniamerica.pizzaria.DTO.EnderecoDTO;
+import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
 import com.example.uniamerica.pizzaria.DTO.PessoaDTO;
 import com.example.uniamerica.pizzaria.Entity.Endereco;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
@@ -49,7 +50,7 @@ public class PessoaServiceTests {
 
         pessoaDTO.setTipoPessoa(TipoPessoa.FUNCIONARIO);
         pessoaDTO.setCpf("cpf");
-        pessoaDTO.setId(2L);
+        pessoaDTO.setId(1L);
         pessoaDTO.setNome("nome");
         pessoaDTO.setTelefone("telefone");
 
@@ -91,6 +92,13 @@ public class PessoaServiceTests {
 
     }
 
+    @Test
+    void pessoaPutTest(){
+        PessoaDTO result = service.put(pessoaDTO,1L);
+        Assertions.assertNotNull(result);
+        assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTO);
+
+    }
 
 
 
