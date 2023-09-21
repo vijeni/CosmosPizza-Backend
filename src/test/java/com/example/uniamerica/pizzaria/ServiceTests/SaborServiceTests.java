@@ -1,11 +1,14 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
 import com.example.uniamerica.pizzaria.DTO.IngredienteDTO;
+import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
 import com.example.uniamerica.pizzaria.DTO.SaborDTO;
 import com.example.uniamerica.pizzaria.Entity.Ingrediente;
+import com.example.uniamerica.pizzaria.Entity.Pizza;
 import com.example.uniamerica.pizzaria.Entity.Sabor;
 import com.example.uniamerica.pizzaria.Repository.SaborRepository;
 import com.example.uniamerica.pizzaria.Service.SaborService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +37,11 @@ public class SaborServiceTests {
 
     private SaborDTO saborDTO;
     private List<SaborDTO>saborDTOList = new ArrayList<>();
-    private List<IngredienteDTO> ingredienteDTO = new ArrayList<>();
+    private List<PizzaDTO>pizzaDTOList = new ArrayList<>();
+
+    private List<IngredienteDTO>ingredienteDTOList = new ArrayList<>();
+    private List<Ingrediente>ingredienteList = new ArrayList<>();
+    private List<Pizza>pizzaList = new ArrayList<>();
 
     @BeforeEach
     void setUp(){
@@ -45,13 +52,22 @@ public class SaborServiceTests {
         saborDTO.setId(1L);
         saborDTO.setDescricao("descrição");
 
-        ingredienteDTO.add(new IngredienteDTO());
-        saborDTO.setIngredientes(ingredienteDTO);
+        ingredienteDTOList.add(new IngredienteDTO());
+        pizzaDTOList.add(new PizzaDTO());
+
+        saborDTO.setPizzas(pizzaDTOList);
+        saborDTO.setIngredientes(ingredienteDTOList);
 
         Sabor saborEntidade = new Sabor();
         saborEntidade.setNome("nome");
         saborEntidade.setId(1L);
         saborEntidade.setDescricao("descrição");
+
+        ingredienteList.add(new Ingrediente());
+        pizzaList.add(new Pizza());
+
+        saborEntidade.setIngredientes(ingredienteList);
+        saborEntidade.setPizzas(pizzaList);
 
 
         saborDTOList.add(saborDTO);
@@ -88,5 +104,9 @@ public class SaborServiceTests {
     }
 
     @Test
-    void saborPutTest
+    void saborPutTest(){
+        SaborDTO result = service.update(saborDTO,1L);
+        Assertions.assertNotNull(service);
+        assertThat(result).usingRecursiveComparison().isEqualTo(saborDTO);
+    }
 }
