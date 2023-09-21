@@ -53,7 +53,7 @@ class TamanhoControllerTests {
         MockitoAnnotations.openMocks(this);
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.ofNullable(tamanhoEntity));
         when(repository.findAll()).thenReturn(tamanhoEntityList);
-
+        when(repository.save(Mockito.any(Tamanho.class))).thenReturn(tamanhoEntity);
     }
 
     @Test
@@ -72,29 +72,21 @@ class TamanhoControllerTests {
     }
     @Test
     void cadastrarTamanhoTest() {
-        TamanhoDTO tamanho = new TamanhoDTO();
-        when(service.cadastrar(tamanho)).thenReturn(tamanho);
-        ResponseEntity<TamanhoDTO> controllerResponse = controller.cadastrar(tamanho);
+        ResponseEntity<TamanhoDTO> controllerResponse = controller.cadastrar(tamanhoDTO);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals(tamanho, controllerResponse.getBody());
+        assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(tamanhoDTO);
     }
     @Test
     void editarTamanhoTest() {
-        Long idTamanho = 1L;
-        TamanhoDTO tamanho = new TamanhoDTO();
-        tamanho.setId(idTamanho);
-        when(service.editar(idTamanho, tamanho)).thenReturn(tamanho);
-        ResponseEntity<TamanhoDTO> controllerResponse = controller.editar(idTamanho, tamanho);
+        ResponseEntity<TamanhoDTO> controllerResponse = controller.editar(1L, tamanhoDTO);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals(tamanho, controllerResponse.getBody());
+        assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(tamanhoDTO);
     }
     @Test
     void deletarTamanhoTest() {
-        Long idTamanho = 1L;
-        ResponseEntity<String> controllerResponse = controller.deletar(idTamanho);
+        ResponseEntity<String> controllerResponse = controller.deletar(1L);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
         assertEquals("O tamanho com o ID 1 foi deletado com sucesso.", controllerResponse.getBody());
-        System.out.println(controllerResponse.getBody());
     }
 
 }
