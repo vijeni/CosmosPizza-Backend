@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
     class EnderecoServiceTests {
@@ -80,6 +80,20 @@ import static org.mockito.Mockito.when;
         List<EnderecoDTO> result = service.listAll();
         Assertions.assertNotNull(result);
         assertThat(result).usingRecursiveComparison().isEqualTo(enderecoDTOList);
+    }
+
+    @Test
+    void enderecoPost(){
+        EnderecoDTO result = service.post(enderecoDTO);
+        verify(repository,times(1)).save(Mockito.any(Endereco.class));
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals("bairro",result.getBairro());
+        Assertions.assertEquals("cep",result.getCep());
+        Assertions.assertEquals(1L,result.getId());
+        Assertions.assertEquals(579,result.getNumero());
+        Assertions.assertEquals("logradouro",result.getLogradouro());
+        Assertions.assertEquals("complemento",result.getComplemento());
     }
 
 }
