@@ -26,7 +26,7 @@ public class PessoaDTO extends AbstractEntityDTO {
     @Size( max = 20,message = "No máximo 20 caracteres!")
     private String telefone;
     @NotNull(message = "Insira um endereço!")
-    private Endereco endereco;
+    private EnderecoDTO endereco;
 
     @NotNull(message = "Defina o tipo de pessoa a ser cadastrada.")
     private TipoPessoa tipoPessoa;
