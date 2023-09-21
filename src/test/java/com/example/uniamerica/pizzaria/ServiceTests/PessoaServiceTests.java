@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -66,6 +67,13 @@ public class PessoaServiceTests {
         PessoaDTO result = service.findById(1L);
         Assertions.assertNotNull(result);
         verify(repository,times(1)).findById(1L);
+    }
+
+    @Test
+    void pessoaGetAll(){
+        List<PessoaDTO>result = service.getAll();
+        Assertions.assertNotNull(service);
+        assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTOList);
     }
 
 
