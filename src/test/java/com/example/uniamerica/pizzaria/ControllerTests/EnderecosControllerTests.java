@@ -64,6 +64,7 @@ class EnderecosControllerTests {
         enderecoDTO.setComplemento("complemento");
 
         enderecoDTOList.add(enderecoDTO);
+        enderecoList.add(enderecoEntidade);
 
         when(repository.save(Mockito.any(Endereco.class))).thenReturn(enderecoEntidade);
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.ofNullable(enderecoEntidade));
