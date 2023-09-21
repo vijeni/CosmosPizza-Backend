@@ -124,7 +124,6 @@ public class PedidoServiceTests {
     @Test
     void pedidoCadastrarTest(){
         pedidoDTO.setId(null);
-
         PedidoDTO retornoService = service.cadastrar(pedidoDTO);
         assertNotNull(retornoService);
         assertThat(retornoService).usingRecursiveComparison().isEqualTo(pedidoDTO);
