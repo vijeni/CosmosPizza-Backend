@@ -76,6 +76,21 @@ public class PessoaServiceTests {
         assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTOList);
     }
 
+    @Test
+    void pessoaPostTest(){
+        PessoaDTO result = service.post(pessoaDTO);
+        verify(repository,times(1)).save(Mockito.any(Pessoa.class));
+
+        Assertions.assertNotNull(result);
+
+        Assertions.assertEquals("nome",result.getNome());
+        Assertions.assertEquals(1L,result.getId());
+        Assertions.assertEquals("cpf",result.getCpf());
+        Assertions.assertEquals("telefone",result.getTelefone());
+        Assertions.assertEquals(TipoPessoa.FUNCIONARIO,result.getTipoPessoa());
+
+    }
+
 
 
 
