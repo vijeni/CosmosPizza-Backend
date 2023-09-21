@@ -1,9 +1,7 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
 import com.example.uniamerica.pizzaria.DTO.PizzaDTO;
-import com.example.uniamerica.pizzaria.DTO.TamanhoDTO;
 import com.example.uniamerica.pizzaria.Entity.Pizza;
-import com.example.uniamerica.pizzaria.Entity.Tamanho;
 import com.example.uniamerica.pizzaria.Repository.PizzaRepository;
 import com.example.uniamerica.pizzaria.Service.PizzaService;
 import org.junit.jupiter.api.BeforeEach;
