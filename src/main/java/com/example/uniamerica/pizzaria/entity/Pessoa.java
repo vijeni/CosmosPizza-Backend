@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="pessoas_table", schema = "public")
@@ -29,6 +30,7 @@ public class Pessoa extends AbstractEntity {
 
     @Getter @Setter
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "enderecos_pessoas")
     private Endereco endereco;
 
