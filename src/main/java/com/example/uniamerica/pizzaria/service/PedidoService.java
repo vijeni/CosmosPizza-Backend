@@ -75,10 +75,10 @@ public class PedidoService {
 
     @Transactional
     public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
-        if(!pedidoDTO.getPizzas().isEmpty()) {
+        if(pedidoDTO.getPizzas()!=null && !pedidoDTO.getPizzas().isEmpty()) {
             pizzaService.validarPizzas(pedidoDTO.getPizzas());
         }
-        if(!pedidoDTO.getProdutos().isEmpty()) {
+        if(pedidoDTO.getProdutos()!=null && !pedidoDTO.getProdutos().isEmpty()) {
             produtoService.validarProdutos(pedidoDTO.getProdutos());
         }
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
