@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pessoa")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class PessoaController {
     @Autowired
     PessoaService service;
