@@ -14,8 +14,8 @@ import java.util.List;
 public class SaborController {
     @Autowired
     SaborService service;
-    @GetMapping
-    public ResponseEntity<SaborDTO>findById(@RequestParam("id") final long id){
+    @GetMapping("/:id")
+    public ResponseEntity<SaborDTO>findById(@PathVariable("id") final long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
@@ -28,12 +28,12 @@ public class SaborController {
         return ResponseEntity.ok(service.cadastrar(sabor));
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<SaborDTO>editar(@RequestBody @Validated SaborDTO sabor, @RequestParam("id")final long id){
+    @PutMapping("/editar/:id")
+    public ResponseEntity<SaborDTO>editar(@RequestBody @Validated SaborDTO sabor, @PathVariable("id")final long id){
         return ResponseEntity.ok(service.update(sabor,id));
     }
-    @DeleteMapping("deletar")
-    public ResponseEntity<String>deletar(@RequestParam("id") final long id){
+    @DeleteMapping("/deletar/:id")
+    public ResponseEntity<String>deletar(@PathVariable("id") final long id){
         service.delete(id);
         return ResponseEntity.ok(String.format("O sabor com o id [%s] foi deletado com sucesso.", id));
     }

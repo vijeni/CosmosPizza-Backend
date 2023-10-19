@@ -13,16 +13,16 @@ import java.util.List;
 public class ProdutoController {
     @Autowired
     ProdutoService service;
-    @GetMapping
-    public ResponseEntity<ProdutoDTO> findById(@RequestParam Long id){
+    @GetMapping("/id/:id")
+    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
     public ResponseEntity<List<ProdutoDTO>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
-    @GetMapping("/nome")
-    public ResponseEntity<List<ProdutoDTO>> getAllByNome(@RequestParam String nome){
+    @GetMapping("/nome/:nome")
+    public ResponseEntity<List<ProdutoDTO>> getAllByNome(@PathVariable String nome){
         return ResponseEntity.ok(service.getAllByNome(nome));
     }
 
@@ -31,13 +31,13 @@ public class ProdutoController {
         return ResponseEntity.ok(service.cadastrar(produto));
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<ProdutoDTO> editar(@RequestParam Long id, @RequestBody ProdutoDTO produto){
+    @PutMapping("/editar/:id")
+    public ResponseEntity<ProdutoDTO> editar(@PathVariable Long id, @RequestBody ProdutoDTO produto){
         return ResponseEntity.ok(service.editar(id, produto));
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletar(@RequestParam Long id){
+    @DeleteMapping("/deletar/:id")
+    public ResponseEntity<String> deletar(@PathVariable Long id){
         service.deletar(id);
         return ResponseEntity.ok(String.format("Produto com ID %s foi deletado com sucesso!", id));
     }
