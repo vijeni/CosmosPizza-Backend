@@ -18,4 +18,6 @@ public class AbstractEntityDTO {
 
     private LocalDateTime delecao;
 
+    private Boolean isAtivo;
+
 }
