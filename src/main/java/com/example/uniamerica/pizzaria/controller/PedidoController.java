@@ -16,7 +16,7 @@ import java.util.List;
 public class PedidoController {
     @Autowired
     PedidoService service;
-    @GetMapping("/id/{id]")
+    @GetMapping("/id/{id}")
     public ResponseEntity<PedidoDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
