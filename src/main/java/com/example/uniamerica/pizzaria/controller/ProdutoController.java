@@ -38,8 +38,12 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletar(@PathVariable Long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("Produto com ID %s foi deletado com sucesso!", id));
+    public ResponseEntity<ProdutoDTO> deletar(@PathVariable Long id){
+        return ResponseEntity.ok(service.deletar(id));
+    }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<ProdutoDTO> ativar(@PathVariable Long id){
+        return ResponseEntity.ok(service.ativar(id));
     }
 }

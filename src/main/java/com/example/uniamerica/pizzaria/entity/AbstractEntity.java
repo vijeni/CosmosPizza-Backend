@@ -29,18 +29,20 @@ public class AbstractEntity {
     @Getter @Setter
     @Column(name="isAtivo")
     private Boolean isAtivo;
-
-@PrePersist
+    public void desativar(){
+        this.delecao = LocalDateTime.now();
+    }
+    public void ativar() {
+        this.delecao = null;
+    }
+    @PrePersist
     private void prePersist(){
-    this.cadastro = LocalDateTime.now();
-    this.isAtivo = true;
-}
+        this.cadastro = LocalDateTime.now();
+        this.isAtivo = true;
+    }
 
-@PreUpdate
+    @PreUpdate
     private void preUpdate(){
-    this.edicao = LocalDateTime.now();
-}
-
-
-
+       this.edicao = LocalDateTime.now();
+    }
 }

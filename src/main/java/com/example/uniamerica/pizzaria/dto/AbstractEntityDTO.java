@@ -20,4 +20,11 @@ public class AbstractEntityDTO {
 
     private Boolean isAtivo;
 
+    public void desativar(){
+        this.delecao = LocalDateTime.now();
+    }
+    public void ativar() {
+        this.delecao = null;
+    }
+
 }
