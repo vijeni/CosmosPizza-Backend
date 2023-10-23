@@ -21,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     void setup() {
         pedidos.add(new Pedido());
         produto.setId(1L);
-        produto.setNome("Produto A");
+        produto.setDescricao("Produto A");
         produto.setQuantidadeEstoque(10);
-        produto.setDescricao("Descricao");
+        produto.setObservacao("Descricao");
         produto.setValorUnitario(10D);
         produto.setPedidos(pedidos);
     }
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void produtoNomeTest(){
-        assertEquals("Produto A", produto.getNome());
+        assertEquals("Produto A", produto.getDescricao());
     }
     @Test
     void produtoQuantidadeEstoqueTest(){
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void produtoDescricaoTest(){
-        assertEquals("Descricao", produto.getDescricao());
+        assertEquals("Descricao", produto.getObservacao());
     }
     @Test
     void produtoValorUnitarioTest(){

@@ -16,8 +16,8 @@ import java.util.List;
 public class Produto extends AbstractEntity {
 
     @Getter @Setter
-    @Column(name="nome", nullable = false, length = 20)
-    private String nome;
+    @Column(name="descricao", nullable = false, length = 20)
+    private String descricao;
 
     @Getter @Setter
     @Column(name = "valor_unitario", nullable = false)
@@ -28,8 +28,8 @@ public class Produto extends AbstractEntity {
     private Integer quantidadeEstoque;
 
     @Getter @Setter
-    @Column(name = "descricao", length = 50)
-    private String descricao;
+    @Column(name = "observacao", length = 50)
+    private String observacao;
 
     @Getter @Setter
     @JsonIgnore
