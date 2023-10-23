@@ -49,7 +49,7 @@ class ProdutoControllerTests {
 
         when(repository.findById(1L)).thenReturn(Optional.ofNullable(produtoEntity));
         when(repository.findAll()).thenReturn(produtoEntityList);
-        when(repository.findByNameLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
+        when(repository.findByDescricaoLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
         when(repository.save(Mockito.any(Produto.class))).thenReturn(produtoEntity);
 
     }

@@ -57,7 +57,7 @@ import static org.mockito.Mockito.*;
 
         when(repository.findById(1L)).thenReturn(Optional.of(produtoEntity));
         when(repository.findAll()).thenReturn(produtoEntityList);
-        when(repository.findByNameLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
+        when(repository.findByDescricaoLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
         when(repository.save(Mockito.any(Produto.class))).thenReturn(produtoEntity);
     }
     @Test
@@ -90,7 +90,7 @@ import static org.mockito.Mockito.*;
     }
     @Test
     void produtoGetAllByNomeTest(){
-        List<ProdutoDTO> retornoService = service.getAllByNome("Nome");
+        List<ProdutoDTO> retornoService = service.getAllByDescricao("Nome");
         assertNotNull(retornoService);
         assertThat(retornoService)
                 .usingRecursiveComparison()
