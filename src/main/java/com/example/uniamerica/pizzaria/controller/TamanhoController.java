@@ -15,7 +15,7 @@ import java.util.List;
 public class TamanhoController {
     @Autowired
     TamanhoService service;
-    @GetMapping("/id/:id")
+    @GetMapping("/id/{id}")
     public ResponseEntity<TamanhoDTO> findById(@PathVariable("id") final Long id){
         return ResponseEntity.ok(service.findById(id));
     }
@@ -29,11 +29,11 @@ public class TamanhoController {
         return ResponseEntity.ok(service.cadastrar(tamanhoDTO));
     }
 
-    @PutMapping("/edita/:id")
+    @PutMapping("/edita/[id]")
     public ResponseEntity<TamanhoDTO>editar(@PathVariable("id")final long id, @RequestBody @Validated TamanhoDTO tamanhoDTO){
         return ResponseEntity.ok(service.editar(id, tamanhoDTO));
     }
-    @DeleteMapping("/deletar/:id")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String>deletar(@PathVariable("id") final long id){
         service.deletar(id);
         return ResponseEntity.ok(String.format("O tamanho com o ID %s foi deletado com sucesso.", id));

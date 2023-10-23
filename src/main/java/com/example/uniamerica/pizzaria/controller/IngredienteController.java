@@ -18,7 +18,7 @@ public class IngredienteController {
     @Autowired
     IngredientesService service;
 
-    @GetMapping("/id/:id")
+    @GetMapping("/id/{id}")
     public ResponseEntity<IngredienteDTO> findById(@PathVariable("id") final Long id) {
         return ResponseEntity.ok().body(service.findByID(id));
     }
@@ -33,12 +33,12 @@ public class IngredienteController {
         return ResponseEntity.ok(service.post(ingredientes));
     }
 
-    @PutMapping("/editar/:id")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<IngredienteDTO> put(@PathVariable("id") Long id, @RequestBody @Validated IngredienteDTO ingredientes) {
         return ResponseEntity.ok(service.update(id, ingredientes));
     }
 
-    @DeleteMapping("/deletar/:id")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletar(@PathVariable("id") final long id) {
         service.delete(id);
         return ResponseEntity.ok(String.format("O ingrediente com o ID [%s] foi deletado com sucesso.", id));

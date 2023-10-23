@@ -16,7 +16,7 @@ import java.util.List;
 public class PedidoController {
     @Autowired
     PedidoService service;
-    @GetMapping("/id/:id")
+    @GetMapping("/id/{id]")
     public ResponseEntity<PedidoDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
@@ -28,16 +28,16 @@ public class PedidoController {
     public ResponseEntity<PedidoDTO> cadastrar(@RequestBody @Validated  PedidoDTO pedido){
         return ResponseEntity.ok(service.cadastrar(pedido));
     }
-    @PutMapping("/editar/:id")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<PedidoDTO> editar(@PathVariable Long id, @RequestBody @Validated PedidoDTO pedido){
         return ResponseEntity.ok(service.editar(id, pedido));
     }
-    @PutMapping("/finalizar/:id")
+    @PutMapping("/finalizar/{id}")
     public ResponseEntity<PedidoDTO> finalizarPedido(@PathVariable Long id){
         return ResponseEntity.ok(service.finalizarPedido(id));
     }
 
-    @DeleteMapping("/deletar/:id")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletar(@PathVariable Long id){
         service.deletar(id);
         return ResponseEntity.ok(String.format("Pedido com ID %s foi deletado com sucesso!", id));
