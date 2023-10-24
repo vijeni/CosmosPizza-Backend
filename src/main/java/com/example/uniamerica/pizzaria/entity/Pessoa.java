@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name="pessoas_table", schema = "public")
+@Table(name="pessoas", schema = "public")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa extends AbstractEntity {

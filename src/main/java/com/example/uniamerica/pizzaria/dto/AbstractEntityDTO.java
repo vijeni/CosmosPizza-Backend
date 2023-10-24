@@ -18,7 +18,7 @@ public class AbstractEntityDTO {
 
     private LocalDateTime delecao;
 
-    private Boolean isAtivo;
+
 
     public void desativar(){
         this.delecao = LocalDateTime.now();

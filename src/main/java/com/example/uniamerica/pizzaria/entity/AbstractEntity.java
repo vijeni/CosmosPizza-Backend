@@ -38,7 +38,7 @@ public class AbstractEntity {
     @PrePersist
     private void prePersist(){
         this.cadastro = LocalDateTime.now();
-        this.isAtivo = true;
+
     }
 
     @PreUpdate
