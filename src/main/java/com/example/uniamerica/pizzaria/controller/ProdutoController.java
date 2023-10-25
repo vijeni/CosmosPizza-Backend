@@ -4,6 +4,7 @@ import com.example.uniamerica.pizzaria.dto.ProdutoDTO;
 import com.example.uniamerica.pizzaria.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +33,12 @@ public class ProdutoController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<ProdutoDTO> cadastrar(@RequestBody ProdutoDTO produto){
+    public ResponseEntity<ProdutoDTO> cadastrar(@RequestBody @Validated ProdutoDTO produto){
         return ResponseEntity.ok(service.cadastrar(produto));
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<ProdutoDTO> editar(@PathVariable Long id, @RequestBody ProdutoDTO produto){
+    public ResponseEntity<ProdutoDTO> editar(@PathVariable Long id, @Validated @RequestBody ProdutoDTO produto){
         return ResponseEntity.ok(service.editar(id, produto));
     }
 
