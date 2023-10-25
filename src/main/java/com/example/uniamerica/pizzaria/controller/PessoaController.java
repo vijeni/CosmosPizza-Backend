@@ -22,8 +22,18 @@ public class PessoaController {
     }
     @GetMapping("/todos")
     public ResponseEntity<List<PessoaDTO>>getAll(){
+
         return ResponseEntity.ok(service.getAll());
     }
+    @GetMapping("/todos/clientes")
+    public ResponseEntity<List<PessoaDTO>>getAllClientes(){
+        return ResponseEntity.ok(service.getAllClientes());
+    }
+    @GetMapping("/todos/funcionarios")
+    public ResponseEntity<List<PessoaDTO>>getAllFuncionarios(){
+        return ResponseEntity.ok(service.getAllFuncionarios());
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<PessoaDTO>cadastrar(@RequestBody @Validated PessoaDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
@@ -32,8 +42,12 @@ public class PessoaController {
     public ResponseEntity<PessoaDTO>atualizar(@RequestBody @Validated PessoaDTO pessoa, @PathVariable long id){
         return ResponseEntity.ok(service.put(pessoa, id));
     }
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<PessoaDTO>deletar(@PathVariable ("id") final long id){
-        return ResponseEntity.ok(service.deletar(id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<PessoaDTO>desativar(@PathVariable ("id") final long id){
+        return ResponseEntity.ok(service.desativar(id));
+    }
+    @DeleteMapping("/ativar/{id}")
+    public ResponseEntity<PessoaDTO>ativar(@PathVariable ("id") final long id){
+        return ResponseEntity.ok(service.ativar(id));
     }
 }
