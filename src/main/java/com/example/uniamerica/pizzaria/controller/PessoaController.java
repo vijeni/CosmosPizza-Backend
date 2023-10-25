@@ -33,8 +33,7 @@ public class PessoaController {
         return ResponseEntity.ok(service.put(pessoa, id));
     }
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String>deletar(@PathVariable ("id") final long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("Pessoa com o id [%s] foi deletado com sucesso.", id));
+    public ResponseEntity<PessoaDTO>deletar(@PathVariable ("id") final long id){
+        return ResponseEntity.ok(service.deletar(id));
     }
 }
