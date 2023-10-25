@@ -58,6 +58,9 @@ public class ProdutoService {
     public List<ProdutoDTO> getAll() {
         return repository.findAll().stream().map(this::toProdutoDTO).toList();
     }
+    public List<ProdutoDTO> getAllAtivos() {
+        return repository.findAllAtivos().stream().map(this::toProdutoDTO).toList();
+    }
 
     public List<ProdutoDTO> getAllByDescricao(String descricao) {
         return repository.findByDescricaoLike(descricao.trim()).stream().map(this::toProdutoDTO).toList();

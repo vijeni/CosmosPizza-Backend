@@ -12,4 +12,6 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     @Query("from Produto where descricao like :descricao")
     List<Produto> findByDescricaoLike(@Param("descricao") final String descricao);
+    @Query("from Produto where delecao = null")
+    List<Produto> findAllAtivos();
 }

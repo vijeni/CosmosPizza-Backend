@@ -22,6 +22,10 @@ public class ProdutoController {
     public ResponseEntity<List<ProdutoDTO>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
+    @GetMapping("/todos/ativos")
+    public ResponseEntity<List<ProdutoDTO>> getAllAtivos(){
+        return ResponseEntity.ok(service.getAllAtivos());
+    }
     @GetMapping("/descricao/{descricao}")
     public ResponseEntity<List<ProdutoDTO>> getAllByNome(@PathVariable String descricao){
         return ResponseEntity.ok(service.getAllByDescricao(descricao));
