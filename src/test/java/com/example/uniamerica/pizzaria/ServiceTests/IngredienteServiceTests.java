@@ -102,7 +102,7 @@ import static org.mockito.Mockito.*;
     }
     @Test
     void ingredienteDeletarTest() {
-        ingredientesService.delete(1L);
+        ingredientesService.desativar(1L);
         verify(ingredienteRepository, times(1)).deleteById(1L);
     }
 

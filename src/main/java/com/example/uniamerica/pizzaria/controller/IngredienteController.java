@@ -38,10 +38,13 @@ public class IngredienteController {
         return ResponseEntity.ok(service.update(id, ingredientes));
     }
 
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletar(@PathVariable("id") final long id) {
-        service.delete(id);
-        return ResponseEntity.ok(String.format("O ingrediente com o ID [%s] foi deletado com sucesso.", id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<IngredienteDTO> desativar(@PathVariable("id") final long id) {
+        return ResponseEntity.ok(service.desativar(id));
+    }
+    @PutMapping("/desativar/{id}")
+    public ResponseEntity<IngredienteDTO> ativar(@PathVariable("id") final long id) {
+        return ResponseEntity.ok(service.ativar(id));
     }
 
 }

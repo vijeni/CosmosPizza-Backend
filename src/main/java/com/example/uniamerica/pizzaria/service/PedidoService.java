@@ -128,6 +128,7 @@ public class PedidoService {
         Assert.notNull(pedidoDTO, String.format( "Pedido com ID %s não existe!", codigoPedido));
         Assert.isTrue(!pedidoDTO.getStatus().equals(Status.ENCERRADO), "Esse pedido já foi finalizado!");
         pedidoDTO.setStatus(Status.ENCERRADO);
+        pedidoDTO.setDataConclusao(LocalDateTime.now());
         return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
     }
 }
