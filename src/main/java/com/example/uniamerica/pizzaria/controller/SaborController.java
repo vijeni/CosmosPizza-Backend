@@ -15,7 +15,7 @@ import java.util.List;
 public class SaborController {
     @Autowired
     SaborService service;
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<SaborDTO>findById(@PathVariable("id") final long id){
         return ResponseEntity.ok(service.findById(id));
     }
