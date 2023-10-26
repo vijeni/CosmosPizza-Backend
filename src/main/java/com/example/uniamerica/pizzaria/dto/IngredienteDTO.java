@@ -19,7 +19,6 @@ public class IngredienteDTO extends AbstractEntityDTO {
     @Size(min = 2, max = 20, message = "No mínimo 2 e no máximo 20 caracteres para o nome!")
     private String nome;
 
-    @NotNull(message = "Insira uma quantidade!")
     private Integer quantidade;
 
     List<SaborDTO> sabores;
