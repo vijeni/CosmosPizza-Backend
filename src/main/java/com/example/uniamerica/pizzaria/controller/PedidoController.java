@@ -36,10 +36,12 @@ public class PedidoController {
     public ResponseEntity<PedidoDTO> finalizarPedido(@PathVariable Long id){
         return ResponseEntity.ok(service.finalizarPedido(id));
     }
-
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletar(@PathVariable Long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("Pedido com ID %s foi deletado com sucesso!", id));
+    @DeleteMapping("/cancelar/{id}")
+    public ResponseEntity<PedidoDTO> cancelar(@PathVariable Long id){
+        return ResponseEntity.ok(service.cancelar(id));
+    }
+    @PutMapping("/reabrir/{id}")
+    public ResponseEntity<PedidoDTO> reabrir(@PathVariable Long id){
+        return ResponseEntity.ok(service.reabrir(id));
     }
 }
