@@ -20,7 +20,7 @@ public class Ingrediente extends AbstractEntity {
     private String nome;
 
     @NotNull @Getter @Setter
-    @Column (name="quantidade", nullable = false)
+    @Column (name="quantidade")
     private Integer quantidade;
 
     @Getter @Setter
