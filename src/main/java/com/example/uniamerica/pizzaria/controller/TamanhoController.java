@@ -33,9 +33,11 @@ public class TamanhoController {
     public ResponseEntity<TamanhoDTO>editar(@PathVariable("id")final long id, @RequestBody @Validated TamanhoDTO tamanhoDTO){
         return ResponseEntity.ok(service.editar(id, tamanhoDTO));
     }
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String>deletar(@PathVariable("id") final long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("O tamanho com o ID %s foi deletado com sucesso.", id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<TamanhoDTO> desativar(@PathVariable("id") final long id){
+        return ResponseEntity.ok(service.desativar(id));}
+    @DeleteMapping("/ativar/{id}")
+    public ResponseEntity<TamanhoDTO> ativar(@PathVariable("id") final long id){
+        return ResponseEntity.ok(service.ativar(id));
     }
 }

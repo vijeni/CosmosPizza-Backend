@@ -84,7 +84,7 @@ class TamanhoControllerTests {
     }
     @Test
     void deletarTamanhoTest() {
-        ResponseEntity<String> controllerResponse = controller.deletar(1L);
+        ResponseEntity<String> controllerResponse = controller.desativar(1L);
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
         assertEquals("O tamanho com o ID 1 foi deletado com sucesso.", controllerResponse.getBody());
     }

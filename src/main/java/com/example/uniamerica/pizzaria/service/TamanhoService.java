@@ -41,9 +41,16 @@ public class TamanhoService {
     }
 
     @Transactional
-    public void deletar(Long id){
-        Assert.notNull(repository.findById(id).orElse(null), String.format("Tamanho com ID %s não encontrado!", id));
-        repository.deleteById(id);
+    public TamanhoDTO desativar(Long id){
+        TamanhoDTO tamanhoDTO = findById(id);
+        tamanhoDTO.desativar();
+        return toTamanhoDTO(repository.save(toTamanho(tamanhoDTO)));
+    }
+    @Transactional
+    public TamanhoDTO ativar(Long id){
+        TamanhoDTO tamanhoDTO = findById(id);
+        tamanhoDTO.ativar();
+        return toTamanhoDTO(repository.save(toTamanho(tamanhoDTO)));
     }
 
     public List<TamanhoDTO> getAll() {
