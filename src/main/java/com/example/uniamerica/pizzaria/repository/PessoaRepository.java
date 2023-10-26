@@ -14,4 +14,7 @@ import java.util.List;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     @Query("SELECT p from Pessoa p where p.tipoPessoa = :tipoPessoa")
     List<Pessoa> findAllByTipo(@Param("tipoPessoa") TipoPessoa tipoPessoa);
+
+    @Query("from Pessoa where cpf = :cpf")
+    public List<Pessoa> findByCpf(@Param("cpf") final String cpf);
 }

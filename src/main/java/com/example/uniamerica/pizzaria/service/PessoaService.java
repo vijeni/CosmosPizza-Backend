@@ -52,6 +52,9 @@ public class PessoaService {
         Assert.notNull(pessoa.getTelefone(),"Por favor, digite um telefone!");
         Assert.hasText(pessoa.getNome(),"Por favor, digite um telefone válido!");
 
+        final List<Pessoa>pessoasCpf = this.repository.findByCpf(pessoa.getCpf());
+        Assert.isTrue(pessoasCpf.isEmpty(),"Cpf já cadastrado.");
+
        return toPessoaDTO(repository.save(toPessoa(pessoa)));
     }
     @Transactional

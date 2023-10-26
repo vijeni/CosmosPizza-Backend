@@ -29,7 +29,7 @@ public class TamanhoController {
         return ResponseEntity.ok(service.cadastrar(tamanhoDTO));
     }
 
-    @PutMapping("/editar/[id]")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<TamanhoDTO>editar(@PathVariable("id")final long id, @RequestBody @Validated TamanhoDTO tamanhoDTO){
         return ResponseEntity.ok(service.editar(id, tamanhoDTO));
     }
