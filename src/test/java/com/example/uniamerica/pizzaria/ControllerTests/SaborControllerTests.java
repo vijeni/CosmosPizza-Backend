@@ -84,10 +84,10 @@ class SaborControllerTests {
     void saborDeleteTeste(){
         Long saborId = 1L;
 
-        ResponseEntity<String>response = saborController.deletar(saborId);
+        ResponseEntity<String>response = saborController.desativar(saborId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(saborService,times(1)).delete(saborId);
+        verify(saborService,times(1)).desativar(saborId);
 
     }
 }

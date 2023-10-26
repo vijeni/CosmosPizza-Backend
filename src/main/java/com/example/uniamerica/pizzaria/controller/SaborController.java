@@ -33,9 +33,8 @@ public class SaborController {
     public ResponseEntity<SaborDTO>editar(@RequestBody @Validated SaborDTO sabor, @PathVariable("id")final long id){
         return ResponseEntity.ok(service.update(sabor,id));
     }
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String>deletar(@PathVariable("id") final long id){
-        service.delete(id);
-        return ResponseEntity.ok(String.format("O sabor com o id [%s] foi deletado com sucesso.", id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<SaborDTO> desativar(@PathVariable("id") final long id){
+        return ResponseEntity.ok(service.desativar(id));
     }
 }

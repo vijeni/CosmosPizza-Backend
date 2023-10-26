@@ -53,9 +53,9 @@ public class SaborService {
         return modelMapper.map(repository.save(modelMapper.map(sabor, Sabor.class)),SaborDTO.class);
     }
 
-    public void  delete(long id){
-        Assert.notNull(repository.findById(id).orElse(null),String.format("Sabor com o id [%s] não localizado!", id));
-
-        repository.deleteById(id);
+    public SaborDTO desativar(long id){
+        SaborDTO saborDTO = findById(id);
+        saborDTO.desativar();
+        return toSaborDTO(repository.save(toSabor(saborDTO)));
     }
 }
