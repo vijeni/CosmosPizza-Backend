@@ -20,10 +20,10 @@ public class PedidoDTO extends AbstractEntityDTO {
     private PessoaDTO funcionario;
     private Status status;
     @NotNull(message = "Informe a necessidade de entrega")
-    private boolean isEntrega;
+    private boolean entrega;
     private Double valorPedido = (double) 0;
+//    @NotNull(message = "Informe a data de abertura")
     private LocalDateTime dataAbertura;
-    @NotNull(message = "Informe a data de conclusão")
     private LocalDateTime dataConclusao;
     private Double valorEntrega;
     private Double valorTotal = (double) 0;

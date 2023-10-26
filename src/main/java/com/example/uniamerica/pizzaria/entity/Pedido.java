@@ -50,15 +50,15 @@ public class Pedido extends  AbstractEntity {
     private Pagamento formaPagamento;
 
     @Getter @Setter
-    @Column(name = "is_entrega", nullable = false)
-    private boolean isEntrega;
+    @Column(name = "entrega", nullable = false)
+    private boolean entrega;
 
     @Getter @Setter
     @Column(name = "data_abertura", nullable = false)
     private LocalDateTime dataAbertura;
 
     @Getter @Setter
-    @Column(name = "data_conclusao", nullable = false)
+    @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
     @Getter @Setter
