@@ -149,7 +149,7 @@ import static org.mockito.Mockito.*;
 
     @Test
     void pedidoDeletarTest() {
-        service.deletar(1L);
+        service.cancelar(1L);
         verify(repository, times(1)).deleteById(1L);
     }
 }

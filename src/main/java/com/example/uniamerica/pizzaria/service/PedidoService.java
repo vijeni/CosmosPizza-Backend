@@ -98,9 +98,15 @@ public class PedidoService {
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
-    public void deletar(Long id) {
-        Assert.notNull(pedidoRepository.findById(id).orElse(null), "Pedido com ID %s não exite!");
-        pedidoRepository.deleteById(id);
+    public PedidoDTO cancelar(Long id) {
+        PedidoDTO pedidoDTO = findById(id);
+        pedidoDTO.desativar();
+        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
+    }
+    public PedidoDTO reabrir(Long id) {
+        PedidoDTO pedidoDTO = findById(id);
+        pedidoDTO.ativar();
+        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
     }
 
     public PedidoDTO finalizarPedido(Long codigoPedido) {
