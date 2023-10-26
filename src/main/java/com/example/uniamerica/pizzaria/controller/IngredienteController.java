@@ -42,7 +42,7 @@ public class IngredienteController {
     public ResponseEntity<IngredienteDTO> desativar(@PathVariable("id") final long id) {
         return ResponseEntity.ok(service.desativar(id));
     }
-    @PutMapping("/desativar/{id}")
+    @PutMapping("/ativar/{id}")
     public ResponseEntity<IngredienteDTO> ativar(@PathVariable("id") final long id) {
         return ResponseEntity.ok(service.ativar(id));
     }
