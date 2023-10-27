@@ -92,7 +92,7 @@ class PessoaControllerTests {
         ResponseEntity<String> response = pessoaController.deletar(pessoaId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(pessoaService,times(1)).deletar(pessoaId);
+        verify(pessoaService,times(1)).desativar(pessoaId);
     }
 
 }

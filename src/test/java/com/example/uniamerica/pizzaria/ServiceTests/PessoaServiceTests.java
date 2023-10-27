@@ -107,7 +107,7 @@ import static org.mockito.Mockito.*;
 
     @Test
     void pessoaDeletarTest() {
-        service.deletar(1L);
+        service.desativar(1L);
         verify(repository, times(1)).deleteById(1L);
     }
 }

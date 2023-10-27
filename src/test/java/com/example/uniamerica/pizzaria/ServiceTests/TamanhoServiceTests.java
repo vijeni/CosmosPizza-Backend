@@ -107,7 +107,7 @@ import static org.mockito.Mockito.when;
 
     @Test
     void tamanhoDeletarTest() {
-        service.deletar(1L);
+        service.desativar(1L);
         Mockito.verify(repository, times(1)).deleteById(1L);
     }
 }

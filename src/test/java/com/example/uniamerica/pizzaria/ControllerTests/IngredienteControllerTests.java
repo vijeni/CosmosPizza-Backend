@@ -90,9 +90,9 @@ class IngredienteControllerTests {
     void ingredientesDeleteTest(){
         Long ingredienteId = 1L;
 
-        ResponseEntity<String> response = ingredienteController.deletar(ingredienteId);
+        ResponseEntity<String> response = ingredienteController.desativar(ingredienteId);
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(ingredientesService,times(1)).delete(ingredienteId);
+        verify(ingredientesService,times(1)).desativar(ingredienteId);
 
     }
 

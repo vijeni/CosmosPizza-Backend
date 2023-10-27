@@ -1,5 +1,6 @@
 package com.example.uniamerica.pizzaria.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,4 +29,14 @@ public class EnderecoDTO extends AbstractEntityDTO {
     @NotNull(message = "Insira um CEP!")
     @NotEmpty(message = "Insira um CEP!")
     private String cep;
+
+    @Getter  @Setter
+    @NotNull(message = "Insira a UF!")
+    @NotEmpty(message = "Insira a UF!")
+    private String uf;
+
+    @Getter  @Setter
+    @NotNull(message = "Insira a cidade!")
+    @NotEmpty(message = "Insira a cidade!")
+    private String cidade;
 }

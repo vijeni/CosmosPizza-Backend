@@ -43,17 +43,27 @@ public class ProdutoService {
     }
 
     @Transactional
-    public void deletar(Long id){
-        Assert.notNull(repository.findById(id).orElse(null), String.format("Produto com ID %s não encontrado!", id));
-        repository.deleteById(id);
+    public ProdutoDTO deletar(Long id){
+        ProdutoDTO produto = findById(id);
+        produto.desativar();
+        return toProdutoDTO(repository.save(toProduto(produto)));
+    }
+    @Transactional
+    public ProdutoDTO ativar(Long id){
+        ProdutoDTO produto = findById(id);
+        produto.ativar();
+        return toProdutoDTO(repository.save(toProduto(produto)));
     }
 
     public List<ProdutoDTO> getAll() {
         return repository.findAll().stream().map(this::toProdutoDTO).toList();
     }
+    public List<ProdutoDTO> getAllAtivos() {
+        return repository.findAllAtivos().stream().map(this::toProdutoDTO).toList();
+    }
 
-    public List<ProdutoDTO> getAllByNome(String nome) {
-        return repository.findByNameLike(nome.trim()).stream().map(this::toProdutoDTO).toList();
+    public List<ProdutoDTO> getAllByDescricao(String descricao) {
+        return repository.findByDescricaoLike(descricao.trim()).stream().map(this::toProdutoDTO).toList();
     }
 
     public void validarProdutos(List<ProdutoDTO> produtos) {

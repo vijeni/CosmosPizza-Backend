@@ -7,10 +7,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass
+
 @Getter @Setter
 public class AbstractEntityDTO {
-    @NotNull
     private Long id;
 
     private LocalDateTime cadastro;
@@ -18,5 +17,14 @@ public class AbstractEntityDTO {
     private LocalDateTime edicao;
 
     private LocalDateTime delecao;
+
+
+
+    public void desativar(){
+        this.delecao = LocalDateTime.now();
+    }
+    public void ativar() {
+        this.delecao = null;
+    }
 
 }

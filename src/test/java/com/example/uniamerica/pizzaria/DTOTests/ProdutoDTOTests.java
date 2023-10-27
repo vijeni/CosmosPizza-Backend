@@ -21,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     void setup() {
         pedidos.add(new PedidoDTO());
         produtoDTO.setId(1L);
-        produtoDTO.setNome("Produto A");
+        produtoDTO.setDescricao("Produto A");
         produtoDTO.setQuantidadeEstoque(10);
-        produtoDTO.setDescricao("Descricao");
+        produtoDTO.setObservacao("Descricao");
         produtoDTO.setValorUnitario(10D);
         produtoDTO.setPedidos(pedidos);
     }
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void produtoNomeTest(){
-        assertEquals("Produto A", produtoDTO.getNome());
+        assertEquals("Produto A", produtoDTO.getDescricao());
     }
     @Test
     void produtoQuantidadeEstoqueTest(){
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void produtoDescricaoTest(){
-        assertEquals("Descricao", produtoDTO.getDescricao());
+        assertEquals("Descricao", produtoDTO.getObservacao());
     }
     @Test
     void produtoValorUnitarioTest(){

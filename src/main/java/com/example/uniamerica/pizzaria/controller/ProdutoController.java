@@ -4,41 +4,51 @@ import com.example.uniamerica.pizzaria.dto.ProdutoDTO;
 import com.example.uniamerica.pizzaria.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto")
+@CrossOrigin(origins="http://localhost:4200")
 public class ProdutoController {
     @Autowired
     ProdutoService service;
-    @GetMapping
-    public ResponseEntity<ProdutoDTO> findById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
     public ResponseEntity<List<ProdutoDTO>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
-    @GetMapping("/nome")
-    public ResponseEntity<List<ProdutoDTO>> getAllByNome(@RequestParam String nome){
-        return ResponseEntity.ok(service.getAllByNome(nome));
+    @GetMapping("/todos/ativos")
+    public ResponseEntity<List<ProdutoDTO>> getAllAtivos(){
+        return ResponseEntity.ok(service.getAllAtivos());
+    }
+    @GetMapping("/descricao/{descricao}")
+    public ResponseEntity<List<ProdutoDTO>> getAllByNome(@PathVariable String descricao){
+        return ResponseEntity.ok(service.getAllByDescricao(descricao));
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<ProdutoDTO> cadastrar(@RequestBody ProdutoDTO produto){
+    public ResponseEntity<ProdutoDTO> cadastrar(@RequestBody @Validated ProdutoDTO produto){
         return ResponseEntity.ok(service.cadastrar(produto));
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<ProdutoDTO> editar(@RequestParam Long id, @RequestBody ProdutoDTO produto){
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<ProdutoDTO> editar(@PathVariable Long id, @Validated @RequestBody ProdutoDTO produto){
         return ResponseEntity.ok(service.editar(id, produto));
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletar(@RequestParam Long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("Produto com ID %s foi deletado com sucesso!", id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<ProdutoDTO> deletar(@PathVariable Long id){
+        return ResponseEntity.ok(service.deletar(id));
+    }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<ProdutoDTO> ativar(@PathVariable Long id){
+        return ResponseEntity.ok(service.ativar(id));
     }
 }

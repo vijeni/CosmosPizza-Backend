@@ -40,24 +40,24 @@ import static org.mockito.Mockito.*;
         List<PedidoDTO> pedidoDTOS = new ArrayList<>();
         pedidoDTOS.add(new PedidoDTO());
         produtoDTO.setId(1L);
-        produtoDTO.setNome("Nome");
+        produtoDTO.setDescricao("Nome");
         produtoDTO.setQuantidadeEstoque(10);
-        produtoDTO.setDescricao("Descrição");
+        produtoDTO.setObservacao("Descrição");
         produtoDTO.setValorUnitario(10D);
         produtoDTOList.add(produtoDTO);
 
         List<Pedido> pedidosEntity = new ArrayList<>();
         pedidosEntity.add(new Pedido());
         produtoEntity.setId(1L);
-        produtoEntity.setNome("Nome");
+        produtoEntity.setDescricao("Nome");
         produtoEntity.setQuantidadeEstoque(10);
-        produtoEntity.setDescricao("Descrição");
+        produtoEntity.setObservacao("Descrição");
         produtoEntity.setValorUnitario(10D);
         produtoEntityList.add(produtoEntity);
 
         when(repository.findById(1L)).thenReturn(Optional.of(produtoEntity));
         when(repository.findAll()).thenReturn(produtoEntityList);
-        when(repository.findByNameLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
+        when(repository.findByDescricaoLike(Mockito.any(String.class))).thenReturn(produtoEntityList);
         when(repository.save(Mockito.any(Produto.class))).thenReturn(produtoEntity);
     }
     @Test
@@ -90,7 +90,7 @@ import static org.mockito.Mockito.*;
     }
     @Test
     void produtoGetAllByNomeTest(){
-        List<ProdutoDTO> retornoService = service.getAllByNome("Nome");
+        List<ProdutoDTO> retornoService = service.getAllByDescricao("Nome");
         assertNotNull(retornoService);
         assertThat(retornoService)
                 .usingRecursiveComparison()
@@ -100,9 +100,9 @@ import static org.mockito.Mockito.*;
     @Test
     void produtoCadastrarTest(){
         ProdutoDTO produtoCadastrar = new ProdutoDTO();
-        produtoCadastrar.setNome("Nome");
+        produtoCadastrar.setDescricao("Nome");
         produtoCadastrar.setQuantidadeEstoque(10);
-        produtoCadastrar.setDescricao("Descrição");
+        produtoCadastrar.setObservacao("Descrição");
         produtoCadastrar.setValorUnitario(10D);
 
         ProdutoDTO retornoService = service.cadastrar(produtoCadastrar);

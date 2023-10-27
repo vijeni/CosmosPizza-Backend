@@ -12,12 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/ingrediente")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class IngredienteController {
     @Autowired
     IngredientesService service;
 
-    @GetMapping
-    public ResponseEntity<IngredienteDTO> findById(@RequestParam("id") final Long id) {
+    @GetMapping("/id/{id}")
+    public ResponseEntity<IngredienteDTO> findById(@PathVariable("id") final Long id) {
         return ResponseEntity.ok().body(service.findByID(id));
     }
 
@@ -31,15 +33,18 @@ public class IngredienteController {
         return ResponseEntity.ok(service.post(ingredientes));
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<IngredienteDTO> put(@RequestParam("id") Long id, @RequestBody @Validated IngredienteDTO ingredientes) {
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<IngredienteDTO> put(@PathVariable("id") Long id, @RequestBody @Validated IngredienteDTO ingredientes) {
         return ResponseEntity.ok(service.update(id, ingredientes));
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletar(@RequestParam("id") final long id) {
-        service.delete(id);
-        return ResponseEntity.ok(String.format("O ingrediente com o ID [%s] foi deletado com sucesso.", id));
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<IngredienteDTO> desativar(@PathVariable("id") final long id) {
+        return ResponseEntity.ok(service.desativar(id));
+    }
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<IngredienteDTO> ativar(@PathVariable("id") final long id) {
+        return ResponseEntity.ok(service.ativar(id));
     }
 
 }

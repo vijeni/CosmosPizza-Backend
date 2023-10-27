@@ -11,11 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pedido")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class PedidoController {
     @Autowired
     PedidoService service;
-    @GetMapping
-    public ResponseEntity<PedidoDTO> findById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity<PedidoDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
@@ -26,20 +28,20 @@ public class PedidoController {
     public ResponseEntity<PedidoDTO> cadastrar(@RequestBody @Validated  PedidoDTO pedido){
         return ResponseEntity.ok(service.cadastrar(pedido));
     }
-
-    @PutMapping("/editar")
-    public ResponseEntity<PedidoDTO> editar(@RequestParam Long codigoPedido, @RequestBody @Validated PedidoDTO pedido){
-        return ResponseEntity.ok(service.editar(codigoPedido, pedido));
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<PedidoDTO> editar(@PathVariable Long id, @RequestBody @Validated PedidoDTO pedido){
+        return ResponseEntity.ok(service.editar(id, pedido));
     }
-
-    @PutMapping("/finalizar")
-    public ResponseEntity<PedidoDTO> finalizarPedido(@RequestParam Long codigoPedido){
-        return ResponseEntity.ok(service.finalizarPedido(codigoPedido));
+    @PutMapping("/finalizar/{id}")
+    public ResponseEntity<PedidoDTO> finalizarPedido(@PathVariable Long id){
+        return ResponseEntity.ok(service.finalizarPedido(id));
     }
-
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletar(@RequestParam Long id){
-        service.deletar(id);
-        return ResponseEntity.ok(String.format("Pedido com ID %s foi deletado com sucesso!", id));
+    @DeleteMapping("/cancelar/{id}")
+    public ResponseEntity<PedidoDTO> cancelar(@PathVariable Long id){
+        return ResponseEntity.ok(service.cancelar(id));
+    }
+    @PutMapping("/reabrir/{id}")
+    public ResponseEntity<PedidoDTO> reabrir(@PathVariable Long id){
+        return ResponseEntity.ok(service.reabrir(id));
     }
 }

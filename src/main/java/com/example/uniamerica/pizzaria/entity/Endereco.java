@@ -37,4 +37,12 @@ public class Endereco extends AbstractEntity {
     @Getter @Setter
     @NotNull @Column(name="cep", nullable = false)
     private String cep;
+
+    @Getter  @Setter
+    @Column(nullable = false)
+    private String uf;
+
+    @Getter  @Setter
+    @Column(nullable = false)
+    private String cidade;
 }

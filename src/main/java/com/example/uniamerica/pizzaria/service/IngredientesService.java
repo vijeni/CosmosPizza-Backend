@@ -38,25 +38,24 @@ public class IngredientesService {
 
     @Transactional
       public IngredienteDTO post(IngredienteDTO ingredientes) {
-        Assert.notNull(ingredientes.getNome(),"Por favor, insira um nome.");
-        Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
-        Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
         return toIngredienteDTO(repository.save(toIngredienteEntidade(ingredientes)));
 
     }
     @Transactional
     public IngredienteDTO update(long id, IngredienteDTO ingredientes) {
         Assert.notNull(ingredientes.getId(),"Por favor, insira um ID.");
-        Assert.hasText(ingredientes.getNome(),"O nome é inválido.");
-        Assert.notNull(ingredientes.getQuantidade(),"Por favor, digite a quantidade");
-
         return toIngredienteDTO(repository.save(toIngredienteEntidade(ingredientes)));
     }
-
-    public void delete(long id) {
-        Ingrediente ingrediente = repository.findById(id).orElse(null);
-        Assert.notNull(ingrediente,String.format("Nenhum ingrediente localizado com o id [%s]",id));
-
-        repository.deleteById(id);
+    @Transactional
+    public IngredienteDTO desativar(long id) {
+        IngredienteDTO ingrediente = findByID(id);
+        ingrediente.desativar();
+        return toIngredienteDTO(repository.save(toIngredienteEntidade(ingrediente)));
+    }
+    @Transactional
+    public IngredienteDTO ativar(long id) {
+        IngredienteDTO ingrediente = findByID(id);
+        ingrediente.ativar();
+        return toIngredienteDTO(repository.save(toIngredienteEntidade(ingrediente)));
     }
 }

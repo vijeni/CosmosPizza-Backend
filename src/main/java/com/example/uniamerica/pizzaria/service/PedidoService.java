@@ -57,6 +57,7 @@ public class PedidoService {
 
     private PedidoDTO calculaValores(PedidoDTO pedidoDTO) {
         pedidoDTO.setValorTotal(0D);
+        pedidoDTO.setValorPedido(0D);
         if(!pedidoDTO.getPizzas().isEmpty()) {
             Double valorPizzas = pizzaService.valorPizzas(pedidoDTO.getPizzas());
             pedidoDTO.addValorPedido(valorPizzas);
@@ -75,10 +76,18 @@ public class PedidoService {
 
     @Transactional
     public PedidoDTO cadastrar(PedidoDTO pedidoDTO) {
-        if(!pedidoDTO.getPizzas().isEmpty()) {
+        if(pedidoDTO.getDataAbertura() == null){
+            pedidoDTO.setDataAbertura(LocalDateTime.now());
+        }
+        if(pedidoDTO.getDataConclusao() != null){
+            pedidoDTO.setStatus(Status.ENCERRADO);
+        }else if (pedidoDTO.getStatus() == Status.ENCERRADO) {
+            pedidoDTO.setDataConclusao(LocalDateTime.now());
+        }
+        if(pedidoDTO.getPizzas()!=null && !pedidoDTO.getPizzas().isEmpty()) {
             pizzaService.validarPizzas(pedidoDTO.getPizzas());
         }
-        if(!pedidoDTO.getProdutos().isEmpty()) {
+        if(pedidoDTO.getProdutos()!=null && !pedidoDTO.getProdutos().isEmpty()) {
             produtoService.validarProdutos(pedidoDTO.getProdutos());
         }
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
@@ -89,6 +98,11 @@ public class PedidoService {
         Assert.notNull(pedidoDTO.getId(), "Código do Pedido não informado!");
         Assert.isTrue(pedidoDTO.getId().equals(codigoPedido), "Pedido a ser editado não é o mesmo informado!");
         Assert.notNull(pedidoRepository.findById(codigoPedido).orElse(null), String.format("Pedido com código %s não exite!", codigoPedido));
+        if(pedidoDTO.getDataConclusao() != null){
+            pedidoDTO.setStatus(Status.ENCERRADO);
+        } else if (pedidoDTO.getStatus() == Status.ENCERRADO) {
+            pedidoDTO.setDataConclusao(LocalDateTime.now());
+        }
         if(!pedidoDTO.getPizzas().isEmpty()) {
             pizzaService.validarPizzas(pedidoDTO.getPizzas());
         }
@@ -98,16 +112,23 @@ public class PedidoService {
         return toPedidoDTO(pedidoRepository.save(toPedido(validaPedido(pedidoDTO))));
     }
 
-    public void deletar(Long id) {
-        Assert.notNull(pedidoRepository.findById(id).orElse(null), "Pedido com ID %s não exite!");
-        pedidoRepository.deleteById(id);
+    public PedidoDTO cancelar(Long id) {
+        PedidoDTO pedidoDTO = findById(id);
+        pedidoDTO.desativar();
+        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
+    }
+    public PedidoDTO reabrir(Long id) {
+        PedidoDTO pedidoDTO = findById(id);
+        pedidoDTO.ativar();
+        return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
     }
 
     public PedidoDTO finalizarPedido(Long codigoPedido) {
         PedidoDTO pedidoDTO = toPedidoDTO(pedidoRepository.findById(codigoPedido).orElse(null));
         Assert.notNull(pedidoDTO, String.format( "Pedido com ID %s não existe!", codigoPedido));
-        Assert.isTrue(!pedidoDTO.getStatus().equals(Status.PRONTO), "Esse pedido já foi finalizado!");
-        pedidoDTO.setStatus(Status.PRONTO);
+        Assert.isTrue(!pedidoDTO.getStatus().equals(Status.ENCERRADO), "Esse pedido já foi finalizado!");
+        pedidoDTO.setStatus(Status.ENCERRADO);
+        pedidoDTO.setDataConclusao(LocalDateTime.now());
         return toPedidoDTO(pedidoRepository.save(toPedido(pedidoDTO)));
     }
 }

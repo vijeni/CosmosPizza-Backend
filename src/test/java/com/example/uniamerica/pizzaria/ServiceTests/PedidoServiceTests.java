@@ -144,12 +144,12 @@ import static org.mockito.Mockito.*;
         ArgumentCaptor<Pedido> pedidoCaptor = ArgumentCaptor.forClass(Pedido.class);
         when(repository.save(pedidoCaptor.capture())).thenAnswer(invocation -> invocation.<Pedido>getArgument(0));
         PedidoDTO pedidoFinalizado = service.finalizarPedido(1L);
-        assertEquals(Status.PRONTO, pedidoFinalizado.getStatus());
+        assertEquals(Status.ENCERRADO, pedidoFinalizado.getStatus());
     }
 
     @Test
     void pedidoDeletarTest() {
-        service.deletar(1L);
+        service.cancelar(1L);
         verify(repository, times(1)).deleteById(1L);
     }
 }

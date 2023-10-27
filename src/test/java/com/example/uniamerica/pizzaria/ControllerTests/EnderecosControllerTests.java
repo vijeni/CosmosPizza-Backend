@@ -69,8 +69,6 @@ class EnderecosControllerTests {
         when(repository.save(Mockito.any(Endereco.class))).thenReturn(enderecoEntidade);
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.ofNullable(enderecoEntidade));
         when(repository.findAll()).thenReturn(enderecoList);
-
-
     }
 
     @Test
