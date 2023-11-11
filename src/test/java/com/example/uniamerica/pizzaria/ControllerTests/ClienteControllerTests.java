@@ -1,8 +1,8 @@
 package com.example.uniamerica.pizzaria.ControllerTests;
 
-import com.example.uniamerica.pizzaria.controller.PessoaController;
-import com.example.uniamerica.pizzaria.dto.PessoaDTO;
-import com.example.uniamerica.pizzaria.service.PessoaService;
+import com.example.uniamerica.pizzaria.controller.ClienteController;
+import com.example.uniamerica.pizzaria.dto.ClienteDTO;
+import com.example.uniamerica.pizzaria.service.ClienteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,10 +23,10 @@ import static org.mockito.Mockito.*;
 class ClienteControllerTests {
 
     @InjectMocks
-    private PessoaController pessoaController;
+    private ClienteController clienteController;
 
     @Mock
-    private PessoaService pessoaService;
+    private ClienteService clienteService;
 
     @BeforeEach
     void setUp(){
@@ -36,63 +36,63 @@ class ClienteControllerTests {
     @Test
     void pessoaGetIdTest(){
         Long pessoaId = 1L;
-        PessoaDTO pessoaDTO = new PessoaDTO();
+        ClienteDTO clienteDTO = new ClienteDTO();
 
-        when(pessoaService.findById(pessoaId)).thenReturn(pessoaDTO);
-        ResponseEntity<PessoaDTO>response = pessoaController.findById(pessoaId);
+        when(clienteService.findById(pessoaId)).thenReturn(clienteDTO);
+        ResponseEntity<ClienteDTO>response = clienteController.findById(pessoaId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        Assertions.assertEquals(pessoaDTO,response.getBody());
+        Assertions.assertEquals(clienteDTO,response.getBody());
 
-        Mockito.verify(pessoaService,times(1)).findById(pessoaId);
+        Mockito.verify(clienteService,times(1)).findById(pessoaId);
 
     }
 
     @Test
     void pessoaGetAllTest(){
-        List<PessoaDTO> pessoaDTOList = new ArrayList<>();
+        List<ClienteDTO> clienteDTOList = new ArrayList<>();
 
-        when(pessoaService.getAll()).thenReturn(pessoaDTOList);
-        ResponseEntity<List<PessoaDTO>>response = pessoaController.getAll();
+        when(clienteService.getAll()).thenReturn(clienteDTOList);
+        ResponseEntity<List<ClienteDTO>>response = clienteController.getAll();
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        Assertions.assertEquals(pessoaDTOList,response.getBody());
-        verify(pessoaService,times(1)).getAll();
+        Assertions.assertEquals(clienteDTOList,response.getBody());
+        verify(clienteService,times(1)).getAll();
     }
 
     @Test
     void pessoaPutTest(){
-        PessoaDTO pessoaDTO = new PessoaDTO();
+        ClienteDTO clienteDTO = new ClienteDTO();
         Long pessoaId = 1L;
 
-        when(pessoaService.put(pessoaDTO,pessoaId)).thenReturn(pessoaDTO);
-        ResponseEntity<PessoaDTO>response = pessoaController.atualizar(pessoaDTO,pessoaId);
+        when(clienteService.put(clienteDTO,pessoaId)).thenReturn(clienteDTO);
+        ResponseEntity<ClienteDTO>response = clienteController.atualizar(clienteDTO,pessoaId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        Assertions.assertEquals(pessoaDTO,response.getBody());
-        verify(pessoaService,times(1)).put(pessoaDTO,pessoaId);
+        Assertions.assertEquals(clienteDTO,response.getBody());
+        verify(clienteService,times(1)).put(clienteDTO,pessoaId);
     }
 
     @Test
     void pessoaPostTest(){
-        PessoaDTO pessoaDTO = new PessoaDTO();
-        when(pessoaService.post(pessoaDTO)).thenReturn(pessoaDTO);
+        ClienteDTO clienteDTO = new ClienteDTO();
+        when(clienteService.post(clienteDTO)).thenReturn(clienteDTO);
 
-        ResponseEntity<PessoaDTO>response = pessoaController.cadastrar(pessoaDTO);
+        ResponseEntity<ClienteDTO>response = clienteController.cadastrar(clienteDTO);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        Assertions.assertEquals(pessoaDTO,response.getBody());
-        verify(pessoaService,times(1)).post(pessoaDTO);
+        Assertions.assertEquals(clienteDTO,response.getBody());
+        verify(clienteService,times(1)).post(clienteDTO);
     }
 
     @Test
     void pessoaDeleteTest(){
         Long pessoaId = 1L;
 
-        ResponseEntity<String> response = pessoaController.deletar(pessoaId);
+        ResponseEntity<String> response = clienteController.deletar(pessoaId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(pessoaService,times(1)).desativar(pessoaId);
+        verify(clienteService,times(1)).desativar(pessoaId);
     }
 
 }
