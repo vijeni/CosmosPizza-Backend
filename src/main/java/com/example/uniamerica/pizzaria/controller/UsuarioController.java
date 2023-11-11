@@ -6,6 +6,7 @@ import com.example.uniamerica.pizzaria.entity.Usuario;
 import com.example.uniamerica.pizzaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,18 +39,22 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<UsuarioDTO>cadastrar(@RequestBody @Validated UsuarioDTO usuario){
         return ResponseEntity.ok(service.post(usuario));
     }
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<UsuarioDTO>atualizar(@RequestBody @Validated UsuarioDTO usuario, @PathVariable long id){
         return ResponseEntity.ok(service.put(usuario, id));
     }
     @DeleteMapping("/desativar/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<UsuarioDTO>desativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.desativar(id));
     }
     @DeleteMapping("/ativar/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<UsuarioDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }

@@ -27,7 +27,6 @@ public class ClienteController {
         return ResponseEntity.ok(service.getAll());
     }
 
-
     @PostMapping("/cadastrar")
     @PreAuthorize("hasAnyAuthority()")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
