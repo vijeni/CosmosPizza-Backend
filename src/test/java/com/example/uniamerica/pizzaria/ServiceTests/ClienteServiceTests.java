@@ -38,7 +38,6 @@ import static org.mockito.Mockito.*;
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        clienteEntidade.setTipoPessoa(Role.FUNCIONARIO);
         clienteEntidade.setId(1L);
         clienteEntidade.setNome("nome");
         clienteEntidade.setCpf("cpf");
