@@ -52,19 +52,19 @@ import static org.mockito.Mockito.*;
         clienteDTOList.add(clienteDTO);
 
 
-        when(repository.findAll()).thenReturn(clienteDTOList.stream().map(pessoaDTO -> service.toPessoa(pessoaDTO)).toList());
+        when(repository.findAll()).thenReturn(clienteDTOList.stream().map(pessoaDTO -> service.toCliente(pessoaDTO)).toList());
         when(repository.save(Mockito.any(Cliente.class))).thenReturn(clienteEntidade);
         when(repository.findById(1L)).thenReturn(Optional.of(clienteEntidade));
 
     }
     @Test
     void pessoaDtoToPessoaEntityTest(){
-        Cliente cliente = service.toPessoa(clienteDTO);
+        Cliente cliente = service.toCliente(clienteDTO);
         org.assertj.core.api.Assertions.assertThat(cliente).usingRecursiveComparison().isEqualTo(clienteEntidade);
     }
     @Test
     void pessoaEntidadeToPessoaDtoTest(){
-        ClienteDTO pessoa = service.toPessoaDTO(clienteEntidade);
+        ClienteDTO pessoa = service.toClienteDTO(clienteEntidade);
         org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(clienteDTO);
     }
 

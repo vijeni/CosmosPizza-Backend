@@ -2,7 +2,6 @@ package com.example.uniamerica.pizzaria.service;
 
 import com.example.uniamerica.pizzaria.dto.ClienteDTO;
 import com.example.uniamerica.pizzaria.entity.Cliente;
-import com.example.uniamerica.pizzaria.entity.Role;
 import com.example.uniamerica.pizzaria.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,67 +19,61 @@ public class ClienteService {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public Cliente toPessoa(ClienteDTO clienteDTO){
+    public Cliente toCliente(ClienteDTO clienteDTO){
         return modelMapper.map(clienteDTO, Cliente.class);
     }
 
-    public ClienteDTO toPessoaDTO(Cliente clienteEntidade){
+    public ClienteDTO toClienteDTO(Cliente clienteEntidade){
         return modelMapper.map(clienteEntidade, ClienteDTO.class);
     }
 
     public ClienteDTO findById(long id){
         Cliente cliente = repository.findById(id).orElse(null);
-        return toPessoaDTO(cliente);
+        return toClienteDTO(cliente);
     }
 
     public List<ClienteDTO>getAll(){
-        return repository.findAll().stream().map(this::toPessoaDTO).toList();
-    }
-    public List<ClienteDTO>getAllClientes(){
-        return repository.findAllByTipo(Role.CLIENTE).stream().map(this::toPessoaDTO).toList();
-    }
-    public List<ClienteDTO>getAllFuncionarios(){
-        return repository.findAllByTipo(Role.FUNCIONARIO).stream().map(this::toPessoaDTO).toList();
+        return repository.findAll().stream().map(this::toClienteDTO).toList();
     }
 
     @Transactional
-    public ClienteDTO post(ClienteDTO pessoa) {
-        Assert.notNull(pessoa.getNome(),"Por favor, digite um nome!");
-        Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
-        Assert.hasText(pessoa.getNome(),"Por favor, digite um nome válido!");
-        Assert.hasText(pessoa.getCpf(),"Por favor, digite um CPF válido!");
-        Assert.notNull(pessoa.getTelefone(),"Por favor, digite um telefone!");
-        Assert.hasText(pessoa.getNome(),"Por favor, digite um telefone válido!");
+    public ClienteDTO post(ClienteDTO cliente) {
+        Assert.notNull(cliente.getNome(),"Por favor, digite um nome!");
+        Assert.notNull(cliente.getCpf(),"Por favor, digite um CPF!");
+        Assert.hasText(cliente.getNome(),"Por favor, digite um nome válido!");
+        Assert.hasText(cliente.getCpf(),"Por favor, digite um CPF válido!");
+        Assert.notNull(cliente.getTelefone(),"Por favor, digite um telefone!");
+        Assert.hasText(cliente.getNome(),"Por favor, digite um telefone válido!");
 
-        final List<Cliente>pessoasCpf = this.repository.findByCpf(pessoa.getCpf());
+        final List<Cliente>pessoasCpf = this.repository.findByCpf(cliente.getCpf());
         Assert.isTrue(pessoasCpf.isEmpty(),"Cpf já cadastrado.");
 
-       return toPessoaDTO(repository.save(toPessoa(pessoa)));
+       return toClienteDTO(repository.save(toCliente(cliente)));
     }
     @Transactional
-    public ClienteDTO put(ClienteDTO pessoa, Long id) {
+    public ClienteDTO put(ClienteDTO cliente, Long id) {
         Assert.notNull(id, "Por favor, insira um ID!");
-        Assert.notNull(pessoa.getId(),"Por favor, insira um ID!");
-        Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
-        Assert.hasText(pessoa.getNome(),"Por favor, digite um nome válido!");
-        Assert.hasText(pessoa.getCpf(),"Por favor, digite um CPF válido!");
-        Assert.notNull(pessoa.getTelefone(),"Por favor, digite um telefone!");
-        Assert.hasText(pessoa.getNome(),"Por favor, digite um telefone válido!");
+        Assert.notNull(cliente.getId(),"Por favor, insira um ID!");
+        Assert.notNull(cliente.getCpf(),"Por favor, digite um CPF!");
+        Assert.hasText(cliente.getNome(),"Por favor, digite um nome válido!");
+        Assert.hasText(cliente.getCpf(),"Por favor, digite um CPF válido!");
+        Assert.notNull(cliente.getTelefone(),"Por favor, digite um telefone!");
+        Assert.hasText(cliente.getNome(),"Por favor, digite um telefone válido!");
 
-        return toPessoaDTO(repository.save(toPessoa(pessoa)));
+        return toClienteDTO(repository.save(toCliente(cliente)));
     }
     @Transactional
     public ClienteDTO desativar(long id) {
-        ClienteDTO pessoa = findById(id);
-        pessoa.desativar();
-        return toPessoaDTO(repository.save(toPessoa(pessoa)));
+        ClienteDTO cliente = findById(id);
+        cliente.desativar();
+        return toClienteDTO(repository.save(toCliente(cliente)));
 
     }
     @Transactional
     public ClienteDTO ativar(long id) {
-        ClienteDTO pessoa = findById(id);
-        pessoa.ativar();
-        return toPessoaDTO(repository.save(toPessoa(pessoa)));
+        ClienteDTO cliente = findById(id);
+        cliente.ativar();
+        return toClienteDTO(repository.save(toCliente(cliente)));
 
     }
 }

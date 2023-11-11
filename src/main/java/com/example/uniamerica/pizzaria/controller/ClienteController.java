@@ -25,22 +25,15 @@ public class ClienteController {
 
         return ResponseEntity.ok(service.getAll());
     }
-    @GetMapping("/todos/clientes")
-    public ResponseEntity<List<ClienteDTO>>getAllClientes(){
-        return ResponseEntity.ok(service.getAllClientes());
-    }
-    @GetMapping("/todos/funcionarios")
-    public ResponseEntity<List<ClienteDTO>>getAllFuncionarios(){
-        return ResponseEntity.ok(service.getAllFuncionarios());
-    }
+
 
     @PostMapping("/cadastrar")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
     @PutMapping("/editar/{id}")
-    public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO pessoa, @PathVariable long id){
-        return ResponseEntity.ok(service.put(pessoa, id));
+    public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO cliente, @PathVariable long id){
+        return ResponseEntity.ok(service.put(cliente, id));
     }
     @DeleteMapping("/desativar/{id}")
     public ResponseEntity<ClienteDTO>desativar(@PathVariable ("id") final long id){
