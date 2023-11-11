@@ -19,15 +19,15 @@ import java.util.Set;
 @NoArgsConstructor
 public class Usuario extends AbstractEntity implements UserDetails {
 
-    @NotNull
+
     @Column(name="username", nullable = false)
     private String username;
 
-    @Getter @Setter @NotNull
+    @Getter @Setter
     @Column(name="passowrd", nullable = false)
     private String password;
 
-    @NotNull
+
     @Getter @Setter
     @Column(name="tipo_pessoa", nullable = false)
     private Role role;
