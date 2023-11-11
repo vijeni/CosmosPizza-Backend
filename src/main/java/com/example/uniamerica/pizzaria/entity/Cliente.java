@@ -10,10 +10,10 @@ import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name="pessoas", schema = "public")
+@Table(name="clientes", schema = "public")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pessoa extends AbstractEntity {
+public class Cliente extends AbstractEntity {
 
     @Getter @Setter
     @NotNull @Size(min = 2, max = 40)
@@ -31,11 +31,7 @@ public class Pessoa extends AbstractEntity {
     @Getter @Setter
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JoinColumn(name = "enderecos_pessoas")
+    @JoinColumn(name = "enderecos_clientes")
     private Endereco endereco;
 
-    @NotNull
-    @Getter @Setter
-    @Column(name="tipo_pessoa", nullable = false)
-    private TipoPessoa tipoPessoa;
 }

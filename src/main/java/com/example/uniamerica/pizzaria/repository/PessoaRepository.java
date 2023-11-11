@@ -1,8 +1,7 @@
 package com.example.uniamerica.pizzaria.repository;
 
-import com.example.uniamerica.pizzaria.entity.Pessoa;
-import com.example.uniamerica.pizzaria.entity.Produto;
-import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.entity.Cliente;
+import com.example.uniamerica.pizzaria.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
-    @Query("SELECT p from Pessoa p where p.tipoPessoa = :tipoPessoa")
-    List<Pessoa> findAllByTipo(@Param("tipoPessoa") TipoPessoa tipoPessoa);
+public interface PessoaRepository extends JpaRepository<Cliente, Long> {
+    @Query("SELECT p from Cliente p where p.tipoPessoa = :tipoPessoa")
+    List<Cliente> findAllByTipo(@Param("tipoPessoa") Role role);
 
-    @Query("from Pessoa where cpf = :cpf")
-    public List<Pessoa> findByCpf(@Param("cpf") final String cpf);
+    @Query("from Cliente where cpf = :cpf")
+    public List<Cliente> findByCpf(@Param("cpf") final String cpf);
 }

@@ -48,12 +48,12 @@ class PedidoControllerTests {
     List<Pizza> pizzas = new ArrayList<>();
     List<ProdutoDTO> produtoDTOS = new ArrayList<>();
     List<Produto> produtos = new ArrayList<>();
-    Pessoa pessoa = new Pessoa();
+    Cliente cliente = new Cliente();
     PessoaDTO pessoaDTO = new PessoaDTO();
     @BeforeEach
     void setupMocks() {
         MockitoAnnotations.openMocks(this);
-        pessoa.setId(1L);
+        cliente.setId(1L);
         pessoaDTO.setId(1L);
         pedidoDTO.setId(1L);
         pedidoDTO.setStatus(Status.AGUARDANDO_CONFIRMACAO);
@@ -80,8 +80,8 @@ class PedidoControllerTests {
         pedidoEntity.setValorEntrega(5D);
         pedidoEntity.setValorTotal(15D);
         pedidoEntity.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
-        pedidoEntity.setFuncionario(pessoa);
-        pedidoEntity.setCliente(pessoa);
+        pedidoEntity.setFuncionario(cliente);
+        pedidoEntity.setCliente(cliente);
         pizzas.add(new Pizza());
         produtos.add(new Produto());
         pedidoEntity.setPizzas(pizzas);
@@ -91,7 +91,7 @@ class PedidoControllerTests {
         when(repository.findById(1L)).thenReturn(Optional.of(pedidoEntity));
         when(pizzaService.findById(1L)).thenReturn(new PizzaDTO());
         when(produtoService.findById(1L)).thenReturn(new ProdutoDTO());
-        when(pessoaRepository.findById(1L)).thenReturn(Optional.of(new Pessoa()));
+        when(pessoaRepository.findById(1L)).thenReturn(Optional.of(new Cliente()));
         when(repository.findAll()).thenReturn(pedidoEntityList);
         when(repository.save(Mockito.any(Pedido.class))).thenReturn(pedidoEntity);
 

@@ -1,8 +1,8 @@
 package com.example.uniamerica.pizzaria.service;
 
 import com.example.uniamerica.pizzaria.dto.PessoaDTO;
-import com.example.uniamerica.pizzaria.entity.Pessoa;
-import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.entity.Cliente;
+import com.example.uniamerica.pizzaria.entity.Role;
 import com.example.uniamerica.pizzaria.repository.PessoaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +20,27 @@ public class PessoaService {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public Pessoa toPessoa(PessoaDTO pessoaDTO){
-        return modelMapper.map(pessoaDTO,Pessoa.class);
+    public Cliente toPessoa(PessoaDTO pessoaDTO){
+        return modelMapper.map(pessoaDTO, Cliente.class);
     }
 
-    public PessoaDTO toPessoaDTO(Pessoa pessoaEntidade){
-        return modelMapper.map(pessoaEntidade, PessoaDTO.class);
+    public PessoaDTO toPessoaDTO(Cliente clienteEntidade){
+        return modelMapper.map(clienteEntidade, PessoaDTO.class);
     }
 
     public PessoaDTO findById(long id){
-        Pessoa pessoa = repository.findById(id).orElse(null);
-        return toPessoaDTO(pessoa);
+        Cliente cliente = repository.findById(id).orElse(null);
+        return toPessoaDTO(cliente);
     }
 
     public List<PessoaDTO>getAll(){
         return repository.findAll().stream().map(this::toPessoaDTO).toList();
     }
     public List<PessoaDTO>getAllClientes(){
-        return repository.findAllByTipo(TipoPessoa.CLIENTE).stream().map(this::toPessoaDTO).toList();
+        return repository.findAllByTipo(Role.CLIENTE).stream().map(this::toPessoaDTO).toList();
     }
     public List<PessoaDTO>getAllFuncionarios(){
-        return repository.findAllByTipo(TipoPessoa.FUNCIONARIO).stream().map(this::toPessoaDTO).toList();
+        return repository.findAllByTipo(Role.FUNCIONARIO).stream().map(this::toPessoaDTO).toList();
     }
 
     @Transactional
@@ -52,7 +52,7 @@ public class PessoaService {
         Assert.notNull(pessoa.getTelefone(),"Por favor, digite um telefone!");
         Assert.hasText(pessoa.getNome(),"Por favor, digite um telefone válido!");
 
-        final List<Pessoa>pessoasCpf = this.repository.findByCpf(pessoa.getCpf());
+        final List<Cliente>pessoasCpf = this.repository.findByCpf(pessoa.getCpf());
         Assert.isTrue(pessoasCpf.isEmpty(),"Cpf já cadastrado.");
 
        return toPessoaDTO(repository.save(toPessoa(pessoa)));

@@ -1,9 +1,9 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
 import com.example.uniamerica.pizzaria.dto.PessoaDTO;
+import com.example.uniamerica.pizzaria.entity.Cliente;
 import com.example.uniamerica.pizzaria.entity.Endereco;
-import com.example.uniamerica.pizzaria.entity.Pessoa;
-import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.entity.Role;
 import com.example.uniamerica.pizzaria.repository.PessoaRepository;
 import com.example.uniamerica.pizzaria.service.PessoaService;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
- class PessoaServiceTests {
+ class ClienteServiceTests {
     @Mock
     private PessoaRepository repository;
 
@@ -33,18 +33,18 @@ import static org.mockito.Mockito.*;
     private List<PessoaDTO> pessoaDTOList = new ArrayList<>();
     private PessoaDTO pessoaDTO = new PessoaDTO();
     private List<Endereco>enderecoList;
-    private Pessoa pessoaEntidade = new Pessoa();
+    private Cliente clienteEntidade = new Cliente();
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        pessoaEntidade.setTipoPessoa(TipoPessoa.FUNCIONARIO);
-        pessoaEntidade.setId(1L);
-        pessoaEntidade.setNome("nome");
-        pessoaEntidade.setCpf("cpf");
-        pessoaEntidade.setTelefone("telefone");
+        clienteEntidade.setTipoPessoa(Role.FUNCIONARIO);
+        clienteEntidade.setId(1L);
+        clienteEntidade.setNome("nome");
+        clienteEntidade.setCpf("cpf");
+        clienteEntidade.setTelefone("telefone");
 
-        pessoaDTO.setTipoPessoa(TipoPessoa.FUNCIONARIO);
+        pessoaDTO.setRole(Role.FUNCIONARIO);
         pessoaDTO.setCpf("cpf");
         pessoaDTO.setId(1L);
         pessoaDTO.setNome("nome");
@@ -54,18 +54,18 @@ import static org.mockito.Mockito.*;
 
 
         when(repository.findAll()).thenReturn(pessoaDTOList.stream().map(pessoaDTO -> service.toPessoa(pessoaDTO)).toList());
-        when(repository.save(Mockito.any(Pessoa.class))).thenReturn(pessoaEntidade);
-        when(repository.findById(1L)).thenReturn(Optional.of(pessoaEntidade));
+        when(repository.save(Mockito.any(Cliente.class))).thenReturn(clienteEntidade);
+        when(repository.findById(1L)).thenReturn(Optional.of(clienteEntidade));
 
     }
     @Test
     void pessoaDtoToPessoaEntityTest(){
-        Pessoa pessoa = service.toPessoa(pessoaDTO);
-        org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(pessoaEntidade);
+        Cliente cliente = service.toPessoa(pessoaDTO);
+        org.assertj.core.api.Assertions.assertThat(cliente).usingRecursiveComparison().isEqualTo(clienteEntidade);
     }
     @Test
     void pessoaEntidadeToPessoaDtoTest(){
-        PessoaDTO pessoa = service.toPessoaDTO(pessoaEntidade);
+        PessoaDTO pessoa = service.toPessoaDTO(clienteEntidade);
         org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(pessoaDTO);
     }
 
@@ -86,7 +86,7 @@ import static org.mockito.Mockito.*;
     @Test
     void pessoaPostTest(){
         PessoaDTO result = service.post(pessoaDTO);
-        verify(repository,times(1)).save(Mockito.any(Pessoa.class));
+        verify(repository,times(1)).save(Mockito.any(Cliente.class));
 
         Assertions.assertNotNull(result);
 
@@ -94,7 +94,7 @@ import static org.mockito.Mockito.*;
         Assertions.assertEquals(1L,result.getId());
         Assertions.assertEquals("cpf",result.getCpf());
         Assertions.assertEquals("telefone",result.getTelefone());
-        Assertions.assertEquals(TipoPessoa.FUNCIONARIO,result.getTipoPessoa());
+        Assertions.assertEquals(Role.FUNCIONARIO,result.getRole());
 
     }
 

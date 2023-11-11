@@ -1,6 +1,6 @@
 package com.example.uniamerica.pizzaria.dto;
 
-import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.entity.Role;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,5 +28,5 @@ public class PessoaDTO extends AbstractEntityDTO {
     private EnderecoDTO endereco;
 
     @NotNull(message = "Defina o tipo de pessoa a ser cadastrada.")
-    private TipoPessoa tipoPessoa;
+    private Role role;
 }

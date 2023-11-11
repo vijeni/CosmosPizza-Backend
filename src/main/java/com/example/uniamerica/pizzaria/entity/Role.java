@@ -1,6 +1,6 @@
 package com.example.uniamerica.pizzaria.entity;
 
-public enum TipoPessoa {
+public enum Role {
     FUNCIONARIO,
     CLIENTE
 

@@ -2,7 +2,7 @@ package com.example.uniamerica.pizzaria.DTOTests;
 
 import com.example.uniamerica.pizzaria.dto.EnderecoDTO;
 import com.example.uniamerica.pizzaria.dto.PessoaDTO;
-import com.example.uniamerica.pizzaria.entity.TipoPessoa;
+import com.example.uniamerica.pizzaria.entity.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
- class PessoaDTOTests {
+ class ClienteDTOTests {
     private PessoaDTO pessoaDTO = new PessoaDTO();
     private EnderecoDTO endereco = new EnderecoDTO();
     @BeforeEach
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         pessoaDTO.setCpf("676.990.230-30");
         pessoaDTO.setTelefone("999999999");
         pessoaDTO.setEndereco(endereco);
-        pessoaDTO.setTipoPessoa(TipoPessoa.FUNCIONARIO);
+        pessoaDTO.setRole(Role.FUNCIONARIO);
     }
     @Test
     void pessoaIdTest(){
@@ -45,11 +45,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void pessoaTipoTest(){
-        assertEquals(TipoPessoa.FUNCIONARIO, pessoaDTO.getTipoPessoa());
+        assertEquals(Role.FUNCIONARIO, pessoaDTO.getRole());
     }
     @Test
     void pessoaAllArgsConstructorTest(){
-        PessoaDTO pessoaAllArgs = new PessoaDTO("Joao", "676.990.230-30", "999999999", endereco, TipoPessoa.FUNCIONARIO);
+        PessoaDTO pessoaAllArgs = new PessoaDTO("Joao", "676.990.230-30", "999999999", endereco, Role.FUNCIONARIO);
         assertThat(pessoaDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(pessoaAllArgs);
     }
 }

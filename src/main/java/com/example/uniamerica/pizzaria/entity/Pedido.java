@@ -21,12 +21,12 @@ public class Pedido extends  AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "clientes_id")
     @Getter @Setter
-    private Pessoa cliente;
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "funcionarios_id")
     @Getter @Setter
-    private Pessoa funcionario;
+    private Cliente funcionario;
 
     @Getter @Setter
     @Enumerated(EnumType.STRING)

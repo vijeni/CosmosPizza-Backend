@@ -44,14 +44,14 @@ import static org.mockito.Mockito.*;
     List<Pizza> pizzas = new ArrayList<>();
     List<ProdutoDTO> produtoDTOS = new ArrayList<>();
     List<Produto> produtos = new ArrayList<>();
-    Pessoa pessoa = new Pessoa();
+    Cliente cliente = new Cliente();
     PessoaDTO pessoaDTO = new PessoaDTO();
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
-        pessoa.setId(1L);
+        cliente.setId(1L);
         pessoaDTO.setId(1L);
 
         pedidoDTO.setId(1L);
@@ -79,8 +79,8 @@ import static org.mockito.Mockito.*;
         pedidoEntity.setValorEntrega(5D);
         pedidoEntity.setValorTotal(15D);
         pedidoEntity.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
-        pedidoEntity.setFuncionario(pessoa);
-        pedidoEntity.setCliente(pessoa);
+        pedidoEntity.setFuncionario(cliente);
+        pedidoEntity.setCliente(cliente);
         pizzas.add(new Pizza());
         produtos.add(new Produto());
         pedidoEntity.setPizzas(pizzas);
@@ -91,7 +91,7 @@ import static org.mockito.Mockito.*;
         when(repository.findById(1L)).thenReturn(Optional.of(pedidoEntity));
         when(repository.findAll()).thenReturn(pedidoEntityList);
         when(repository.save(Mockito.any(Pedido.class))).thenReturn(pedidoEntity);
-        when(pessoaRepository.findById(Mockito.any(Long.class))).thenReturn(Optional.of(pessoa));
+        when(pessoaRepository.findById(Mockito.any(Long.class))).thenReturn(Optional.of(cliente));
     }
     @Test
     void pedidoDtoToPedidoEntityTest(){

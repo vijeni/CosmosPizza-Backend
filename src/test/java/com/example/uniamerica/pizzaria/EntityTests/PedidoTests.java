@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
  class PedidoTests {
     private Pedido pedido = new Pedido();
-    private Pessoa pessoa = new Pessoa();
+    private Cliente cliente = new Cliente();
     private List<Pizza> pizzas = new ArrayList<>();
     private List<Produto> produtos = new ArrayList<>();
     private LocalDateTime data = LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0);
@@ -30,8 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         pedido.setValorEntrega(5D);
         pedido.setValorTotal(15D);
         pedido.setDataAbertura(data);
-        pedido.setFuncionario(pessoa);
-        pedido.setCliente(pessoa);
+        pedido.setFuncionario(cliente);
+        pedido.setCliente(cliente);
         pizzas.add(new Pizza());
         produtos.add(new Produto());
         pedido.setPizzas(pizzas);
@@ -61,11 +61,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void pedidoClienteTest(){
-        assertEquals(pessoa, pedido.getCliente());
+        assertEquals(cliente, pedido.getCliente());
     }
     @Test
     void pedidoFuncionarioTest(){
-        assertEquals(pessoa, pedido.getFuncionario());
+        assertEquals(cliente, pedido.getFuncionario());
     }
     @Test
     void pedidoPizzasTest(){
@@ -77,7 +77,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void pedidoAllArgsConstructorTest(){
-        Pedido produtoAllArgs = new Pedido(pessoa, pessoa, Status.AGUARDANDO_CONFIRMACAO, 10D, 5D,  15D, Pagamento.DEBITO, true, data, data, produtos, pizzas);
+        Pedido produtoAllArgs = new Pedido(cliente, cliente, Status.AGUARDANDO_CONFIRMACAO, 10D, 5D,  15D, Pagamento.DEBITO, true, data, data, produtos, pizzas);
         assertThat(pedido).usingRecursiveComparison().ignoringFields("id", "dataConclusao").isEqualTo(produtoAllArgs);
     }
 }
