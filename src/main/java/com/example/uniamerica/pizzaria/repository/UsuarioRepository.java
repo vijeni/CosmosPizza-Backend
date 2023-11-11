@@ -16,6 +16,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     public List<Usuario> findByCpf(@Param("cpf") final String cpf);
 
     @Query("from Usuario where username = :username")
-    public List<Usuario> findByUsername(@Param("username") final String username);
+    public Usuario findByUsername(@Param("username") final String username);
 
 }
