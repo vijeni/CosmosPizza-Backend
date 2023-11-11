@@ -3,6 +3,7 @@ package com.example.uniamerica.pizzaria.controller;
 import com.example.uniamerica.pizzaria.dto.ClienteDTO;
 import com.example.uniamerica.pizzaria.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,18 +29,22 @@ public class ClienteController {
 
 
     @PostMapping("/cadastrar")
+    @PreAuthorize("hasAnyAuthority()")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasAnyAuthority()")
     public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO cliente, @PathVariable long id){
         return ResponseEntity.ok(service.put(cliente, id));
     }
     @DeleteMapping("/desativar/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>desativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.desativar(id));
     }
     @DeleteMapping("/ativar/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }
