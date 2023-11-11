@@ -29,7 +29,11 @@ public class Usuario extends AbstractEntity implements UserDetails {
     @Column(name="tipo_pessoa", nullable = false)
     private Role role;
 
-
+    public Usuario(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
