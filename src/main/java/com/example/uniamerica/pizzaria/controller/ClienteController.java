@@ -47,4 +47,5 @@ public class ClienteController {
     public ResponseEntity<ClienteDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }
+
 }

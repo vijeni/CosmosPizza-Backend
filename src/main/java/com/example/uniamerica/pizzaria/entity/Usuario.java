@@ -2,6 +2,8 @@ package com.example.uniamerica.pizzaria.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,12 +19,12 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Usuario extends AbstractEntity implements UserDetails {
-    @Column(name="username", nullable = false)
-    private String username;
 
+
+    private String username;
     @Getter @Setter
-    @Column(name="passowrd", nullable = false)
     private String password;
 
     @Getter @Setter
@@ -30,7 +32,7 @@ public class Usuario extends AbstractEntity implements UserDetails {
     private String cpf;
 
     @Getter @Setter
-    @Column(name="tipo_pessoa", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public Usuario(String username, String password, Role role) {
@@ -41,9 +43,11 @@ public class Usuario extends AbstractEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<SimpleGrantedAuthority> authoritySet = new HashSet<>();
-        authoritySet.add(new SimpleGrantedAuthority(role.name()));
-        return authoritySet;
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+
+        authorities.add(new SimpleGrantedAuthority(role.name()));
+
+        return authorities;
     }
 
     @Override

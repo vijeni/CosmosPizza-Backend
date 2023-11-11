@@ -58,4 +58,16 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }
+
+    @GetMapping("/teste/admin")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String testeAdm(){
+        return "<h4>Se você estiver vendo essa tela, é porque você é admin!</h4>";
+    }
+
+    @GetMapping("/teste/funcionario")
+    @PreAuthorize("hasAuthority('FUNCIONARIO')")
+    public String testeFuncionario(){
+        return "<h4>Se você estiver vendo essa tela, é porque você é funcionário!</h4>";
+    }
 }
