@@ -18,8 +18,6 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 public class Usuario extends AbstractEntity implements UserDetails {
-
-
     @Column(name="username", nullable = false)
     private String username;
 
@@ -27,6 +25,9 @@ public class Usuario extends AbstractEntity implements UserDetails {
     @Column(name="passowrd", nullable = false)
     private String password;
 
+    @Getter @Setter
+    @Column(name="cpf", nullable = false)
+    private String cpf;
 
     @Getter @Setter
     @Column(name="tipo_pessoa", nullable = false)
