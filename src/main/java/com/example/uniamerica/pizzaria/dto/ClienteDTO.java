@@ -27,6 +27,4 @@ public class ClienteDTO extends AbstractEntityDTO {
     @NotNull(message = "Insira um endereço!")
     private EnderecoDTO endereco;
 
-    @NotNull(message = "Defina o tipo de pessoa a ser cadastrada.")
-    private Role role;
 }

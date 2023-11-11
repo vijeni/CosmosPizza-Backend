@@ -20,5 +20,7 @@ public class UsuarioDTO extends AbstractEntityDTO{
     @NotNull
     private Role role;
 
+    @NotNull
+    private String cpf;
 
 }
