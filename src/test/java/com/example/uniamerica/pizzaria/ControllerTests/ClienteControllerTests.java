@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.ControllerTests;
 
 import com.example.uniamerica.pizzaria.controller.ClienteController;
 import com.example.uniamerica.pizzaria.dto.ClienteDTO;
+import com.example.uniamerica.pizzaria.entity.Cliente;
 import com.example.uniamerica.pizzaria.service.ClienteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -89,7 +90,8 @@ class ClienteControllerTests {
     void pessoaDeleteTest(){
         Long pessoaId = 1L;
 
-        ResponseEntity<String> response = clienteController.deletar(pessoaId);
+
+        ResponseEntity<String> response = clienteController.desativar(pessoaId);
 
         Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
         verify(clienteService,times(1)).desativar(pessoaId);
