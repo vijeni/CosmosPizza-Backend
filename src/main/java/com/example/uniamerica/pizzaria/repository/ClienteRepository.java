@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-
     @Query("from Cliente where cpf = :cpf")
     public List<Cliente> findByCpf(@Param("cpf") final String cpf);
 }
