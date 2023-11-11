@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaDTO extends AbstractEntityDTO {
+public class ClienteDTO extends AbstractEntityDTO {
 
     @NotNull(message = "Insira um nome!") @NotEmpty(message = "Insira um nome!")
     @Size(min = 3, max = 40,message = "No mínimo 3 e no máximo 40 caracteres!")

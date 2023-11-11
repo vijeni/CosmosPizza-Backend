@@ -1,9 +1,9 @@
 package com.example.uniamerica.pizzaria.service;
 
-import com.example.uniamerica.pizzaria.dto.PessoaDTO;
+import com.example.uniamerica.pizzaria.dto.ClienteDTO;
 import com.example.uniamerica.pizzaria.entity.Cliente;
 import com.example.uniamerica.pizzaria.entity.Role;
-import com.example.uniamerica.pizzaria.repository.PessoaRepository;
+import com.example.uniamerica.pizzaria.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,38 +13,38 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @Service
-public class PessoaService {
+public class ClienteService {
 
     @Autowired
-    private PessoaRepository repository;
+    private ClienteRepository repository;
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public Cliente toPessoa(PessoaDTO pessoaDTO){
-        return modelMapper.map(pessoaDTO, Cliente.class);
+    public Cliente toPessoa(ClienteDTO clienteDTO){
+        return modelMapper.map(clienteDTO, Cliente.class);
     }
 
-    public PessoaDTO toPessoaDTO(Cliente clienteEntidade){
-        return modelMapper.map(clienteEntidade, PessoaDTO.class);
+    public ClienteDTO toPessoaDTO(Cliente clienteEntidade){
+        return modelMapper.map(clienteEntidade, ClienteDTO.class);
     }
 
-    public PessoaDTO findById(long id){
+    public ClienteDTO findById(long id){
         Cliente cliente = repository.findById(id).orElse(null);
         return toPessoaDTO(cliente);
     }
 
-    public List<PessoaDTO>getAll(){
+    public List<ClienteDTO>getAll(){
         return repository.findAll().stream().map(this::toPessoaDTO).toList();
     }
-    public List<PessoaDTO>getAllClientes(){
+    public List<ClienteDTO>getAllClientes(){
         return repository.findAllByTipo(Role.CLIENTE).stream().map(this::toPessoaDTO).toList();
     }
-    public List<PessoaDTO>getAllFuncionarios(){
+    public List<ClienteDTO>getAllFuncionarios(){
         return repository.findAllByTipo(Role.FUNCIONARIO).stream().map(this::toPessoaDTO).toList();
     }
 
     @Transactional
-    public PessoaDTO post(PessoaDTO pessoa) {
+    public ClienteDTO post(ClienteDTO pessoa) {
         Assert.notNull(pessoa.getNome(),"Por favor, digite um nome!");
         Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
         Assert.hasText(pessoa.getNome(),"Por favor, digite um nome válido!");
@@ -58,7 +58,7 @@ public class PessoaService {
        return toPessoaDTO(repository.save(toPessoa(pessoa)));
     }
     @Transactional
-    public PessoaDTO put(PessoaDTO pessoa, Long id) {
+    public ClienteDTO put(ClienteDTO pessoa, Long id) {
         Assert.notNull(id, "Por favor, insira um ID!");
         Assert.notNull(pessoa.getId(),"Por favor, insira um ID!");
         Assert.notNull(pessoa.getCpf(),"Por favor, digite um CPF!");
@@ -70,15 +70,15 @@ public class PessoaService {
         return toPessoaDTO(repository.save(toPessoa(pessoa)));
     }
     @Transactional
-    public PessoaDTO desativar(long id) {
-        PessoaDTO pessoa = findById(id);
+    public ClienteDTO desativar(long id) {
+        ClienteDTO pessoa = findById(id);
         pessoa.desativar();
         return toPessoaDTO(repository.save(toPessoa(pessoa)));
 
     }
     @Transactional
-    public PessoaDTO ativar(long id) {
-        PessoaDTO pessoa = findById(id);
+    public ClienteDTO ativar(long id) {
+        ClienteDTO pessoa = findById(id);
         pessoa.ativar();
         return toPessoaDTO(repository.save(toPessoa(pessoa)));
 

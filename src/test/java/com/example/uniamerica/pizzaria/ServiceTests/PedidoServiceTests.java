@@ -3,7 +3,7 @@ package com.example.uniamerica.pizzaria.ServiceTests;
 import com.example.uniamerica.pizzaria.dto.*;
 import com.example.uniamerica.pizzaria.entity.*;
 import com.example.uniamerica.pizzaria.repository.PedidoRepository;
-import com.example.uniamerica.pizzaria.repository.PessoaRepository;
+import com.example.uniamerica.pizzaria.repository.ClienteRepository;
 import com.example.uniamerica.pizzaria.service.PedidoService;
 import com.example.uniamerica.pizzaria.service.PizzaService;
 import com.example.uniamerica.pizzaria.service.ProdutoService;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
     @Mock
     ProdutoService produtoService;
     @Mock
-    PessoaRepository pessoaRepository;
+    ClienteRepository clienteRepository;
     @InjectMocks
     private PedidoService service;
 
@@ -45,14 +45,14 @@ import static org.mockito.Mockito.*;
     List<ProdutoDTO> produtoDTOS = new ArrayList<>();
     List<Produto> produtos = new ArrayList<>();
     Cliente cliente = new Cliente();
-    PessoaDTO pessoaDTO = new PessoaDTO();
+    ClienteDTO clienteDTO = new ClienteDTO();
 
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
 
         cliente.setId(1L);
-        pessoaDTO.setId(1L);
+        clienteDTO.setId(1L);
 
         pedidoDTO.setId(1L);
         pedidoDTO.setStatus(Status.AGUARDANDO_CONFIRMACAO);
@@ -63,8 +63,8 @@ import static org.mockito.Mockito.*;
         pedidoDTO.setValorEntrega(5D);
         pedidoDTO.setValorTotal(15D);
         pedidoDTO.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
-        pedidoDTO.setFuncionario(pessoaDTO);
-        pedidoDTO.setCliente(pessoaDTO);
+        pedidoDTO.setFuncionario(clienteDTO);
+        pedidoDTO.setCliente(clienteDTO);
         pizzasDTO.add(new PizzaDTO());
         produtoDTOS.add(new ProdutoDTO());
         pedidoDTO.setPizzas(pizzasDTO);
@@ -91,7 +91,7 @@ import static org.mockito.Mockito.*;
         when(repository.findById(1L)).thenReturn(Optional.of(pedidoEntity));
         when(repository.findAll()).thenReturn(pedidoEntityList);
         when(repository.save(Mockito.any(Pedido.class))).thenReturn(pedidoEntity);
-        when(pessoaRepository.findById(Mockito.any(Long.class))).thenReturn(Optional.of(cliente));
+        when(clienteRepository.findById(Mockito.any(Long.class))).thenReturn(Optional.of(cliente));
     }
     @Test
     void pedidoDtoToPedidoEntityTest(){

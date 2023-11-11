@@ -1,11 +1,11 @@
 package com.example.uniamerica.pizzaria.ServiceTests;
 
-import com.example.uniamerica.pizzaria.dto.PessoaDTO;
+import com.example.uniamerica.pizzaria.dto.ClienteDTO;
 import com.example.uniamerica.pizzaria.entity.Cliente;
 import com.example.uniamerica.pizzaria.entity.Endereco;
 import com.example.uniamerica.pizzaria.entity.Role;
-import com.example.uniamerica.pizzaria.repository.PessoaRepository;
-import com.example.uniamerica.pizzaria.service.PessoaService;
+import com.example.uniamerica.pizzaria.repository.ClienteRepository;
+import com.example.uniamerica.pizzaria.service.ClienteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,13 +25,13 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
  class ClienteServiceTests {
     @Mock
-    private PessoaRepository repository;
+    private ClienteRepository repository;
 
     @InjectMocks
-    private PessoaService service;
+    private ClienteService service;
 
-    private List<PessoaDTO> pessoaDTOList = new ArrayList<>();
-    private PessoaDTO pessoaDTO = new PessoaDTO();
+    private List<ClienteDTO> clienteDTOList = new ArrayList<>();
+    private ClienteDTO clienteDTO = new ClienteDTO();
     private List<Endereco>enderecoList;
     private Cliente clienteEntidade = new Cliente();
     @BeforeEach
@@ -44,48 +44,48 @@ import static org.mockito.Mockito.*;
         clienteEntidade.setCpf("cpf");
         clienteEntidade.setTelefone("telefone");
 
-        pessoaDTO.setRole(Role.FUNCIONARIO);
-        pessoaDTO.setCpf("cpf");
-        pessoaDTO.setId(1L);
-        pessoaDTO.setNome("nome");
-        pessoaDTO.setTelefone("telefone");
+        clienteDTO.setRole(Role.FUNCIONARIO);
+        clienteDTO.setCpf("cpf");
+        clienteDTO.setId(1L);
+        clienteDTO.setNome("nome");
+        clienteDTO.setTelefone("telefone");
 
-        pessoaDTOList.add(pessoaDTO);
+        clienteDTOList.add(clienteDTO);
 
 
-        when(repository.findAll()).thenReturn(pessoaDTOList.stream().map(pessoaDTO -> service.toPessoa(pessoaDTO)).toList());
+        when(repository.findAll()).thenReturn(clienteDTOList.stream().map(pessoaDTO -> service.toPessoa(pessoaDTO)).toList());
         when(repository.save(Mockito.any(Cliente.class))).thenReturn(clienteEntidade);
         when(repository.findById(1L)).thenReturn(Optional.of(clienteEntidade));
 
     }
     @Test
     void pessoaDtoToPessoaEntityTest(){
-        Cliente cliente = service.toPessoa(pessoaDTO);
+        Cliente cliente = service.toPessoa(clienteDTO);
         org.assertj.core.api.Assertions.assertThat(cliente).usingRecursiveComparison().isEqualTo(clienteEntidade);
     }
     @Test
     void pessoaEntidadeToPessoaDtoTest(){
-        PessoaDTO pessoa = service.toPessoaDTO(clienteEntidade);
-        org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(pessoaDTO);
+        ClienteDTO pessoa = service.toPessoaDTO(clienteEntidade);
+        org.assertj.core.api.Assertions.assertThat(pessoa).usingRecursiveComparison().isEqualTo(clienteDTO);
     }
 
     @Test
     void pessoaGetById(){
-        PessoaDTO result = service.findById(1L);
+        ClienteDTO result = service.findById(1L);
         Assertions.assertNotNull(result);
         verify(repository,times(1)).findById(1L);
     }
 
     @Test
     void pessoaGetAll(){
-        List<PessoaDTO>result = service.getAll();
+        List<ClienteDTO>result = service.getAll();
         Assertions.assertNotNull(service);
-        assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTOList);
+        assertThat(result).usingRecursiveComparison().isEqualTo(clienteDTOList);
     }
 
     @Test
     void pessoaPostTest(){
-        PessoaDTO result = service.post(pessoaDTO);
+        ClienteDTO result = service.post(clienteDTO);
         verify(repository,times(1)).save(Mockito.any(Cliente.class));
 
         Assertions.assertNotNull(result);
@@ -100,9 +100,9 @@ import static org.mockito.Mockito.*;
 
     @Test
     void pessoaPutTest(){
-        PessoaDTO result = service.put(pessoaDTO,1L);
+        ClienteDTO result = service.put(clienteDTO,1L);
         Assertions.assertNotNull(result);
-        assertThat(result).usingRecursiveComparison().isEqualTo(pessoaDTO);
+        assertThat(result).usingRecursiveComparison().isEqualTo(clienteDTO);
     }
 
     @Test

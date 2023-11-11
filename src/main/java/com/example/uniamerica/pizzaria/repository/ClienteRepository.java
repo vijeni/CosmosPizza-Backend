@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<Cliente, Long> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query("SELECT p from Cliente p where p.tipoPessoa = :tipoPessoa")
     List<Cliente> findAllByTipo(@Param("tipoPessoa") Role role);
 

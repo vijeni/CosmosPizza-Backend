@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
  class PedidoDTOTests {
     private PedidoDTO pedidoDTO = new PedidoDTO();
-    private PessoaDTO pessoaDTO = new PessoaDTO();
+    private ClienteDTO clienteDTO = new ClienteDTO();
     private List<PizzaDTO> pizzasDTO = new ArrayList<>();
     private List<ProdutoDTO> produtoDTOS = new ArrayList<>();
     private LocalDateTime data = LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0);
@@ -31,8 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         pedidoDTO.setValorEntrega(5D);
         pedidoDTO.setValorTotal(15D);
         pedidoDTO.setDataAbertura(data);
-        pedidoDTO.setFuncionario(pessoaDTO);
-        pedidoDTO.setCliente(pessoaDTO);
+        pedidoDTO.setFuncionario(clienteDTO);
+        pedidoDTO.setCliente(clienteDTO);
         pizzasDTO.add(new PizzaDTO());
         produtoDTOS.add(new ProdutoDTO());
         pedidoDTO.setPizzas(pizzasDTO);
@@ -62,11 +62,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void pedidoClienteTest(){
-        assertEquals(pessoaDTO, pedidoDTO.getCliente());
+        assertEquals(clienteDTO, pedidoDTO.getCliente());
     }
     @Test
     void pedidoFuncionarioTest(){
-        assertEquals(pessoaDTO, pedidoDTO.getFuncionario());
+        assertEquals(clienteDTO, pedidoDTO.getFuncionario());
     }
     @Test
     void pedidoPizzasTest(){
@@ -78,7 +78,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     }
     @Test
     void pedidoAllArgsConstructorTest(){
-        PedidoDTO produtoAllArgs = new PedidoDTO(pessoaDTO, pessoaDTO, Status.AGUARDANDO_CONFIRMACAO, true, 10D, data, data, 5D, 15D, Pagamento.DEBITO, produtoDTOS, pizzasDTO);
+        PedidoDTO produtoAllArgs = new PedidoDTO(clienteDTO, clienteDTO, Status.AGUARDANDO_CONFIRMACAO, true, 10D, data, data, 5D, 15D, Pagamento.DEBITO, produtoDTOS, pizzasDTO);
         assertThat(pedidoDTO).usingRecursiveComparison().ignoringFields("id", "dataConclusao").isEqualTo(produtoAllArgs);
     }
 }
