@@ -21,16 +21,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioDTO extends AbstractEntityDTO{
-    @NotNull
+    @NotNull(message = "Por favor, digite um username!")
     private String username;
 
-    @NotNull
+    @NotNull(message = "Por favor, escolha uma senha!")
     private String password;
 
-    @NotNull
+    @NotNull(message="É obrigatório escolher o nível de acesso.")
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @NotNull
+    @NotNull(message = "É obrigatório preencher o CPF.")
     private String cpf;
 }
