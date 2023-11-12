@@ -28,12 +28,12 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrar")
-    @PreAuthorize("hasAnyAuthority()")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
     @PutMapping("/editar/{id}")
-    @PreAuthorize("hasAnyAuthority()")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO cliente, @PathVariable long id){
         return ResponseEntity.ok(service.put(cliente, id));
     }
