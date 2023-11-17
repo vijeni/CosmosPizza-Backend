@@ -21,8 +21,8 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
    private UsuarioRepository repository;
 
-    @Autowired
-    private PasswordEncoder encoder;
+//    @Autowired
+//    private PasswordEncoder encoder;
 
     private final ModelMapper modelMapper = new ModelMapper();
 
@@ -70,7 +70,7 @@ public class UsuarioService implements UserDetailsService {
 
         Assert.isNull(usuarioUsername(usuario.getUsername()),"Esse username não está mais disponível!");
 
-        usuario.setPassword(encoder.encode(usuario.getPassword()));
+//        usuario.setPassword(encoder.encode(usuario.getPassword()));
         return toUsuarioDTO(repository.save(toUsuario(usuario)));
     }
 
@@ -89,7 +89,7 @@ public class UsuarioService implements UserDetailsService {
 
              Assert.isNull(usuarioUsername(usuario.getUsername()),"Esse username não está mais disponível!");
 
-            usuario.setPassword(encoder.encode(usuario.getPassword()));
+//            usuario.setPassword(encoder.encode(usuario.getPassword()));
             return toUsuarioDTO(repository.save(toUsuario(usuario)));
     }
     @Transactional

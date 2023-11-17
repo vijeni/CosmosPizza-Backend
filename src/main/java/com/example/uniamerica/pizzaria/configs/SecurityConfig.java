@@ -13,33 +13,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+//@Configuration
+//@EnableWebSecurity
+//@EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private UsuarioService service;
-
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(service);
-    }
-
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http
-                .cors(cors -> cors.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login/**").permitAll()
-                        .anyRequest().authenticated());
-        http.httpBasic(Customizer.withDefaults());
-        http.csrf(c -> c.disable());
-        return http.build();
-    }
-
-    @Bean
-    static PasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
+//    @Autowired
+//    private UsuarioService service;
+//
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+//        auth.userDetailsService(service);
+//    }
+//
+//    @Bean
+//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+//        http
+//                .cors(cors -> cors.disable())
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/login/**").permitAll()
+//                        .anyRequest().authenticated());
+//        http.httpBasic(Customizer.withDefaults());
+//        http.csrf(c -> c.disable());
+//        return http.build();
+//    }
+//
+//    @Bean
+//    static PasswordEncoder encoder(){
+//        return new BCryptPasswordEncoder();
+//    }
 
 }
