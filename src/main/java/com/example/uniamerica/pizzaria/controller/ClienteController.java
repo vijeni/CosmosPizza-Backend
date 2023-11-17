@@ -12,8 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente")
-@CrossOrigin(origins="http://localhost:4200")
-
 public class ClienteController {
     @Autowired
     ClienteService service;
@@ -28,22 +26,18 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
     @PutMapping("/editar/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO cliente, @PathVariable long id){
         return ResponseEntity.ok(service.put(cliente, id));
     }
     @DeleteMapping("/desativar/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>desativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.desativar(id));
     }
     @DeleteMapping("/ativar/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }
