@@ -1,9 +1,6 @@
 package com.example.uniamerica.pizzaria.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +18,17 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario extends AbstractEntity implements UserDetails {
+public class Usuario{
 
-
-    private String username;
+    @Id
     @Getter @Setter
-    private String password;
+    @Column(name = "id", unique = true)
+    private String id;
+
+    @Getter
+    @Setter
+    @Column(name="username", nullable = false, unique = true)
+    private String username;
 
     @Getter @Setter
     @Column(name="cpf", nullable = false)
@@ -33,50 +36,35 @@ public class Usuario extends AbstractEntity implements UserDetails {
 
     @Getter @Setter
     @Enumerated(EnumType.STRING)
+    @Column(name="role")
     private Role role;
 
-    public Usuario(String username, String password, Role role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    @Getter @Setter
+    @Column(name = "data_Cadastro", nullable = false)
+    private LocalDateTime cadastro;
+
+    @Getter @Setter
+    @Column(name = "data_edicao")
+    private LocalDateTime edicao;
+
+    @Getter @Setter
+    @Column(name = "delecao")
+    private LocalDateTime delecao;
+
+    public void desativar(){
+        this.delecao = LocalDateTime.now();
+    }
+    public void ativar() {
+        this.delecao = null;
+    }
+    @PrePersist
+    private void prePersist(){
+        this.cadastro = LocalDateTime.now();
+
+    }
+    @PreUpdate
+    private void preUpdate(){
+        this.edicao = LocalDateTime.now();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-
-        authorities.add(new SimpleGrantedAuthority(role.name()));
-
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

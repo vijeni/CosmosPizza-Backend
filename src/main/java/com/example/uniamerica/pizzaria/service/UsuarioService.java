@@ -17,12 +17,9 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService {
     @Autowired
    private UsuarioRepository repository;
-
-//    @Autowired
-//    private PasswordEncoder encoder;
 
     private final ModelMapper modelMapper = new ModelMapper();
 
@@ -105,13 +102,6 @@ public class UsuarioService implements UserDetailsService {
         usuario.ativar();
         return toUsuarioDTO(repository.save(toUsuario(usuario)));
 
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String retorno = String.valueOf(repository.findByUsername(username));
-        System.out.println(retorno);
-        return repository.findByUsername(username);
     }
 
 }

@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,8 @@ import java.util.Set;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO extends AbstractEntityDTO{
+public class UsuarioDTO{
+    private String id;
     @NotNull(message = "Por favor, digite um username!")
     private String username;
 
@@ -33,4 +35,15 @@ public class UsuarioDTO extends AbstractEntityDTO{
 
     @NotNull(message = "É obrigatório preencher o CPF.")
     private String cpf;
+
+    private LocalDateTime cadastro;
+    private LocalDateTime edicao;
+    private LocalDateTime delecao;
+
+    public void desativar(){
+        this.delecao = LocalDateTime.now();
+    }
+    public void ativar() {
+        this.delecao = null;
+    }
 }
