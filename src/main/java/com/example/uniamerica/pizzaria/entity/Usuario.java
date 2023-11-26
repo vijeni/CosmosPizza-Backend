@@ -31,7 +31,7 @@ public class Usuario{
     private String username;
 
     @Getter @Setter
-    @Column(name="cpf", nullable = false)
+    @Column(name="cpf", unique = true)
     private String cpf;
 
     @Getter @Setter

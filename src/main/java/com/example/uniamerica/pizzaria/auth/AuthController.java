@@ -1,6 +1,8 @@
 package com.example.uniamerica.pizzaria.auth;
 
 import com.example.uniamerica.pizzaria.dto.UsuarioAuthDTO;
+import com.example.uniamerica.pizzaria.dto.UsuarioDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,21 +18,10 @@ import org.springframework.util.MultiValueMap;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    @Autowired
+    AuthService service;
     @PostMapping
-    public ResponseEntity<String> geraToken(@RequestBody UsuarioAuthDTO usuarioAuth){
-        RestTemplate rt = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-        formData.add("client_id", usuarioAuth.getClientId());
-        formData.add("username", usuarioAuth.getUsername());
-        formData.add("password", usuarioAuth.getPassword());
-        formData.add("grant_type", usuarioAuth.getGrantType());
-
-        HttpEntity<MultiValueMap<String, String>> entity = new  HttpEntity<MultiValueMap<String, String>>(formData, headers);
-
-        return rt.postForEntity("http://localhost:8080/auth/realms/cosmos-pizza/protocol/openid-connect/token",entity, String.class);
+    public ResponseEntity<UsuarioDTO> login(@RequestBody UsuarioAuthDTO usuarioAuth){
+        return ResponseEntity.ok(service.login(usuarioAuth));
     }
 }

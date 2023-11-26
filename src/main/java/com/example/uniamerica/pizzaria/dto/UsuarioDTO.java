@@ -25,17 +25,11 @@ public class UsuarioDTO{
     private String id;
     @NotNull(message = "Por favor, digite um username!")
     private String username;
-
-    @NotNull(message = "Por favor, escolha uma senha!")
-    private String password;
-
     @NotNull(message="É obrigatório escolher o nível de acesso.")
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @NotNull(message = "É obrigatório preencher o CPF.")
     private String cpf;
-
+    private String token;
     private LocalDateTime cadastro;
     private LocalDateTime edicao;
     private LocalDateTime delecao;
