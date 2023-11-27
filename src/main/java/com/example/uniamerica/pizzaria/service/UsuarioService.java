@@ -1,6 +1,5 @@
 package com.example.uniamerica.pizzaria.service;
 
-import com.example.uniamerica.pizzaria.dto.UsuarioAuthDTO;
 import com.example.uniamerica.pizzaria.dto.UsuarioDTO;
 import com.example.uniamerica.pizzaria.entity.Role;
 import com.example.uniamerica.pizzaria.entity.Usuario;
@@ -27,16 +26,9 @@ public class UsuarioService {
     public UsuarioDTO toUsuarioDTO(Usuario usuarioEntidade){
         return modelMapper.map(usuarioEntidade, UsuarioDTO.class);
     }
-    public UsuarioDTO authToUsuarioDTO(UsuarioAuthDTO authDTO){
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(authDTO.getClientId());
-        usuarioDTO.setUsername(authDTO.getUsername());
-        usuarioDTO.setRole(Role.valueOf(authDTO.getRole()));
-        return usuarioDTO;
-    }
-
-    public UsuarioDTO findById(long id){
+    public UsuarioDTO findById(String id){
         Usuario usuario = repository.findById(id).orElse(null);
+        Assert.notNull(usuario, "Usuário não existe!");
         return toUsuarioDTO(usuario);
     }
 
@@ -83,14 +75,14 @@ public class UsuarioService {
             return toUsuarioDTO(repository.save(toUsuario(usuario)));
     }
     @Transactional
-    public UsuarioDTO desativar(long id) {
+    public UsuarioDTO desativar(String id) {
         UsuarioDTO pessoa = findById(id);
         pessoa.desativar();
         return toUsuarioDTO(repository.save(toUsuario(pessoa)));
 
     }
     @Transactional
-    public UsuarioDTO ativar(long id) {
+    public UsuarioDTO ativar(String id) {
         UsuarioDTO usuario = findById(id);
         usuario.ativar();
         return toUsuarioDTO(repository.save(toUsuario(usuario)));

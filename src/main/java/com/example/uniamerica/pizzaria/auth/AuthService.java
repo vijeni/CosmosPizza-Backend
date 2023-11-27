@@ -1,14 +1,16 @@
 package com.example.uniamerica.pizzaria.auth;
 
-import com.example.uniamerica.pizzaria.dto.UsuarioAuthDTO;
+import com.example.uniamerica.pizzaria.dto.LoginDTO;
 import com.example.uniamerica.pizzaria.dto.UsuarioDTO;
 import com.example.uniamerica.pizzaria.entity.Usuario;
+import com.example.uniamerica.pizzaria.repository.UsuarioRepository;
 import com.example.uniamerica.pizzaria.service.UsuarioService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -26,34 +28,50 @@ import java.util.Map;
 
 @Service
 public class AuthService {
-    String key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvraD0asmz6vDExl4XpYdmKgJJp5x5Erc3Fw9AMtKAqbZ9nJl2Kp/IzxP/DNHcRtwIwb51xvHuoLtJVgGworLXoG8P7skjqBpn/5ONubVaadW2Rw0NyNEGRLQwlKp40d6C2dcOyIkhP+ulh01HxWEdum4s8HSmWXoYPoroGd5CHXhQJs/rlhNh3hDZdLuzrBaD84ekTCm3rG8wqmQY5k1gjGUD+wYc0z8yYDja6i/hsD++TnGl7Cz0TKcWo8mTRVjbFEGLiGW88mZhd+PE6nkpdaoeRLunGxU/Lg04yERroLzrPkqf3sgMo+a2tTXyLvojLbFaCuKzmVAlcuAuPDtOQIDAQAB";
-    PublicKey publicKey = getRSAPublicKey(key);
-
     @Autowired
-    UsuarioService usuarioService;
-    private PublicKey getRSAPublicKey(String chaveRSAPublica) {
+    private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    @Value("${security.jwt.token}")
+    private String key;
+    @Value("${security.jwt.auth-url}")
+    private String authTokenUrl;
+
+    private PublicKey decodeSecret(String secret) {
         try {
-            byte[] keyBytes = Base64.getDecoder().decode(chaveRSAPublica);
+            byte[] keyBytes = Base64.getDecoder().decode(secret);
             X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(spec);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao obter a chave pública RSA", e);
+            throw new RuntimeException("Erro ao usara chave pública", e);
         }
     }
-    public UsuarioDTO login(UsuarioAuthDTO usuarioAuth){
-        RestTemplate rt = new RestTemplate();
+    public UsuarioDTO login(LoginDTO loginDTO){
+        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
+        UsuarioDTO usuarioRetorno = new UsuarioDTO();
+        Usuario usuarioBanco;
+        String role = "NONE";
+        String token;
+        PublicKey publicKey = decodeSecret(key);
+
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-        formData.add("client_id", usuarioAuth.getClientId());
-        formData.add("username", usuarioAuth.getUsername());
-        formData.add("password", usuarioAuth.getPassword());
-        formData.add("grant_type", usuarioAuth.getGrantType());
-        HttpEntity<MultiValueMap<String, String>> entity = new  HttpEntity<MultiValueMap<String, String>>(formData, headers);
-        AuthDTO retorno = rt.postForEntity("http://localhost:8080/auth/realms/cosmos-pizza/protocol/openid-connect/token",entity, AuthDTO.class).getBody();
 
-        String token = retorno.getAccess_token();
+        formData.add("client_id", "cosmos-pizza-api");
+        formData.add("username", loginDTO.getUsername());
+        formData.add("password", loginDTO.getPassword());
+        formData.add("grant_type", "password");
+
+        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(formData, headers);
+        AuthResponse retorno = restTemplate.postForEntity(authTokenUrl,entity,AuthResponse.class).getBody();
+
+        Assert.notNull(retorno, "Login inválido!");
+
+        token = retorno.getAccess_token();
+        Assert.notNull(token, "Login inválido!");
+
         Jws<Claims> claimsJws = Jwts.parserBuilder()
                 .setSigningKey(publicKey)
                 .build()
@@ -61,30 +79,32 @@ public class AuthService {
 
         Claims body = claimsJws.getBody();
         List<String> roles = (List<String>) body.get("realm_access", Map.class).get("roles");
+        for (String r:
+                roles) {
+            if(r.equals("ADMIN") || r.equals("FUNCIONARIO")){
+                role = r;
+                break;
+            }
+        }
         String username = (String) body.get("preferred_username");
         String id = (String) body.get("sub");
-
-        Usuario usuarioBanco = usuarioService.usuarioUsername(usuarioAuth.getUsername());
-        UsuarioDTO usuarioRetorno;
+        usuarioBanco = usuarioRepository.findById(id).orElse(null);
         if(usuarioBanco != null){
             usuarioRetorno = usuarioService.toUsuarioDTO(usuarioBanco);
-            usuarioRetorno.setToken(token);
+            if(!usuarioBanco.roleStringGet().equals(role)){
+                System.out.println(role);
+                usuarioBanco.roleString(role);
+                usuarioRetorno = usuarioService.toUsuarioDTO(usuarioRepository.save(usuarioBanco));
+            }
         }
         else{
-            UsuarioAuthDTO usuarioAuthDTO = new UsuarioAuthDTO();
-            usuarioAuthDTO.setClientId(id);
-            usuarioAuthDTO.setUsername(username);
-            for (String role:
-                 roles) {
-                if(role.equals("ADMIN") || role.equals("FUNCIONARIO")){
-                    usuarioAuthDTO.setRole(role);
-                    break;
-                }
-            }
-
-            usuarioRetorno =  usuarioService.post(usuarioService.authToUsuarioDTO(usuarioAuthDTO));
-            usuarioRetorno.setToken(token);
+            UsuarioDTO mock = new UsuarioDTO();
+            mock.setId(id);
+            mock.roleString(role);
+            mock.setUsername(username);
+            usuarioRetorno = usuarioService.post(mock);
         }
+        usuarioRetorno.setToken(token);
         return usuarioRetorno;
     }
 }

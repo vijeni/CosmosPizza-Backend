@@ -20,7 +20,7 @@ public class UsuarioController {
     private UsuarioService service;
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<UsuarioDTO> findById(@PathVariable("id") final Long id){
+    public ResponseEntity<UsuarioDTO> findById(@PathVariable("id") final String id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
@@ -46,11 +46,11 @@ public class UsuarioController {
         return ResponseEntity.ok(service.put(usuario, id));
     }
     @DeleteMapping("/desativar/{id}")
-    public ResponseEntity<UsuarioDTO>desativar(@PathVariable ("id") final long id){
+    public ResponseEntity<UsuarioDTO>desativar(@PathVariable ("id") final String id){
         return ResponseEntity.ok(service.desativar(id));
     }
     @DeleteMapping("/ativar/{id}")
-    public ResponseEntity<UsuarioDTO>ativar(@PathVariable ("id") final long id){
+    public ResponseEntity<UsuarioDTO>ativar(@PathVariable ("id") final String id){
         return ResponseEntity.ok(service.ativar(id));
     }
 

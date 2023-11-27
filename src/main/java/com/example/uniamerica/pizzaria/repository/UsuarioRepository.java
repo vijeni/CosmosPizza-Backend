@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     @Query("SELECT p from Usuario p where p.role = :role")
     List<Usuario> findAllByTipo(@Param("role") Role role);
 

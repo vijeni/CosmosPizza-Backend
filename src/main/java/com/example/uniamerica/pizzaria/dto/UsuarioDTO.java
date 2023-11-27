@@ -1,7 +1,6 @@
 package com.example.uniamerica.pizzaria.dto;
 
 import com.example.uniamerica.pizzaria.entity.Role;
-import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -9,14 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter @Setter
 @AllArgsConstructor
@@ -33,6 +26,13 @@ public class UsuarioDTO{
     private LocalDateTime cadastro;
     private LocalDateTime edicao;
     private LocalDateTime delecao;
+
+    public void roleString(String role){
+        this.role = Role.valueOf(role);
+    }
+    public String roleStringGet() {
+        return this.role.toString();
+    }
 
     public void desativar(){
         this.delecao = LocalDateTime.now();
