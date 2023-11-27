@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.file.AccessDeniedException;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -47,10 +50,10 @@ public class AuthService {
             throw new RuntimeException("Erro ao usara chave pública", e);
         }
     }
-    public UsuarioDTO login(LoginDTO loginDTO){
+    public UsuarioDTO login(LoginDTO loginDTO) throws AccessDeniedException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        UsuarioDTO usuarioRetorno = new UsuarioDTO();
+        UsuarioDTO usuarioRetorno;
         Usuario usuarioBanco;
         String role = "NONE";
         String token;
@@ -66,12 +69,7 @@ public class AuthService {
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(formData, headers);
         AuthResponse retorno = restTemplate.postForEntity(authTokenUrl,entity,AuthResponse.class).getBody();
-
-        Assert.notNull(retorno, "Login inválido!");
-
         token = retorno.getAccess_token();
-        Assert.notNull(token, "Login inválido!");
-
         Jws<Claims> claimsJws = Jwts.parserBuilder()
                 .setSigningKey(publicKey)
                 .build()
@@ -85,6 +83,10 @@ public class AuthService {
                 role = r;
                 break;
             }
+        }
+        if(role.equals("NONE")){
+            System.out.println(role);
+            throw new AccessDeniedException("Usuário sem permissões!");
         }
         String username = (String) body.get("preferred_username");
         String id = (String) body.get("sub");
