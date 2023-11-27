@@ -4,6 +4,7 @@ import com.example.uniamerica.pizzaria.dto.TamanhoDTO;
 import com.example.uniamerica.pizzaria.service.TamanhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +12,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tamanho")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class TamanhoController {
     @Autowired
     TamanhoService service;
     @GetMapping("/id/{id}")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<TamanhoDTO> findById(@PathVariable("id") final Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<List<TamanhoDTO>>getAll(){
         return ResponseEntity.ok(service.getAll());
     }

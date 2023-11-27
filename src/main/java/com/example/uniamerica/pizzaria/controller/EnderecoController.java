@@ -5,6 +5,7 @@ import com.example.uniamerica.pizzaria.service.EnderecosService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/endereco")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
+
 public class EnderecoController {
     @Autowired
     private EnderecosService service;

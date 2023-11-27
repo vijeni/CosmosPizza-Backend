@@ -14,25 +14,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuario")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
 
     @GetMapping("/id/{id}")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<UsuarioDTO> findById(@PathVariable("id") final String id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<List<UsuarioDTO>>getAll(){
 
         return ResponseEntity.ok(service.getAll());
     }
     @GetMapping("/todos/usuarios")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<List<UsuarioDTO>>getAllAdm(){
         return ResponseEntity.ok(service.getAllAdm());
     }
     @GetMapping("/todos/funcionarios")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<List<UsuarioDTO>>getAllFuncionarios(){
         return ResponseEntity.ok(service.getAllFuncionarios());
     }
@@ -52,15 +57,5 @@ public class UsuarioController {
     @DeleteMapping("/ativar/{id}")
     public ResponseEntity<UsuarioDTO>ativar(@PathVariable ("id") final String id){
         return ResponseEntity.ok(service.ativar(id));
-    }
-
-    @GetMapping("/teste/admin")
-    public String testeAdm(){
-        return "<h4>Se você estiver vendo essa tela, é porque você é admin!</h4>";
-    }
-
-    @GetMapping("/teste/funcionario")
-    public String testeFuncionario(){
-        return "<h4>Se você estiver vendo essa tela, é porque você é funcionário!</h4>";
     }
 }

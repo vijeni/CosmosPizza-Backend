@@ -12,20 +12,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class ClienteController {
     @Autowired
     ClienteService service;
     @GetMapping("/id/{id}")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>findById(@PathVariable("id") final Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<List<ClienteDTO>>getAll(){
 
         return ResponseEntity.ok(service.getAll());
     }
 
     @PostMapping("/cadastrar")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
