@@ -16,12 +16,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.file.AccessDeniedException;
+import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -40,17 +42,18 @@ public class AuthService {
     @Value("${security.jwt.auth-url}")
     private String authTokenUrl;
 
-    private PublicKey decodeSecret(String secret) {
+    private PublicKey decodeSecret(String secret) throws InvalidKeyException {
         try {
             byte[] keyBytes = Base64.getDecoder().decode(secret);
             X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(spec);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao usara chave pública", e);
+            throw new InvalidKeyException("Erro ao usar a chave pública", e);
         }
     }
-    public UsuarioDTO login(LoginDTO loginDTO) throws AccessDeniedException {
+    @Transactional
+    public UsuarioDTO login(LoginDTO loginDTO) throws AccessDeniedException, InvalidKeyException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         UsuarioDTO usuarioRetorno;

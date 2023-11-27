@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.nio.file.AccessDeniedException;
+import java.security.InvalidKeyException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -29,10 +30,16 @@ public class ExceptionHandlerAdvice {
     public String handleAccessDenied(AccessDeniedException e) {
         return e.getMessage();
     }
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
     public String handleUnauthorized() {
         return "Login inválido!";
+    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(InvalidKeyException.class)
+    public String handleInvalidKey() {
+        return "Erro de servidor!";
     }
 
     /**
