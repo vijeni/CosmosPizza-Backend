@@ -17,31 +17,32 @@ public class ClienteController {
     @Autowired
     ClienteService service;
     @GetMapping("/id/{id}")
-    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO', 'ADMIN')")
     public ResponseEntity<ClienteDTO>findById(@PathVariable("id") final Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/todos")
-    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO', 'ADMIN')")
     public ResponseEntity<List<ClienteDTO>>getAll(){
-
         return ResponseEntity.ok(service.getAll());
     }
-
     @PostMapping("/cadastrar")
-    @PreAuthorize("hasAnyAuthority('FUNCIONARIO')")
+    @PreAuthorize("hasAnyAuthority('FUNCIONARIO', 'ADMIN')")
     public ResponseEntity<ClienteDTO>cadastrar(@RequestBody @Validated ClienteDTO pessoa){
         return ResponseEntity.ok(service.post(pessoa));
     }
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>atualizar(@RequestBody @Validated ClienteDTO cliente, @PathVariable long id){
         return ResponseEntity.ok(service.put(cliente, id));
     }
     @DeleteMapping("/desativar/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>desativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.desativar(id));
     }
     @DeleteMapping("/ativar/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ClienteDTO>ativar(@PathVariable ("id") final long id){
         return ResponseEntity.ok(service.ativar(id));
     }
