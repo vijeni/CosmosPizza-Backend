@@ -2,6 +2,7 @@ package com.example.uniamerica.pizzaria.auth;
 
 import com.example.uniamerica.pizzaria.dto.LoginDTO;
 import com.example.uniamerica.pizzaria.dto.UsuarioDTO;
+import com.example.uniamerica.pizzaria.entity.Role;
 import com.example.uniamerica.pizzaria.entity.Usuario;
 import com.example.uniamerica.pizzaria.repository.UsuarioRepository;
 import com.example.uniamerica.pizzaria.service.UsuarioService;
@@ -13,13 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.file.AccessDeniedException;
@@ -27,9 +26,9 @@ import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AuthService {
@@ -41,6 +40,8 @@ public class AuthService {
     private String key;
     @Value("${security.jwt.auth-url}")
     private String authTokenUrl;
+    @Value("${security.client.id}")
+    private String clientId;
 
     private PublicKey decodeSecret(String secret) throws InvalidKeyException {
         try {
@@ -58,6 +59,10 @@ public class AuthService {
         HttpHeaders headers = new HttpHeaders();
         UsuarioDTO usuarioRetorno;
         Usuario usuarioBanco;
+        List<String> roles = Stream.of(Role.values())
+                .map(Enum::name)
+                .toList();
+        List<String> keyCloakRoles;
         String role = "NONE";
         String token;
         PublicKey publicKey = decodeSecret(key);
@@ -65,7 +70,7 @@ public class AuthService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
 
-        formData.add("client_id", "cosmos-pizza-api");
+        formData.add("client_id", clientId);
         formData.add("username", loginDTO.getUsername());
         formData.add("password", loginDTO.getPassword());
         formData.add("grant_type", "password");
@@ -79,16 +84,16 @@ public class AuthService {
                 .parseClaimsJws(retorno.getAccess_token());
 
         Claims body = claimsJws.getBody();
-        List<String> roles = (List<String>) body.get("realm_access", Map.class).get("roles");
+        keyCloakRoles = (List<String>) body.get("realm_access", Map.class).get("roles");
         for (String r:
-                roles) {
-            if(r.equals("ADMIN") || r.equals("FUNCIONARIO")){
+                keyCloakRoles) {
+            if(roles.contains(r)){
                 role = r;
                 break;
             }
         }
         if(role.equals("NONE")){
-            System.out.println(role);
+//            System.out.println(role);
             throw new AccessDeniedException("Usuário sem permissões!");
         }
         String username = (String) body.get("preferred_username");
@@ -98,14 +103,14 @@ public class AuthService {
             usuarioRetorno = usuarioService.toUsuarioDTO(usuarioBanco);
             if(!usuarioBanco.roleStringGet().equals(role)){
                 System.out.println(role);
-                usuarioBanco.roleString(role);
+                usuarioBanco.roleStringSet(role);
                 usuarioRetorno = usuarioService.toUsuarioDTO(usuarioRepository.save(usuarioBanco));
             }
         }
         else{
             UsuarioDTO mock = new UsuarioDTO();
             mock.setId(id);
-            mock.roleString(role);
+            mock.roleStringSet(role);
             mock.setUsername(username);
             usuarioRetorno = usuarioService.post(mock);
         }

@@ -27,7 +27,7 @@ public class UsuarioDTO{
     private LocalDateTime edicao;
     private LocalDateTime delecao;
 
-    public void roleString(String role){
+    public void roleStringSet(String role){
         this.role = Role.valueOf(role);
     }
     public String roleStringGet() {
