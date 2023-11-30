@@ -8,14 +8,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
@@ -24,13 +26,23 @@ public class SecurityConfig {
                                 .jwt(jwt -> jwt.jwtAuthenticationConverter(new JWTConverter()))
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/auth/*", "/auth")
                         .permitAll()
-                        .anyRequest()
-                        .authenticated());
+                        .requestMatchers("/cosmospizza/backend/**").permitAll() // Adicione esta linha para as requisições do backend
+                        .anyRequest().authenticated());
 
-        http.httpBasic(Customizer.withDefaults());
+        http
+                .httpBasic(Customizer.withDefaults())
+                .headers(headers -> headers
+                        .frameOptions().disable()
+                        .httpStrictTransportSecurity().disable()
+                );
+
+        // Configuração para permitir cabeçalhos do proxy
+        http.addFilterBefore(new ForwardedHeaderFilter(), AbstractPreAuthenticatedProcessingFilter.class);
+
         return http.build();
     }
 }
+

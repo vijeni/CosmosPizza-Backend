@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         sabores.add(new SaborDTO());
         ingredienteDTO.setId(1L);
         ingredienteDTO.setNome("Ingrediente A");
-        ingredienteDTO.setQuantidade(10);
         ingredienteDTO.setSabores(sabores);
     }
 
