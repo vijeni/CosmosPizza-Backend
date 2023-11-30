@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         pedido.setValorEntrega(5D);
         pedido.setValorTotal(15D);
         pedido.setDataAbertura(data);
-        pedido.setFuncionario(cliente);
+//        pedido.setFuncionario(cliente);
         pedido.setCliente(cliente);
         pizzas.add(new Pizza());
         produtos.add(new Produto());

@@ -64,7 +64,7 @@ class PedidoControllerTests {
         pedidoDTO.setValorEntrega(5D);
         pedidoDTO.setValorTotal(15D);
         pedidoDTO.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
-        pedidoDTO.setFuncionario(clienteDTO);
+//        pedidoDTO.setFuncionario(clienteDTO);
         pedidoDTO.setCliente(clienteDTO);
         pizzasDTO.add(new PizzaDTO());
         produtoDTOS.add(new ProdutoDTO());
@@ -80,7 +80,7 @@ class PedidoControllerTests {
         pedidoEntity.setValorEntrega(5D);
         pedidoEntity.setValorTotal(15D);
         pedidoEntity.setDataAbertura(LocalDateTime.of(2023, Month.SEPTEMBER, 20, 0, 0));
-        pedidoEntity.setFuncionario(cliente);
+//        pedidoEntity.setFuncionario(cliente);
         pedidoEntity.setCliente(cliente);
         pizzas.add(new Pizza());
         produtos.add(new Produto());
