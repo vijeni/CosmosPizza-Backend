@@ -26,7 +26,7 @@ public class Pedido extends  AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "funcionarios_id")
     @Getter @Setter
-    private Cliente funcionario;
+    private Usuario funcionario;
 
     @Getter @Setter
     @Enumerated(EnumType.STRING)
