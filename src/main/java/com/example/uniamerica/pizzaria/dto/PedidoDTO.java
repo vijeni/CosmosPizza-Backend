@@ -15,9 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PedidoDTO extends AbstractEntityDTO {
     @NotNull(message = "Cliente não informado!")
-    private PessoaDTO cliente;
+    private ClienteDTO cliente;
     @NotNull(message = "Funcionário não informado!")
-    private PessoaDTO funcionario;
+    private ClienteDTO funcionario;
     private Status status;
     @NotNull(message = "Informe a necessidade de entrega")
     private boolean entrega;

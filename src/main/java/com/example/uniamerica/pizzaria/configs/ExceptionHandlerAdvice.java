@@ -8,7 +8,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
+import java.nio.file.AccessDeniedException;
+import java.security.InvalidKeyException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -20,6 +23,23 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
         return e.getMessage();
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AccessDeniedException.class)
+    public String handleAccessDenied(AccessDeniedException e) {
+        return e.getMessage();
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
+    public String handleUnauthorized() {
+        return "Login inválido!";
+    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(InvalidKeyException.class)
+    public String handleInvalidKey() {
+        return "Erro de servidor!";
     }
 
     /**

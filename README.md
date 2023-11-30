@@ -31,7 +31,7 @@ Usaremos como exemplo o atributo 'sabor'. Para o uso dos demais atributos, é ne
 #### Cadastra um item
 
 ```http
-  Post /api/pessoa/cadastrar
+  Post /api/cliente/cadastrar
 ```
 Exemplo de requisição POST, no atributo 'pessoas':
 
@@ -44,18 +44,18 @@ Exemplo de requisição POST, no atributo 'pessoas':
         "endereco": {
             "id": 3
         },
-        "tipoPessoa": "CLIENTE"
+        "role": "CLIENTE"
     
 
 #
 Quando o corpo da requisição possui outro objeto, é necessário o preenchimento somente do id do objeto para o sucesso no cadastro. 
 
-No atributo "tipoPessoa", é necessário preencher com um dos dois tipos de pessoa presentes no sistema: **CLIENTE ou FUNCIONARIO**.
+No atributo "role", é necessário preencher com um dos dois tipos de cliente presentes no sistema: **CLIENTE ou FUNCIONARIO**.
 
 #### Edita um item
 
 ```http
-  PUT /api/pessoa/editar?id={id}
+  PUT /api/cliente/editar?id={id}
 ```
 Exemplo de requisição PUT, no atributo 'pessoas':
 
@@ -68,7 +68,7 @@ Exemplo de requisição PUT, no atributo 'pessoas':
         "endereco": {
             "id": 3
         },
-        "tipoPessoa": "CLIENTE"
+        "role": "CLIENTE"
     
 
 #
@@ -93,7 +93,7 @@ Para fazer a edição, é necessário que o id do parâmetro seja idêntico ao i
 
 Sempre que um retorno for bem sucedido, o corpo da requisição realizada será retornada no campo Response de sua ferramenta. 
 
-Retorno de uma lista do atributo 'pessoa': 
+Retorno de uma lista do atributo 'cliente': 
 
 ```
 [
@@ -110,7 +110,7 @@ Retorno de uma lista do atributo 'pessoa':
             "bairro": "Bubas",
             "cep": "85851-010"
         },
-        "tipoPessoa": "CLIENTE"
+        "role": "CLIENTE"
     }
 ]
 ```
