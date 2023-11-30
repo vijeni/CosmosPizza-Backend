@@ -17,7 +17,7 @@ public class PedidoDTO extends AbstractEntityDTO {
     @NotNull(message = "Cliente não informado!")
     private ClienteDTO cliente;
     @NotNull(message = "Funcionário não informado!")
-    private ClienteDTO funcionario;
+    private UsuarioDTO funcionario;
     private Status status;
     @NotNull(message = "Informe a necessidade de entrega")
     private boolean entrega;

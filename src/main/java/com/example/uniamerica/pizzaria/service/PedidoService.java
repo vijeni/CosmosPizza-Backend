@@ -5,6 +5,7 @@ import com.example.uniamerica.pizzaria.entity.Pedido;
 import com.example.uniamerica.pizzaria.entity.Status;
 import com.example.uniamerica.pizzaria.repository.PedidoRepository;
 import com.example.uniamerica.pizzaria.repository.ClienteRepository;
+import com.example.uniamerica.pizzaria.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.internal.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class PedidoService {
     ProdutoService produtoService;
 
     private final ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public PedidoDTO toPedidoDTO(Pedido pedido){
         return modelMapper.map(pedido, PedidoDTO.class);
@@ -45,7 +48,7 @@ public class PedidoService {
 
     public PedidoDTO validaPedido(PedidoDTO pedidoDTO){
         Assert.notNull(clienteRepository.findById(pedidoDTO.getCliente().getId()).orElse(null), "Cliente informado não existe!");
-        Assert.notNull(clienteRepository.findById(pedidoDTO.getFuncionario().getId()).orElse(null), "Funcionário informado não existe!");
+        Assert.notNull(usuarioRepository.findById(pedidoDTO.getFuncionario().getId()).orElse(null), "Funcionário informado não existe!");
         if(pedidoDTO.getDataAbertura() == null){
             pedidoDTO.setDataAbertura(LocalDateTime.now());
         }
