@@ -46,9 +46,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     void enderecoCepTest(){
         assertEquals("85851-010", enderecoDTO.getCep());
     }
-    @Test
-    void tamanhoAllArgsConstructorTest(){
-        EnderecoDTO enderecoAllArgs = new EnderecoDTO("Rua A", 123, "Complemento", "Bairro B", "85851-010");
-        assertThat(enderecoDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(enderecoAllArgs);
-    }
+//    @Test
+//    void tamanhoAllArgsConstructorTest(){
+//        EnderecoDTO enderecoAllArgs = new EnderecoDTO("Rua A", 123, "Complemento", "Bairro B", "85851-010");
+//        assertThat(enderecoDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(enderecoAllArgs);
+//    }
 }

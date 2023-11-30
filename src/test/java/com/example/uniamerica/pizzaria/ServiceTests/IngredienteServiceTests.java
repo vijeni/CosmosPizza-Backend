@@ -43,12 +43,10 @@ import static org.mockito.Mockito.*;
         ingredienteDTO = new IngredienteDTO();
         ingredienteDTO.setId(1L);
         ingredienteDTO.setNome("nome");
-        ingredienteDTO.setQuantidade(5);
 
 
         ingredienteEntidade.setId(1L);
         ingredienteEntidade.setNome("nome");
-        ingredienteEntidade.setQuantidade(5);
 
         ingredienteDTOList.add(ingredienteDTO);
 
@@ -81,7 +79,6 @@ import static org.mockito.Mockito.*;
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals("nome",result.getNome());
-        Assertions.assertEquals(5,result.getQuantidade());
     }
 
     @Test

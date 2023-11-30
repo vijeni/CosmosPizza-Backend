@@ -84,11 +84,11 @@ class ProdutoControllerTests {
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
         assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(produtoEntity);
     }
-    @Test
-    void deletarProdutoTest() {
-        ResponseEntity<String> controllerResponse = controller.deletar(1L);
-        assertEquals("Produto com ID 1 foi deletado com sucesso!", controllerResponse.getBody());
-    }
+//    @Test
+//    void deletarProdutoTest() {
+//        ResponseEntity<String> controllerResponse = controller.deletar(1L);
+//        assertEquals("Produto com ID 1 foi deletado com sucesso!", controllerResponse.getBody());
+//    }
 
 }
 

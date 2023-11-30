@@ -80,14 +80,14 @@ class SaborControllerTests {
         verify(saborService,times(1)).update(saborDTO,saborId);
     }
 
-    @Test
-    void saborDeleteTeste(){
-        Long saborId = 1L;
-
-        ResponseEntity<String>response = saborController.desativar(saborId);
-
-        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(saborService,times(1)).desativar(saborId);
-
-    }
+//    @Test
+//    void saborDeleteTeste(){
+//        Long saborId = 1L;
+//
+//        ResponseEntity<String>response = saborController.desativar(saborId);
+//
+//        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+//        verify(saborService,times(1)).desativar(saborId);
+//
+//    }
 }

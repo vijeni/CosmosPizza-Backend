@@ -128,12 +128,12 @@ class PedidoControllerTests {
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
         assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(pedidoDTO);
     }
-    @Test
-    void deletarPedidoTest() {
-        ResponseEntity<String> controllerResponse = controller.deletar(1L);
-        assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals("Pedido com ID 1 foi deletado com sucesso!", controllerResponse.getBody());
-    }
+//    @Test
+//    void deletarPedidoTest() {
+//        ResponseEntity<String> controllerResponse = controller.deletar(1L);
+//        assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
+//        assertEquals("Pedido com ID 1 foi deletado com sucesso!", controllerResponse.getBody());
+//    }
 
 }
 

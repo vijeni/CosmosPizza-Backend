@@ -43,7 +43,7 @@ import static org.mockito.Mockito.*;
         clienteEntidade.setCpf("cpf");
         clienteEntidade.setTelefone("telefone");
 
-        clienteDTO.setRole(Role.FUNCIONARIO);
+
         clienteDTO.setCpf("cpf");
         clienteDTO.setId(1L);
         clienteDTO.setNome("nome");
@@ -93,7 +93,6 @@ import static org.mockito.Mockito.*;
         Assertions.assertEquals(1L,result.getId());
         Assertions.assertEquals("cpf",result.getCpf());
         Assertions.assertEquals("telefone",result.getTelefone());
-        Assertions.assertEquals(Role.FUNCIONARIO,result.getRole());
 
     }
 

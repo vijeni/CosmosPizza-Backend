@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         clienteDTO.setCpf("676.990.230-30");
         clienteDTO.setTelefone("999999999");
         clienteDTO.setEndereco(endereco);
-        clienteDTO.setRole(Role.FUNCIONARIO);
     }
     @Test
     void pessoaIdTest(){
@@ -43,13 +42,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     void pessoaEnderecoTest(){
         assertEquals(endereco, clienteDTO.getEndereco());
     }
-    @Test
-    void pessoaTipoTest(){
-        assertEquals(Role.FUNCIONARIO, clienteDTO.getRole());
-    }
+
     @Test
     void pessoaAllArgsConstructorTest(){
-        ClienteDTO pessoaAllArgs = new ClienteDTO("Joao", "676.990.230-30", "999999999", endereco, Role.FUNCIONARIO);
+        ClienteDTO pessoaAllArgs = new ClienteDTO("Joao", "676.990.230-30", "999999999", endereco);
         assertThat(clienteDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(pessoaAllArgs);
     }
 }

@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         sabores.add(new SaborDTO());
         ingredienteDTO.setId(1L);
         ingredienteDTO.setNome("Ingrediente A");
-        ingredienteDTO.setQuantidade(10);
         ingredienteDTO.setSabores(sabores);
     }
 
@@ -33,17 +32,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     void ingredienteNomeTest(){
         assertEquals("Ingrediente A", ingredienteDTO.getNome());
     }
-    @Test
-    void ingredienteQuantidadeTest(){
-        assertEquals(10, ingredienteDTO.getQuantidade());
-    }
+
     @Test
     void ingredienteSaboresTest(){
         assertEquals(sabores, ingredienteDTO.getSabores());
     }
     @Test
     void ingredienteAllArgsConstructorTest(){
-        IngredienteDTO tamanhoAllArgs = new IngredienteDTO("Ingrediente A", 10, sabores);
+        IngredienteDTO tamanhoAllArgs = new IngredienteDTO("Ingrediente A", sabores);
         assertThat(ingredienteDTO).usingRecursiveComparison().ignoringFields("id").isEqualTo(tamanhoAllArgs);
     }
 

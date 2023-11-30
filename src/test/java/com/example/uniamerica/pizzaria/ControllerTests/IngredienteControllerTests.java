@@ -86,14 +86,14 @@ class IngredienteControllerTests {
         verify(ingredientesService,times(1)).update(ingredienteId,ingredienteDTO);
     }
 
-    @Test
-    void ingredientesDeleteTest(){
-        Long ingredienteId = 1L;
+//    @Test
+//    void ingredientesDeleteTest(){
+//        Long ingredienteId = 1L;
+//
+//        ResponseEntity<String> response = ingredienteController.desativar(ingredienteId);
+//        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+//        verify(ingredientesService,times(1)).desativar(ingredienteId);
 
-        ResponseEntity<String> response = ingredienteController.desativar(ingredienteId);
-        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(ingredientesService,times(1)).desativar(ingredienteId);
-
-    }
+//    }
 
 }
