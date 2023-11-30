@@ -24,7 +24,7 @@ public class SecurityConfig {
                                 .jwt(jwt -> jwt.jwtAuthenticationConverter(new JWTConverter()))
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                         .requestMatchers("/auth/*", "/auth")
                         .permitAll()
                         .anyRequest()
