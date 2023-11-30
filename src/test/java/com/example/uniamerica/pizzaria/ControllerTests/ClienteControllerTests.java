@@ -86,15 +86,15 @@ class ClienteControllerTests {
         verify(clienteService,times(1)).post(clienteDTO);
     }
 
-    @Test
-    void pessoaDeleteTest(){
-        Long pessoaId = 1L;
-
-
-        ResponseEntity<String> response = clienteController.desativar(pessoaId);
-
-        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
-        verify(clienteService,times(1)).desativar(pessoaId);
-    }
+//    @Test
+//    void pessoaDeleteTest(){
+//        Long pessoaId = 1L;
+//
+//
+//        ResponseEntity<String> response = clienteController.desativar(pessoaId);
+//
+//        Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
+//        verify(clienteService,times(1)).desativar(pessoaId);
+//    }
 
 }

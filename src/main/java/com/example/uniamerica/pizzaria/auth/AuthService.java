@@ -93,7 +93,7 @@ public class AuthService {
             }
         }
         if(role.equals("NONE")){
-//            System.out.println(role);
+            System.out.println(role);
             throw new AccessDeniedException("Usuário sem permissões!");
         }
         String username = (String) body.get("preferred_username");

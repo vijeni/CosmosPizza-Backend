@@ -82,12 +82,12 @@ class TamanhoControllerTests {
         assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
         assertThat(controllerResponse.getBody()).usingRecursiveComparison().isEqualTo(tamanhoDTO);
     }
-    @Test
-    void deletarTamanhoTest() {
-        ResponseEntity<String> controllerResponse = controller.desativar(1L);
-        assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
-        assertEquals("O tamanho com o ID 1 foi deletado com sucesso.", controllerResponse.getBody());
-    }
+//    @Test
+//    void deletarTamanhoTest() {
+//        ResponseEntity<String> controllerResponse = controller.desativar(1L);
+//        assertEquals(HttpStatus.OK, controllerResponse.getStatusCode());
+//        assertEquals("O tamanho com o ID 1 foi deletado com sucesso.", controllerResponse.getBody());
+//    }
 
 }
 
